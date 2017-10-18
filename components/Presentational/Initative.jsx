@@ -1,7 +1,7 @@
 import React from 'react';
 import { PC } from './PC.jsx';
 import { NPCdisplay } from './NPCdisplay.jsx';
-import { NPCdisplaywork } from './NPCdisplaywork.jsx';
+
 import { NPCGroup } from './NPCGroup.jsx';
 import { Button } from './button.jsx';
 
