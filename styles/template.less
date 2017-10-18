@@ -1,0 +1,490 @@
+//Needs to be split into seperate libraries
+//Standard resets
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+input,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  line-height: 1.3em;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: '';
+  content: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+  margin-bottom: .25em;
+}
+
+h1 {
+  font-size: 2em;
+
+}
+
+h2 {
+  font-size: 1.5em;
+
+}
+
+h3 {
+  font-size: 1.25em;
+
+}
+
+h4 {
+  font-size: 1.125em;
+
+}
+
+p {
+
+  margin-bottom: .25em;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+//color codes
+@dark: #2f2f2f;
+@light: #fdfdfd;
+@hightlight: #7F3333;
+//standardized widths and heights
+@character-min-height: 105px;
+@footer-height: 40px;
+//standard layouts
+
+body,
+html {
+  min-width: 300px;
+  height: 100%;
+}
+
+#app {
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+a,
+h1,
+h2,
+html,
+p {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: @dark;
+}
+
+.content-container {
+  width: 100%;
+
+  .content {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 25px 0;
+  }
+
+}
+//ui components
+.button {
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    color: @light;
+  }
+  background: @dark;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 1px lighten(@dark, 30%);
+  cursor: pointer;
+
+}
+
+.button:hover {
+  background: lighten(@dark, 10%);
+}
+
+//id specific styles 
+#addCharButton {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+}
+
+#roundEndButton {
+  box-shadow: 0 0 0;
+  margin: 25px 0;
+  text-align: center;
+  border: 2px dotted lighten(@dark, 20%);
+  background: @light;
+
+  p {
+    color: lighten(@dark, 20%);
+  }
+}
+
+#roundEndButton:hover {
+  border: 2px dotted @dark;
+
+  p {
+    color: @dark;
+  }
+}
+
+// initative Container and character styles
+.content-container#init-container {
+  padding-bottom: @footer-height;
+  position: relative;
+  display: table;
+
+  .character {
+    min-height: @character-min-height;
+    padding: 25px 0;
+    margin: 5px 0;
+    width: 100%;
+    display: table;
+    border-top: 1px solid @dark;
+    border-bottom: 1px solid @dark;
+
+    .button,
+    .char-name,
+    .group-name-bar,
+    .hp-count {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .hp-count {
+      text-align: center;
+      width: 75px;
+      color: lighten(@dark, 10%);
+      margin-left: 10px;
+
+      .hp {
+        font-size: 2em;
+      }
+
+    }
+
+    .hp-toggles {
+      display: table;
+      height: 30px;
+      box-sizing: border-box;
+
+      a {
+        background-color: @dark;
+        color: @light;
+        cursor: pointer;
+        padding: 0 5px;
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 12px;
+
+      }
+
+      .inputToggle {
+        background-color: @dark;
+        margin: 0 5px;
+        width: 40px;
+        display: table;
+        height: 30px;
+        box-sizing: border-box;
+
+        a {
+          display: table-cell;
+          vertical-align: middle;
+          position: relative;
+          padding: 5px;
+          font-size: 12px;
+          box-sizing: border-box;
+          height: 30px;
+        }
+
+        input {
+          border: none;
+          text-align: center;
+          font-weight: bold;
+          width: 30px;
+          height: 30px;
+          border-top: 3px solid black;
+          border-bottom: 3px solid black;
+          box-sizing: border-box;
+          display: table-cell;
+          vertical-align: middle;
+          -moz-appearance: textfield;
+
+        }
+
+        input:focus {
+          outline: 0;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+      }
+    }
+
+  }
+  //In Group stylings
+  .group {
+    .button-container {
+      height: 25px;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 111px;
+
+      .button {
+        display: block;
+        padding: 5px;
+        box-shadow: 0 0 0;
+        box-sizing: border-box;
+        margin: 0 auto;
+      }
+
+    }
+
+    .in-group {
+      border-bottom: none;
+      display: none;
+
+      .char-name {
+        h1 {
+          font-size: 1.75em;
+          color: lighten(@dark, 20%);
+        }
+      }
+
+      .hp-count {
+        
+        margin-left: 10px;
+
+        .hp {
+          font-size: 1.75em;
+          h2 {
+            color: lighten(@dark, 10%);
+          }
+        }
+
+      }
+
+      .hp-toggles {
+        a {
+          background-color: lighten(@dark, 10%);
+        }
+
+        .inputToggle {
+          background-color: lighten(@dark, 10%);
+
+          input {
+
+            border-top: 3px solid lighten(@dark, 10%);
+            border-bottom: 3px solid lighten(@dark, 10%);
+
+          }
+
+        }
+
+      }
+    }
+
+    .in-group:last-child {
+      border-bottom: 1px solid @dark;
+    }
+
+    .inactive {
+      .in-group {
+        display: none;
+      }
+    }
+
+    .active {
+      border-bottom: none;
+
+      .in-group {
+        display: table;
+      }
+    }
+  }
+
+}
+//Nav and Footer
+.content-container#navbar {
+  background: @dark;
+
+  p {
+    color: @light;
+  }
+
+  .content {
+    display: table;
+    padding: 5px;
+
+    .logo,
+    p {
+      display: table-cell;
+      vertical-align: middle;
+
+    }
+
+    .logo {
+      img {
+        height: 50px;
+      }
+    }
+
+    p {
+      text-align: right;
+    }
+  }
+}
+
+.content-container#footer {
+  height: @footer-height;
+  background: @dark;
+  color: @light;
+  position: absolute;
+  bottom: 0;
+  display: table;
+
+  .content {
+
+    display: table-cell;
+    padding: 0;
+    vertical-align: middle;
+
+    p {
+
+      text-align: center;
+    }
+  }
+
+}

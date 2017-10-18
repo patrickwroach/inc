@@ -1,0 +1,21 @@
+{
+  "name": "incounter",
+  "version": "1.0.0",
+  "description": "DM Dig Enc Tracker",
+  "main": "index.js",
+  "scripts": {
+   "start": "webpack-dev-server --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "url to come"
+  },
+  "author": "JTH-PWR",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}

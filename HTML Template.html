@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="styles/template.css">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Incounter</title>
+
+</head>
+<!--most classes to be replaced with various properties in JS-->
+
+<body>
+	<div id="app">
+		<!-- Navigation bar up top mostly a place holder,  and maybe a reset button -->
+		<div id="navbar" class="content-container">
+			<div class="content">
+				<div class="logo">
+					<img src="assets/incounter-logo.svg" alt="logo">
+				</div>
+				<p>Round <span>1</span></p>
+			</div>
+		</div>
+		<!--main container in app-->
+		<div id="init-container" class="content-container">
+
+			<div class="content">
+
+				<!--characters need a dynamic generated id -->
+				<div class="init-group">
+					<div class="character pc">
+						<div class="name">
+							<h1>Mr. Cool Guy</h1>
+						</div>
+						<!--name number is a prop-->
+					</div>
+				</div>
+				<hr />
+				<div class="init-group">
+					<div class="character npc">
+						<div class="name">
+							<h1>Mr. Single Uncool Guy</h1>
+						</div>
+						<!--First number in HP needs stored in a state-->
+						<!--Second number is a prop-->
+						<div class="hp-count">
+							<div class="hp">
+								<h2>25/25</h2>
+							</div>
+							<div class="hp-toggles">
+								<p><span>+</span> <span>[]</span> <span>-</span></p>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div id="new-round">
+					<p>Round <span>2</span></p>
+				</div>
+				<div class="init-group">
+					<div class="character npc">
+						<div class="name">
+							<h1>Group of Uncool Guys</h1>
+						</div>
+						<!--First number in HP needs stored in a state-->
+						<!--Second number is a prop-->
+						<div class="hp-count">
+							
+							<div class="hp-toggles">
+								Expand
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr />
+
+			</div>
+		</div>
+
+		<!--Footer, again just as a place holder, for now probablly just an email app creator button, maybe a copyright declaration-->
+		<div id="footer" class="content-container">
+			<div class="content">
+				<p></p>
+				<p>copyright jth pwr 2525 | contact </p>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

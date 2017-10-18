@@ -1,0 +1,387 @@
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+input,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  line-height: 1.3em;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: '';
+  content: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+  margin-bottom: .25em;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.25em;
+}
+h4 {
+  font-size: 1.125em;
+}
+p {
+  margin-bottom: .25em;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body,
+html {
+  min-width: 300px;
+  height: 100%;
+}
+#app {
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+a,
+h1,
+h2,
+html,
+p {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #2f2f2f;
+}
+.content-container {
+  width: 100%;
+}
+.content-container .content {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 25px 0;
+}
+.button {
+  background: #2f2f2f;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 1px #7c7c7c;
+  cursor: pointer;
+}
+.button a,
+.button h1,
+.button h2,
+.button h3,
+.button h4,
+.button h5,
+.button p {
+  color: #fdfdfd;
+}
+.button:hover {
+  background: #494949;
+}
+#addCharButton {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+}
+#roundEndButton {
+  box-shadow: 0 0 0;
+  margin: 25px 0;
+  text-align: center;
+  border: 2px dotted #626262;
+  background: #fdfdfd;
+}
+#roundEndButton p {
+  color: #626262;
+}
+#roundEndButton:hover {
+  border: 2px dotted #2f2f2f;
+}
+#roundEndButton:hover p {
+  color: #2f2f2f;
+}
+.content-container#init-container {
+  padding-bottom: 40px;
+  position: relative;
+  display: table;
+}
+.content-container#init-container .character {
+  min-height: 105px;
+  padding: 25px 0;
+  margin: 5px 0;
+  width: 100%;
+  display: table;
+  border-top: 1px solid #2f2f2f;
+  border-bottom: 1px solid #2f2f2f;
+}
+.content-container#init-container .character .button,
+.content-container#init-container .character .char-name,
+.content-container#init-container .character .group-name-bar,
+.content-container#init-container .character .hp-count {
+  display: table-cell;
+  vertical-align: middle;
+}
+.content-container#init-container .character .hp-count {
+  text-align: center;
+  width: 75px;
+  color: #494949;
+  margin-left: 10px;
+}
+.content-container#init-container .character .hp-count .hp {
+  font-size: 2em;
+}
+.content-container#init-container .character .hp-toggles {
+  display: table;
+  height: 30px;
+  box-sizing: border-box;
+}
+.content-container#init-container .character .hp-toggles a {
+  background-color: #2f2f2f;
+  color: #fdfdfd;
+  cursor: pointer;
+  padding: 0 5px;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.content-container#init-container .character .hp-toggles .inputToggle {
+  background-color: #2f2f2f;
+  margin: 0 5px;
+  width: 40px;
+  display: table;
+  height: 30px;
+  box-sizing: border-box;
+}
+.content-container#init-container .character .hp-toggles .inputToggle a {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  padding: 5px;
+  font-size: 12px;
+  box-sizing: border-box;
+  height: 30px;
+}
+.content-container#init-container .character .hp-toggles .inputToggle input {
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  box-sizing: border-box;
+  display: table-cell;
+  vertical-align: middle;
+  -moz-appearance: textfield;
+}
+.content-container#init-container .character .hp-toggles .inputToggle input:focus {
+  outline: 0;
+}
+.content-container#init-container .character .hp-toggles .inputToggle input[type=number]::-webkit-inner-spin-button,
+.content-container#init-container .character .hp-toggles .inputToggle input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.content-container#init-container .group .button-container {
+  height: 25px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 111px;
+}
+.content-container#init-container .group .button-container .button {
+  display: block;
+  padding: 5px;
+  box-shadow: 0 0 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.content-container#init-container .group .in-group {
+  border-bottom: none;
+  display: none;
+}
+.content-container#init-container .group .in-group .char-name h1 {
+  font-size: 1.75em;
+  color: #626262;
+}
+.content-container#init-container .group .in-group .hp-count {
+  margin-left: 10px;
+}
+.content-container#init-container .group .in-group .hp-count .hp {
+  font-size: 1.75em;
+}
+.content-container#init-container .group .in-group .hp-count .hp h2 {
+  color: #494949;
+}
+.content-container#init-container .group .in-group .hp-toggles a {
+  background-color: #494949;
+}
+.content-container#init-container .group .in-group .hp-toggles .inputToggle {
+  background-color: #494949;
+}
+.content-container#init-container .group .in-group .hp-toggles .inputToggle input {
+  border-top: 3px solid #494949;
+  border-bottom: 3px solid #494949;
+}
+.content-container#init-container .group .in-group:last-child {
+  border-bottom: 1px solid #2f2f2f;
+}
+.content-container#init-container .group .inactive .in-group {
+  display: none;
+}
+.content-container#init-container .group .active {
+  border-bottom: none;
+}
+.content-container#init-container .group .active .in-group {
+  display: table;
+}
+.content-container#navbar {
+  background: #2f2f2f;
+}
+.content-container#navbar p {
+  color: #fdfdfd;
+}
+.content-container#navbar .content {
+  display: table;
+  padding: 5px;
+}
+.content-container#navbar .content .logo,
+.content-container#navbar .content p {
+  display: table-cell;
+  vertical-align: middle;
+}
+.content-container#navbar .content .logo img {
+  height: 50px;
+}
+.content-container#navbar .content p {
+  text-align: right;
+}
+.content-container#footer {
+  height: 40px;
+  background: #2f2f2f;
+  color: #fdfdfd;
+  position: absolute;
+  bottom: 0;
+  display: table;
+}
+.content-container#footer .content {
+  display: table-cell;
+  padding: 0;
+  vertical-align: middle;
+}
+.content-container#footer .content p {
+  text-align: center;
+}
