@@ -2,16 +2,18 @@ import React from 'react';
 import { CharName } from './CharName.jsx';
 import { HpCount } from './HpCount.jsx';
 
-export class NPCInGroup extends React.Component {
+export class NPC extends React.Component {
   constructor(props){
     super(props);
-    this.state = { hp:10, hpmax:10, hpInput:5};
+    this.state = { name:'Mysterious Enemy', hp:0, hpmax:0, hpInput:5};
     this.addHp = this.addHp.bind(this);
     this.minusHp = this.minusHp.bind(this);
     this.addInputHp = this.addInputHp.bind(this);
     this.minusInputHp = this.minusInputHp.bind(this);  
     this.handleInput=this.handleInput.bind(this);   
-  } 
+  }  
+
+//Todo: Create Individual Classes for each of these functions? 
     
 addHp() {       
     const newHp = this.state.hp + 1;
@@ -49,10 +51,16 @@ addInputHp() {
     this.setState({ hp: newHp });
 }
 
+componentWillMount() {
+      const hp = this.props.hp;
+       this.setState({hp:hp,
+                     hpmax:hp});
+    
+  }
   
   render() {
    return (
-         <div id={this.state.name} class="character npc in-group">
+         <div id={this.props.name} className={this.props.dynamicClasses}>
            <CharName name={this.props.name} />
            <HpCount hp={this.state.hp} 
                     hpmax={this.state.hpmax}

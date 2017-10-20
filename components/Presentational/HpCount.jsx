@@ -24,11 +24,11 @@ export class HpCount extends React.Component {
   
   render() {
    return (
-    <div class="hp-count">
+    <div className="hp-count">
       <Hp hp={this.props.hp} hpmax={this.props.hpmax} /> 
-        <div class="hp-toggles">
+        <div className="hp-toggles">
           <a onClick={() => this.props.addHp()}>+1</a>
-           <div class="inputToggle">
+           <div className="inputToggle">
                 <a onClick={() => this.props.addInputHp()}>+</a>
                     <input type="number" onChange={this.passingProps} placeholder="5" />
                 <a onClick={() => this.props.minusInputHp()}>-</a>

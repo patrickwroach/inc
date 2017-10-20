@@ -1,14 +1,13 @@
 import React from 'react';
 import { Button } from './button.jsx';
-import { NPCInGroup} from './NPCInGroup.jsx';
 import { CharName } from './CharName.jsx';
+import { NPC } from './NPC.jsx';
 
 
 export class NPCGroup extends React.Component {
   constructor(props){
     super(props);
-    this.state = { name:'Anonymous Minion',
-                   toggleGroup: 'inactive', 
+    this.state = { toggleGroup: 'inactive', 
                    toggleButtonText: 'Show Group'
                    };
     this.toggleGroup=this.toggleGroup.bind(this);                   
@@ -30,18 +29,18 @@ export class NPCGroup extends React.Component {
     } 
   }
   render() {
-   let groupName = `${this.state.name}s`;
+   let groupName = `${this.props.name}s`;
    return (
     <div class="group">
       <div class={this.state.toggleGroup}>
-        <div id={this.state.name} class="group-name-bar character">
+        <div id={this.props.name} class="group-name-bar character">
            <CharName name={groupName}    />
             <div class="button-container">	             
              <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} /> 
           </div>
        </div> 
-       <NPCInGroup name={this.state.name} />
-       <NPCInGroup name={this.state.name} />
+       <NPC name={this.props.name} hp={this.props.hp} dynamicClasses={'character npc in-group'}/>
+       <NPC name={this.props.name} hp={this.props.hp} dynamicClasses={'character npc in-group'}/>
       </div>  
     </div>  
     )
