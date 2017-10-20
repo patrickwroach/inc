@@ -60,7 +60,15 @@ export class Encounter extends React.Component {
                       toggleWizard:'inactive'} 
                        );
         }
-    
+
+    cycleTurn(){
+        var newArray = this.state.CharData;    
+        newArray.push(newArray.shift());        
+        this.setState({CharData:newArray}
+        );
+
+        
+    }
    
   
    
@@ -78,6 +86,8 @@ export class Encounter extends React.Component {
         {Characters}         
         <li><Button text="Round End" id="roundEndButton" /></li>
         <Button text="Add Char" id="addCharButton" onClick={() => this.addChar()}/>
+         <Button text="Cycle" id="CycleButton" onClick={() => this.cycleTurn()}/>
+
         <AddChar toggleWizard = {this.state.toggleWizard}
                  closeWizard={() => this.closeWizard()}
                  addGroup={() => this.addGroup()}
