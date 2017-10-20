@@ -66,9 +66,10 @@ export class Encounter extends React.Component {
    
 
     render() {
-      
-        const Characters = this.state.CharData.map((CharData, index)=><li key={index}><Character hp={CharData.hp}name={CharData.name} type={CharData.type} /></li>);
-    
+        const latestAdd = this.state.CharData[(this.state.CharData.length) -1];
+        const charOnAdd = this.state.CharData;
+        const Characters = this.state.CharData.map((number)=><li key={number.toString()}><Character hp={latestAdd.hp} name={latestAdd.name} type={latestAdd.type} /></li>);
+        console.log(charOnAdd.indexOf(latestAdd));
        
         
       
