@@ -13,7 +13,7 @@ export class NPC extends React.Component {
             arrayTargeter={this.props.arrayTargeter}
             hp={this.props.CharData.hp} 
             hpmax={this.props.CharData.hpmax} 
-            getTarget={() => this.props.getTarget()}  
+            getInput={this.props.handleInput}  
             addHp={() => this.props.addHp()}
             minusHp={() => this.props.minusHp()} 
             addInputHp={() => this.props.addInputHp()}

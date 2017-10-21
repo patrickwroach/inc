@@ -29,18 +29,28 @@ export class NPCGroup extends React.Component {
     } 
   }
   render() {
-   let groupName = `${this.props.name}s`;
+   let groupName = `${this.props.CharData.name}s`;
    return (
     <div class="group">
       <div class={this.state.toggleGroup}>
-        <div id={this.props.name} class="group-name-bar character">
-           <CharName name={groupName}    />
-            <div class="button-container">	             
-             <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} /> 
+        <div id={this.props.CharData.name} class="group-name-bar character">
+          <CharName 
+            name={groupName} 
+          />
+          <div class="button-container">	             
+            <Button text={this.state.toggleButtonText}
+              id="expand" onClick={() => this.toggleGroup()} 
+            /> 
           </div>
-       </div> 
-       <NPC name={this.props.name} hp={this.props.hp} dynamicClasses={'character npc in-group'}/>
-       <NPC name={this.props.name} hp={this.props.hp} dynamicClasses={'character npc in-group'}/>
+        </div> 
+        <NPC 
+          CharData={this.props.CharData}
+          dynamicClasses={'character npc in-group'}
+        />
+        <NPC 
+          CharData={this.props.CharData}
+          dynamicClasses={'character npc in-group'}
+        />
       </div>  
     </div>  
     )
