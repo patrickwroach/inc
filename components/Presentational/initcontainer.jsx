@@ -1,5 +1,5 @@
 import React from 'react';
-import { Encounter } from './Encounter.jsx';
+import { Encounter } from './encounter.jsx';
 import { Button } from './button.jsx';
 
 

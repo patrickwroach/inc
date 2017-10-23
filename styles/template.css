@@ -195,7 +195,12 @@ p {
 #addCharButton {
   position: fixed;
   bottom: 10%;
-  right: 5%;
+  right: 2%;
+}
+#endTurnButton {
+  position: fixed;
+  top: 150px;
+  right: 2%;
 }
 #roundEndButton {
   box-shadow: 0 0 0;
@@ -229,10 +234,16 @@ p {
 }
 .content-container#init-container .character .button,
 .content-container#init-container .character .char-name,
-.content-container#init-container .character .group-name-bar,
 .content-container#init-container .character .hp-count {
   display: table-cell;
   vertical-align: middle;
+}
+.content-container#init-container .character .char-bar,
+.content-container#init-container .character .group-name-bar {
+  width: 100%;
+  display: table;
+  vertical-align: middle;
+  min-height: 105px;
 }
 .content-container#init-container .character .hp-count {
   text-align: center;
@@ -243,22 +254,24 @@ p {
 .content-container#init-container .character .hp-count .hp {
   font-size: 2em;
 }
-.content-container#init-container .character .hp-toggles {
+.content-container#init-container .character .hp-count .hp-toggles {
   display: table;
   height: 30px;
   box-sizing: border-box;
   margin: 0 0 0 auto;
+  border-spacing: 2px;
 }
-.content-container#init-container .character .hp-toggles a {
+.content-container#init-container .character .hp-count .hp-toggles .button {
   background-color: #2f2f2f;
   color: #fdfdfd;
   cursor: pointer;
   padding: 0 5px;
+  box-shadow: none;
   display: table-cell;
   vertical-align: middle;
   font-size: 12px;
 }
-.content-container#init-container .character .hp-toggles .inputToggle {
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle {
   background-color: #2f2f2f;
   margin: 0 5px;
   width: 40px;
@@ -266,7 +279,7 @@ p {
   height: 30px;
   box-sizing: border-box;
 }
-.content-container#init-container .character .hp-toggles .inputToggle a {
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle a {
   display: table-cell;
   vertical-align: middle;
   position: relative;
@@ -275,7 +288,7 @@ p {
   box-sizing: border-box;
   height: 30px;
 }
-.content-container#init-container .character .hp-toggles .inputToggle input {
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle input {
   border: none;
   text-align: center;
   font-weight: bold;
@@ -288,65 +301,72 @@ p {
   vertical-align: middle;
   -moz-appearance: textfield;
 }
-.content-container#init-container .character .hp-toggles .inputToggle input:focus {
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle input:focus {
   outline: 0;
 }
-.content-container#init-container .character .hp-toggles .inputToggle input[type=number]::-webkit-inner-spin-button,
-.content-container#init-container .character .hp-toggles .inputToggle input[type=number]::-webkit-outer-spin-button {
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle input[type=number]::-webkit-inner-spin-button,
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.content-container#init-container .group .button-container {
+.content-container#init-container .character .button-container {
   height: 25px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
   width: 111px;
 }
-.content-container#init-container .group .button-container .button {
+.content-container#init-container .character .button-container .button {
   display: block;
   padding: 5px;
   box-shadow: 0 0 0;
   box-sizing: border-box;
   margin: 0 auto;
 }
-.content-container#init-container .group .in-group {
+.content-container#init-container .character.NPC .group-name-bar,
+.content-container#init-container .character.PC .group-name-bar {
+  display: none;
+}
+.content-container#init-container .character.PC .hp-count {
+  display: none;
+}
+.content-container#init-container .character.Group .char-bar {
   border-bottom: none;
   display: none;
 }
-.content-container#init-container .group .in-group .char-name h1 {
+.content-container#init-container .character.Group .char-bar .char-name h1 {
   font-size: 1.75em;
   color: #626262;
 }
-.content-container#init-container .group .in-group .hp-count {
+.content-container#init-container .character.Group .char-bar .hp-count {
   margin-left: 10px;
 }
-.content-container#init-container .group .in-group .hp-count .hp {
+.content-container#init-container .character.Group .char-bar .hp-count .hp {
   font-size: 1.75em;
 }
-.content-container#init-container .group .in-group .hp-count .hp h2 {
+.content-container#init-container .character.Group .char-bar .hp-count .hp h2 {
   color: #494949;
 }
-.content-container#init-container .group .in-group .hp-toggles a {
+.content-container#init-container .character.Group .char-bar .hp-toggles a {
   background-color: #494949;
 }
-.content-container#init-container .group .in-group .hp-toggles .inputToggle {
+.content-container#init-container .character.Group .char-bar .hp-toggles .inputToggle {
   background-color: #494949;
 }
-.content-container#init-container .group .in-group .hp-toggles .inputToggle input {
+.content-container#init-container .character.Group .char-bar .hp-toggles .inputToggle input {
   border-top: 3px solid #494949;
   border-bottom: 3px solid #494949;
 }
-.content-container#init-container .group .in-group:last-child {
+.content-container#init-container .character.Group .char-bar:last-child {
   border-bottom: 1px solid #2f2f2f;
 }
-.content-container#init-container .group .inactive .in-group {
+.content-container#init-container .character.Group.inactive .char-bar {
   display: none;
 }
-.content-container#init-container .group .active {
+.content-container#init-container .character.Group.active {
   border-bottom: none;
 }
-.content-container#init-container .group .active .in-group {
+.content-container#init-container .character.Group.active .char-bar {
   display: table;
 }
 #add-char-wizard {

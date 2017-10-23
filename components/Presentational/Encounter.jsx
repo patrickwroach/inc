@@ -1,8 +1,7 @@
 import React from 'react';
-import {Character } from './character.jsx';
+import { InitGroup } from './initgroup.jsx';
 import { Button } from './button.jsx';
-import { AddChar } from './addChar.jsx';
-import { RoundPush } from './roundpush.jsx';
+import { AddChar } from './addchar.jsx';
 
 export class Encounter extends React.Component {
   constructor(props) {
@@ -10,18 +9,15 @@ export class Encounter extends React.Component {
         this.state={
                     CharData:[],
                     toggleWizard:'inactive',
-                    currentTarget:0
-                    
+                                    
                      };
         this.addHp = this.addHp.bind(this);
         this.minusHp = this.minusHp.bind(this);
-        this.addInputHp = this.addInputHp.bind(this);
-        this.minusInputHp = this.minusInputHp.bind(this);  
         this.addChar = this.addChar.bind(this);
         this.addPC = this.addPC.bind(this);
         this.addNPC = this.addNPC.bind(this);
         this.addGroup = this.addGroup.bind(this); 
-        this.getTarget = this.getTarget.bind(this);     
+  
 
     }  
     
@@ -32,42 +28,16 @@ export class Encounter extends React.Component {
    //HP adjustment functions
     
     addHp() {
-    const target = this.state.currentTarget;
-    console.log(target);
-    var stateCopy = this.state.CharData.slice();     
-    stateCopy[target] = Object.assign({}, stateCopy[target])  
-    stateCopy[target].hp += 1;                        
-    this.setState({CharData : stateCopy });         
+
+    
     }
 
     minusHp() {      
-        const newHp = this.state.CharData.hp - 1;
-         this.setState({CharData:{hp: newHp }});   
+
+  
     }
 
-    getTarget(X){
-        this.setState({
-            currentTarget:X
-        });    
-    }
-
-    addInputHp() {
-        const hpInput = this.state.CharData.hpInput;
-        const parsedHPinput = parseInt(hpInput);
-        //TODO: Input was getting passed as a string, don't know why 
-        //parse is a hot fix
-        const newHp = this.state.CharData.hp + parsedHPinput;
-        this.setState({ hp: newHp });
-    }
-    
-    minusInputHp() {
-        const hpInput = this.state.CharData.hpInput;
-        const parsedHPinput = parseInt(hpInput);
-        //TODO: Input was getting passed as a string, don't know why 
-        //parse is a hot fix
-        const newHp = this.state.CharData.hp - parsedHPinput;
-        this.setState({ hp: newHp });
-    }
+  
             
     //Add Character Sections, specific types to be stripped out after wizard is complete
     addChar() {
@@ -80,9 +50,12 @@ export class Encounter extends React.Component {
     }
     addPC() {
         var newArray = this.state.CharData.slice();
+      
         newArray.push({
-            name:'Clark Count',
-            type: 'PC', 
+            name:'Sol the Halfling',
+            type: 'PC',
+            amount: [1]  
+           
                 
         });   
         this.setState({CharData:newArray,
@@ -91,12 +64,13 @@ export class Encounter extends React.Component {
         }
     addNPC() {
         var newArray = this.state.CharData.slice();    
-        newArray.push({
-            name:'CJimm',
+            newArray.push({
+            name:'Tarask',
             type:'NPC', 
             hp:100,
             hpmax:100,
-            hpInput:3
+            hpInput:3,
+            amount: [1]   
         
         });   
         this.setState({CharData:newArray,
@@ -104,13 +78,15 @@ export class Encounter extends React.Component {
                        );
         }
     addGroup() {
-        var newArray = this.state.CharData.slice();    
+        var newArray = this.state.CharData.slice();   
+         
         newArray.push({
-            name:'Gru',
+            name:'Goblin',
             type:'Group',
             hp:10,  
             hpmax:10,
-            hpInput:3
+            hpInput:3,
+            amount: [0,1,2] 
         });   
     this.setState({CharData:newArray,
                     toggleWizard:'inactive'} 
@@ -134,26 +110,24 @@ export class Encounter extends React.Component {
 
     render() { 
        
-        const Characters = this.state.CharData.map((CharData, index)=>
-        <li key={index}>
-            <Character 
-                //char data
-                arrayTargeter={index}
-                CharData={CharData}
-                //functions to pass to char
-                addHp={() => this.addHp()}
-                minusHp={() => this.minusHp()} 
-                addInputHp={() => this.addInputHp()}
-                minusInputHp={() => this.minusInputHp()}
-                getTarget={() => this.getTarget()}                 
-                
-            />
-        </li>);      
+        const  InitGroups = this.state.CharData.map((CharData, index)=>
+            <li key={index}>
+                <InitGroup 
+                    //char data
+                    target={index}
+                    CharData={CharData}
+                    //functions to pass to char
+                    addHp={() => this.addHp()}
+                    minusHp={() => this.minusHp()}                
+                                     
+                />
+            </li>
+        );      
             
         return (        
         <ul> 
             
-            {Characters}         
+            {InitGroups}         
            
             <Button 
                 text="Add Char" 
@@ -161,8 +135,8 @@ export class Encounter extends React.Component {
                 onClick={() => this.addChar()}
             />            
             <Button 
-                text="Cycle" 
-                id="CycleButton" 
+                text="End Turn" 
+                id="endTurnButton" 
                 onClick={() => this.cycleTurn()}
             />            
             <AddChar 

@@ -228,11 +228,17 @@ p {
   background: lighten(@dark, 10%);
 }
 
-//id specific styles 
+//id specific button styles 
 #addCharButton {
   position: fixed;
   bottom: 10%;
-  right: 5%;
+  right: 2%;
+}
+//resituate for responsive
+#endTurnButton {
+  position: fixed;
+  top: 150px;
+  right: 2%;
 }
 
 #roundEndButton {
@@ -272,10 +278,18 @@ p {
 
     .button,
     .char-name,
-    .group-name-bar,
     .hp-count {
       display: table-cell;
       vertical-align: middle;
+    }
+
+  
+    .char-bar,
+    .group-name-bar {
+      width: 100%;
+      display: table;
+      vertical-align: middle;
+       min-height: @character-min-height;
     }
 
     .hp-count {
@@ -288,74 +302,72 @@ p {
         font-size: 2em;
       }
 
-    }
-
-    .hp-toggles {
-      display: table;
-      height: 30px;
-      box-sizing: border-box;
-      margin: 0 0 0 auto;
-
-      a {
-        background-color: @dark;
-        color: @light;
-        cursor: pointer;
-        padding: 0 5px;
-        display: table-cell;
-        vertical-align: middle;
-        font-size: 12px;
-
-      }
-
-      .inputToggle {
-        background-color: @dark;
-        margin: 0 5px;
-        width: 40px;
+      .hp-toggles {
         display: table;
         height: 30px;
         box-sizing: border-box;
+        margin: 0 0 0 auto;
+        border-spacing: 2px;
 
-        a {
+        .button {
+          background-color: @dark;
+          color: @light;
+          cursor: pointer;
+          padding: 0 5px;
+          box-shadow: none;
           display: table-cell;
           vertical-align: middle;
-          position: relative;
-          padding: 5px;
           font-size: 12px;
-          box-sizing: border-box;
+
+        }
+
+        .inputToggle {
+          background-color: @dark;
+          margin: 0 5px;
+          width: 40px;
+          display: table;
           height: 30px;
-        }
-
-        input {
-          border: none;
-          text-align: center;
-          font-weight: bold;
-          width: 30px;
-          height: 30px;
-          border-top: 3px solid black;
-          border-bottom: 3px solid black;
           box-sizing: border-box;
-          display: table-cell;
-          vertical-align: middle;
-          -moz-appearance: textfield;
+
+          a {
+            display: table-cell;
+            vertical-align: middle;
+            position: relative;
+            padding: 5px;
+            font-size: 12px;
+            box-sizing: border-box;
+            height: 30px;
+          }
+
+          input {
+            border: none;
+            text-align: center;
+            font-weight: bold;
+            width: 30px;
+            height: 30px;
+            border-top: 3px solid black;
+            border-bottom: 3px solid black;
+            box-sizing: border-box;
+            display: table-cell;
+            vertical-align: middle;
+            -moz-appearance: textfield;
+
+          }
+
+          input:focus {
+            outline: 0;
+          }
+
+          input[type=number]::-webkit-inner-spin-button,
+          input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
 
         }
-
-        input:focus {
-          outline: 0;
-        }
-
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-
       }
     }
 
-  }
-  //In Group stylings
-  .group {
     .button-container {
       height: 25px;
       display: table-cell;
@@ -373,67 +385,83 @@ p {
 
     }
 
-    .in-group {
-      border-bottom: none;
-      display: none;
-
-      .char-name {
-        h1 {
-          font-size: 1.75em;
-          color: lighten(@dark, 20%);
-        }
-      }
-
-      .hp-count {
-
-        margin-left: 10px;
-
-        .hp {
-          font-size: 1.75em;
-
-          h2 {
-            color: lighten(@dark, 10%);
-          }
-        }
-
-      }
-
-      .hp-toggles {
-        a {
-          background-color: lighten(@dark, 10%);
-        }
-
-        .inputToggle {
-          background-color: lighten(@dark, 10%);
-
-          input {
-
-            border-top: 3px solid lighten(@dark, 10%);
-            border-bottom: 3px solid lighten(@dark, 10%);
-
-          }
-
-        }
-
-      }
-    }
-
-    .in-group:last-child {
-      border-bottom: 1px solid @dark;
-    }
-
-    .inactive {
-      .in-group {
+    &.NPC,
+    &.PC {
+      .group-name-bar {
         display: none;
       }
     }
 
-    .active {
-      border-bottom: none;
-
-      .in-group {
-        display: table;
+    &.PC {
+      .hp-count {
+        display: none;
       }
+
+    }
+
+    &.Group {
+      .char-bar {
+        border-bottom: none;
+        display: none;
+
+        .char-name {
+          h1 {
+            font-size: 1.75em;
+            color: lighten(@dark, 20%);
+          }
+        }
+
+        .hp-count {
+
+          margin-left: 10px;
+
+          .hp {
+            font-size: 1.75em;
+
+            h2 {
+              color: lighten(@dark, 10%);
+            }
+          }
+
+        }
+
+        .hp-toggles {
+          a {
+            background-color: lighten(@dark, 10%);
+          }
+
+          .inputToggle {
+            background-color: lighten(@dark, 10%);
+
+            input {
+
+              border-top: 3px solid lighten(@dark, 10%);
+              border-bottom: 3px solid lighten(@dark, 10%);
+
+            }
+
+          }
+        }
+      }
+
+      .char-bar:last-child {
+        border-bottom: 1px solid @dark;
+      }
+
+      &.inactive {
+        .char-bar {
+          display: none;
+        }
+      }
+
+      &.active {
+        border-bottom: none;
+
+        .char-bar {
+          display: table;
+        }
+      }
+
     }
   }
 
@@ -446,43 +474,46 @@ p {
   height: 100%;
   top: 0;
   left: 0;
-  background-color:fade(@dark, 20%);
- 
+  background-color: fade(@dark, 20%);
+
   .choice-container {
-    padding:50px;
+    padding: 50px;
     position: relative;
     top: 25%;
     margin: 0 auto;
     width: 50%;
     background: #fdfdfd;
-    
-    #closer{
-    position:absolute;;
-    top:5px;
-    right:5px; 
-    text-align:center;
-    display:inline-block;
-    padding:5px;
-    p {
-      margin:0;
-      width:20.67px;
+
+    #closer {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      text-align: center;
+      display: inline-block;
+      padding: 5px;
+
+      p {
+        margin: 0;
+        width: 20.67px;
+      }
     }
-     }
-    
+
     .input-container {
-  
-      width:100%;   
-      
-      text-align:center;
+
+      width: 100%;
+
+      text-align: center;
+
       .button {
-        display:inline-block;
-        margin:5px;
-        width:100px;
-      } 
+        display: inline-block;
+        margin: 5px;
+        width: 100px;
+      }
     }
   }
-  &.inactive{
-    display:none;
+
+  &.inactive {
+    display: none;
   }
 }
 //Nav and Footer
