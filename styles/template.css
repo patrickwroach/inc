@@ -386,6 +386,15 @@ p {
   width: 50%;
   background: #fdfdfd;
 }
+#add-char-wizard .choice-container input {
+  border: 1px solid #2f2f2f;
+}
+#add-char-wizard .choice-container .displayed {
+  display: block;
+}
+#add-char-wizard .choice-container .hidden {
+  display: none;
+}
 #add-char-wizard .choice-container #closer {
   position: absolute;
   top: 5px;

@@ -31,14 +31,17 @@ export class AddChar extends React.Component {
     handleNewPC() {
         const type='PC';
         this.props.onChangeType(type);
+        this.props.toggleHideAmount();
     }
     handleNewNPC() {
         const type='NPC';
         this.props.onChangeType(type);
+        this.props.toggleHideAmount();
     }
     handleNewGroup() {
         const type='Group';
         this.props.onChangeType(type);
+        this.props.toggleShowAmount();
     }
 
     handleNewHp(e) {
@@ -64,7 +67,8 @@ export class AddChar extends React.Component {
                     <Button text="PC" onClick={() => this.handleNewPC()} />
                     <Button  text="NPC" onClick={() => this.handleNewNPC()} />
                     <Button  text="Group" onClick={() => this.handleNewGroup()} />
-                     <p>How many? <input onChange={this.handleNewAmount} type="number" min="1"/></p>
+                     <p class={this.props.amountVis}>How many? <input onChange={this.handleNewAmount} type="number" min="1"/></p>
+                     <br />
                     <Button text="Add" onClick={() => this.props.onAddCharClick()} />
                   
                 </div>

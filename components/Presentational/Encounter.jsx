@@ -11,10 +11,10 @@ export class Encounter extends React.Component {
                     toggleWizard:'inactive',                                 
                     newName:'',
                     newType:'',
-                    newHp:10,
+                    newHp:0,
                     newInit:0,
-                    newAmount:[0]
-                                                     
+                    newAmount:[0],
+                    amountVis:'hidden'                                 
                      };
         this.addHp = this.addHp.bind(this);
         this.minusHp = this.minusHp.bind(this);
@@ -24,7 +24,9 @@ export class Encounter extends React.Component {
         this.changeType= this.changeType.bind(this);
         this.changeHp = this.changeHp.bind(this);
         this.changeAmount= this.changeAmount.bind(this);
-
+        this.showAmount = this.showAmount.bind(this);
+        this.hideAmount = this.hideAmount.bind(this);
+         
     }  
     
  //ToDo: Add var to handle anytoggleWizard setStates, best practice update
@@ -54,7 +56,20 @@ export class Encounter extends React.Component {
          this.setState({toggleWizard:'inactive'} 
                        );
     }
-
+    showAmount(){
+         this.setState({
+                    amountVis:'displayed'
+        })
+    }
+    hideAmount(){
+        this.setState({
+                    newAmount:1,
+                    amountVis:'hidden'
+        })
+    }
+    setAmountToOne(){
+      
+    }
    addChar(){
          var newArray = this.state.CharData.slice();    
             newArray.push({
@@ -66,7 +81,13 @@ export class Encounter extends React.Component {
         
         });   
         this.setState({CharData:newArray,
-                       toggleWizard:'inactive'} 
+                       toggleWizard:'inactive',
+                       newName:'',
+                        newType:'',
+                        newHp:0,
+                        newInit:0,
+                        newAmount:[0]
+                        } 
                        );
         
 
@@ -145,6 +166,9 @@ export class Encounter extends React.Component {
             <AddChar 
                
                 onAddCharClick = {()=> this.addChar()}
+                toggleShowAmount = {()=> this.showAmount()}
+                toggleHideAmount = {()=> this.hideAmount()}
+                amountVis = {this.state.amountVis}
                 toggleWizard = {this.state.toggleWizard}
                 closeWizard={() => this.closeWizard()}               
                 onChangeName = {this.changeName}
