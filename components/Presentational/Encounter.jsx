@@ -8,16 +8,22 @@ export class Encounter extends React.Component {
     super(props);
         this.state={
                     CharData:[],
-                    toggleWizard:'inactive',
-                                    
+                    toggleWizard:'inactive',                                 
+                    newName:'',
+                    newType:'',
+                    newHp:10,
+                    newInit:0,
+                    newAmount:[0]
+                                                     
                      };
         this.addHp = this.addHp.bind(this);
         this.minusHp = this.minusHp.bind(this);
         this.addChar = this.addChar.bind(this);
-        this.addPC = this.addPC.bind(this);
-        this.addNPC = this.addNPC.bind(this);
-        this.addGroup = this.addGroup.bind(this); 
-  
+        this.openWizard = this.openWizard.bind(this);
+        this.changeName = this.changeName.bind(this);
+        this.changeType= this.changeType.bind(this);
+        this.changeHp = this.changeHp.bind(this);
+        this.changeAmount= this.changeAmount.bind(this);
 
     }  
     
@@ -40,7 +46,7 @@ export class Encounter extends React.Component {
   
             
     //Add Character Sections, specific types to be stripped out after wizard is complete
-    addChar() {
+    openWizard() {
        this.setState({toggleWizard:'active'} 
                        );
     }
@@ -48,51 +54,47 @@ export class Encounter extends React.Component {
          this.setState({toggleWizard:'inactive'} 
                        );
     }
-    addPC() {
-        var newArray = this.state.CharData.slice();
-      
-        newArray.push({
-            name:'Sol the Halfling',
-            type: 'PC',
-            amount: [1]  
-           
-                
-        });   
-        this.setState({CharData:newArray,
-                      toggleWizard:'inactive'} 
-                       );
-        }
-    addNPC() {
-        var newArray = this.state.CharData.slice();    
+
+   addChar(){
+         var newArray = this.state.CharData.slice();    
             newArray.push({
-            name:'Tarask',
-            type:'NPC', 
-            hp:100,
-            hpmax:100,
-            hpInput:3,
-            amount: [1]   
+            name:this.state.newName,
+            type:this.state.newType, 
+            hp:this.state.newHp,
+            hpmax:this.state.newHp,
+            amount:this.state.newAmount  
         
         });   
         this.setState({CharData:newArray,
                        toggleWizard:'inactive'} 
                        );
-        }
-    addGroup() {
-        var newArray = this.state.CharData.slice();   
-         
-        newArray.push({
-            name:'Goblin',
-            type:'Group',
-            hp:10,  
-            hpmax:10,
-            hpInput:3,
-            amount: [0,1,2] 
-        });   
-    this.setState({CharData:newArray,
-                    toggleWizard:'inactive'} 
-                    );
-    }
+        
 
+   }
+
+    changeName(name) {                  
+            this.setState({
+            newName: name
+        });
+     }
+    changeType(type) {
+            this.setState({
+                newType:type
+            });
+     }
+     changeHp(hp) {                  
+            this.setState({
+            newHp: hp
+        });
+     }
+    changeAmount(amount) {      
+       this.setState({
+            newAmount:amount
+        });
+     }
+
+    
+   
     
     //Turn updater
 
@@ -118,7 +120,8 @@ export class Encounter extends React.Component {
                     CharData={CharData}
                     //functions to pass to char
                     addHp={() => this.addHp()}
-                    minusHp={() => this.minusHp()}                
+                    minusHp={() => this.minusHp()}            
+                                        
                                      
                 />
             </li>
@@ -132,7 +135,7 @@ export class Encounter extends React.Component {
             <Button 
                 text="Add Char" 
                 id="addCharButton" 
-                onClick={() => this.addChar()}
+                onClick={() => this.openWizard()}
             />            
             <Button 
                 text="End Turn" 
@@ -140,11 +143,14 @@ export class Encounter extends React.Component {
                 onClick={() => this.cycleTurn()}
             />            
             <AddChar 
+               
+                onAddCharClick = {()=> this.addChar()}
                 toggleWizard = {this.state.toggleWizard}
-                closeWizard={() => this.closeWizard()}
-                addGroup={() => this.addGroup()}
-                addPC={() => this.addPC()}
-                addNPC={() => this.addNPC()}
+                closeWizard={() => this.closeWizard()}               
+                onChangeName = {this.changeName}
+                onChangeType = {this.changeType}
+                onChangeHp = {this.changeHp}
+                onChangeAmount = {this.changeAmount}
             />
         </ul>       
         );

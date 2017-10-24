@@ -28,8 +28,13 @@ export class InitGroup extends React.Component {
         }
     }
     render() { 
-        const Characters =  this.props.CharData.amount.map(()=>           
-                <div className="char-bar">
+        const amountArr = [0];
+        const amountInt = parseInt(this.props.CharData.amount);
+        amountArr.length = amountInt;   
+        amountArr.fill(0); 
+        //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here    
+        const Characters = amountArr.map((amountArr, index)=>           
+                <li key={index} className="char-bar">
                     <div className="char-name">
                         <h1 >{this.props.CharData.name}</h1>
                     </div>
@@ -42,7 +47,7 @@ export class InitGroup extends React.Component {
                             <Button onClick={() => this.props.minusHp()} text="-" target={this.props.target} />
                         </div>
                     </div>
-                </div>
+                </li>
         );
        
         return (
