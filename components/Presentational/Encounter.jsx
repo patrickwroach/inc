@@ -20,7 +20,8 @@ export class Encounter extends React.Component {
                     newInit:0,
                     newAmount:1,
                     amountVis:'hidden',  
-                    hpVis:'hidden'                                 
+                    hpVis:'hidden',   
+                    test : 9                            
                      };
         this.addHp = this.addHp.bind(this);
         this.minusHp = this.minusHp.bind(this);
@@ -44,9 +45,13 @@ export class Encounter extends React.Component {
   
    //HP adjustment functions
     
-    addHp() {
+    addHp(index, amount) {
+      const currentIndex = index;
+      const currentAmount = amount;
+      var newArray = this.state.CharData.slice();    
+      newArray[currentIndex].hp = parseInt(newArray[currentIndex].hp) + amount;
+        this.setState({CharData:newArray});
 
-    
     }
 
     minusHp() {      
@@ -72,8 +77,7 @@ export class Encounter extends React.Component {
     }
     hideAmount(){
         this.setState({
-                    newAmount:1,
-                    amountVis:'hidden'
+                   amountVis:'hidden'
         })
     }
     showHp(){
@@ -95,20 +99,26 @@ export class Encounter extends React.Component {
             hp:this.state.newHp,
             hpmax:this.state.newHp,
             init:this.state.newInit,  
-            amount:this.state.newAmount  
+            amount:this.state.newAmount 
         
         });   
+        
         this.setState({CharData:newArray,
                        toggleWizard:'inactive',
                         newName:'Unnamed',
                         newType:'PC',
                         newHp:1,
                         newInit:0,
-                        newAmount:1
+                        newAmount:1,
+                        hpVis:'hidden',
+                        amountVis:'hidden'
                         } 
-                       );
-         document.getElementById("char-wiz-form").reset();
-
+        );
+        
+        document.getElementById("char-wiz-form").reset();
+        document.getElementById("NPC-entries").reset();
+        document.getElementById("Group-entries").reset();
+        
    }
 
     setNewName(name) {                  
@@ -157,14 +167,15 @@ export class Encounter extends React.Component {
     render() { 
        
         const  InitGroups = this.state.CharData.map((CharData, index)=>
-            <li key={this.state.CharData[index].init }>
+            <li key={index}>
                 <InitGroup 
                     //char data
                     target={index}
                     CharData={CharData}
                     //functions to pass to char
-                    addHp={() => this.addHp()}
-                    minusHp={() => this.minusHp()}            
+                   
+                    minusHp={() => this.minusHp()} 
+                    onAddHp= {this.addHp}           
                                         
                                      
                 />
@@ -173,7 +184,7 @@ export class Encounter extends React.Component {
             
         return (        
         <ul> 
-            
+          
             {InitGroups}         
            
             <Button 

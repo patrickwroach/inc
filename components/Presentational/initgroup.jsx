@@ -7,9 +7,12 @@ export class InitGroup extends React.Component {
         super(props);
         this.state = {
             toggleGroup: 'inactive',
-            toggleButtonText: 'Show Group'
+            toggleButtonText: 'Show Group',
+            inputHp:5
         };
         this.toggleGroup = this.toggleGroup.bind(this);
+        this.handleMathHp =  this.handleMathHp.bind(this);
+        this.handleInputHp =  this.handleInputHp.bind(this);
     }
     toggleGroup() {
 
@@ -27,6 +30,21 @@ export class InitGroup extends React.Component {
             });
         }
     }
+    handleInputHp(e){
+        const newInputHp = e.target.value;
+      
+       this.setState({
+            inputHp:newInputHp
+        });
+
+    }
+    handleMathHp(toMath) {
+     const amountToMath = toMath;
+     const arrIndex = this.props.target;
+     this.props.onAddHp(arrIndex, amountToMath);
+    }
+    
+
     render() { 
         const amountArr = [0];
         const amountInt = parseInt(this.props.CharData.amount);
@@ -36,15 +54,19 @@ export class InitGroup extends React.Component {
         const Characters = amountArr.map((amountArr, index)=>           
                 <li key={index} className="char-bar">
                     <div className="char-name">
-                        <h1 >{this.props.CharData.name}</h1>
+                        <h1 >{this.props.CharData.name} <span class="groupNumber">{index + 1}</span></h1>
                     </div>
+                    
                     <div className="hp-count">
                         <div className="hp">
                             <h2>{this.props.CharData.hp}/{this.props.CharData.hpmax}</h2>
                         </div>
                         <div className="hp-toggles">
-                            <Button onClick={() => this.props.addHp(this.props.target)} text="+" target={this.props.target} />
-                            <Button onClick={() => this.props.minusHp()} text="-" target={this.props.target} />
+                            <Button onClick={() => this.handleMathHp(1)} text="+1"  />
+                            <Button onClick={() => this.handleMathHp(+this.state.inputHp)} text="+"  />
+                            <input  onChange={this.handleInputHp} type="number" min="1" placeholder="5" className="inputToggle"/>
+                            <Button onClick={() => this.handleMathHp(-this.state.inputHp)} text="-"  />
+                            <Button onClick={() => this.handleMathHp(-1)} text="-1" />
                         </div>
                     </div>
                 </li>
@@ -59,7 +81,8 @@ export class InitGroup extends React.Component {
                         <div className="button-container">
                             <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} />
                         </div>                 
-                </div>                            
+                </div>
+                <h3 className="init-number">Init: {this.props.CharData.init}</h3>                           
                 {Characters}
             </ul>
         )

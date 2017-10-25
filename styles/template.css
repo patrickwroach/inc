@@ -231,6 +231,13 @@ p {
   display: table;
   border-top: 1px solid #2f2f2f;
   border-bottom: 1px solid #2f2f2f;
+  position: relative;
+}
+.content-container#init-container .character .init-number {
+  position: absolute;
+  bottom: 26px;
+  left: 5px;
+  color: #7c7c7c;
 }
 .content-container#init-container .character .button,
 .content-container#init-container .character .char-name,
@@ -272,40 +279,21 @@ p {
   font-size: 12px;
 }
 .content-container#init-container .character .hp-count .hp-toggles .inputToggle {
-  background-color: #2f2f2f;
-  margin: 0 5px;
+  background-color: #fdfdfd;
+  margin: 0 -2px;
   width: 40px;
   display: table;
   height: 30px;
   box-sizing: border-box;
-}
-.content-container#init-container .character .hp-count .hp-toggles .inputToggle a {
-  display: table-cell;
-  vertical-align: middle;
-  position: relative;
-  padding: 5px;
-  font-size: 12px;
-  box-sizing: border-box;
-  height: 30px;
-}
-.content-container#init-container .character .hp-count .hp-toggles .inputToggle input {
-  border: none;
+  border: 3px solid #2f2f2f;
   text-align: center;
-  font-weight: bold;
-  width: 30px;
-  height: 30px;
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
-  box-sizing: border-box;
-  display: table-cell;
-  vertical-align: middle;
   -moz-appearance: textfield;
 }
-.content-container#init-container .character .hp-count .hp-toggles .inputToggle input:focus {
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle:focus {
   outline: 0;
 }
-.content-container#init-container .character .hp-count .hp-toggles .inputToggle input[type=number]::-webkit-inner-spin-button,
-.content-container#init-container .character .hp-count .hp-toggles .inputToggle input[type=number]::-webkit-outer-spin-button {
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle::-webkit-inner-spin-button,
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -323,6 +311,9 @@ p {
   box-sizing: border-box;
   margin: 0 auto;
 }
+.content-container#init-container .character.NPC .groupNumber,
+.content-container#init-container .character.PC .groupNumber,
+.content-container#init-container .character.nonChar .groupNumber,
 .content-container#init-container .character.NPC .group-name-bar,
 .content-container#init-container .character.PC .group-name-bar,
 .content-container#init-container .character.nonChar .group-name-bar {
@@ -380,6 +371,9 @@ p {
   border-top: none;
   border-bottom: none;
   background: #2f2f2f;
+}
+.content-container#init-container .character.nonChar .init-number {
+  display: none;
 }
 .content-container#init-container .character.nonChar .char-name,
 .content-container#init-container .character.nonChar .group-name-bar,

@@ -266,7 +266,7 @@ p {
   padding-bottom: @footer-height;
   position: relative;
   display: table;
-
+  
   .character {
     min-height: @character-min-height;
     padding: 25px 0;
@@ -275,7 +275,14 @@ p {
     display: table;
     border-top: 1px solid @dark;
     border-bottom: 1px solid @dark;
+    position:relative;
 
+    .init-number{
+    position: absolute;
+    bottom:26px;
+    left:5px;
+    color:lighten(@dark, 30%);
+     }
     .button,
     .char-name,
     .hp-count {
@@ -322,49 +329,31 @@ p {
         }
 
         .inputToggle {
-          background-color: @dark;
-          margin: 0 5px;
+          background-color: @light;
+          margin: 0 -2px;
           width: 40px;
           display: table;
           height: 30px;
           box-sizing: border-box;
+          border: 3px solid @dark;
+         
+           text-align: center;
+           -moz-appearance: textfield;
 
-          a {
-            display: table-cell;
-            vertical-align: middle;
-            position: relative;
-            padding: 5px;
-            font-size: 12px;
-            box-sizing: border-box;
-            height: 30px;
-          }
+        }
+        
 
-          input {
-            border: none;
-            text-align: center;
-            font-weight: bold;
-            width: 30px;
-            height: 30px;
-            border-top: 3px solid black;
-            border-bottom: 3px solid black;
-            box-sizing: border-box;
-            display: table-cell;
-            vertical-align: middle;
-            -moz-appearance: textfield;
-
-          }
-
-          input:focus {
+          .inputToggle:focus {
             outline: 0;
           }
 
-          input[type=number]::-webkit-inner-spin-button,
-          input[type=number]::-webkit-outer-spin-button {
+          .inputToggle::-webkit-inner-spin-button,
+          .inputToggle::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
           }
 
-        }
+        
       }
     }
 
@@ -388,6 +377,7 @@ p {
     &.NPC,
     &.PC,
     &.nonChar {
+      .groupNumber,
       .group-name-bar {
         display: none;
       }
@@ -473,6 +463,9 @@ p {
     border-top: none;
     border-bottom: none;
     background: @dark;
+      .init-number{
+        display:none;
+      }
      .char-name, .group-name-bar, .char-bar{
        width:100%;
        min-height: 0;
