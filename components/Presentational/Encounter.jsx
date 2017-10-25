@@ -7,25 +7,34 @@ export class Encounter extends React.Component {
   constructor(props) {
     super(props);
         this.state={
-                    CharData:[],
+                    CharData:[ {
+                        name:"start of new round",
+                        type:"nonChar",
+                        init:-20,
+                        amount:1}
+                        ],
                     toggleWizard:'inactive',                                 
-                    newName:'',
-                    newType:'',
-                    newHp:0,
+                    newName:'Unnamed',
+                    newType:'PC',
+                    newHp:1,
                     newInit:0,
-                    newAmount:[0],
-                    amountVis:'hidden'                                 
+                    newAmount:1,
+                    amountVis:'hidden',  
+                    hpVis:'hidden'                                 
                      };
         this.addHp = this.addHp.bind(this);
         this.minusHp = this.minusHp.bind(this);
         this.addChar = this.addChar.bind(this);
         this.openWizard = this.openWizard.bind(this);
-        this.changeName = this.changeName.bind(this);
-        this.changeType= this.changeType.bind(this);
-        this.changeHp = this.changeHp.bind(this);
-        this.changeAmount= this.changeAmount.bind(this);
+        this.setNewName = this.setNewName.bind(this);
+        this.setNewType= this.setNewType.bind(this);
+        this.setNewHp = this.setNewHp.bind(this);
+        this.setNewInit = this.setNewInit.bind(this);
+        this.setNewAmount= this.setNewAmount.bind(this);
         this.showAmount = this.showAmount.bind(this);
         this.hideAmount = this.hideAmount.bind(this);
+        this.showHp = this.showHp.bind(this);
+        this.hideHp = this.hideHp.bind(this);
          
     }  
     
@@ -67,9 +76,17 @@ export class Encounter extends React.Component {
                     amountVis:'hidden'
         })
     }
-    setAmountToOne(){
-      
+    showHp(){
+         this.setState({
+                    hpVis:'displayed'
+        })
     }
+    hideHp(){
+        this.setState({
+                    hpVis:'hidden'
+        })
+    }
+  
    addChar(){
          var newArray = this.state.CharData.slice();    
             newArray.push({
@@ -77,38 +94,44 @@ export class Encounter extends React.Component {
             type:this.state.newType, 
             hp:this.state.newHp,
             hpmax:this.state.newHp,
+            init:this.state.newInit,  
             amount:this.state.newAmount  
         
         });   
         this.setState({CharData:newArray,
                        toggleWizard:'inactive',
-                       newName:'',
-                        newType:'',
-                        newHp:0,
+                        newName:'Unnamed',
+                        newType:'PC',
+                        newHp:1,
                         newInit:0,
-                        newAmount:[0]
+                        newAmount:1
                         } 
                        );
-        
+         document.getElementById("char-wiz-form").reset();
 
    }
 
-    changeName(name) {                  
+    setNewName(name) {                  
             this.setState({
             newName: name
         });
      }
-    changeType(type) {
+    setNewInit(init) {                  
+            this.setState({
+            newInit: init
+        });
+     }
+    setNewType(type) {
             this.setState({
                 newType:type
             });
      }
-     changeHp(hp) {                  
+    setNewHp(hp) {                  
             this.setState({
             newHp: hp
         });
      }
-    changeAmount(amount) {      
+    setNewAmount(amount) {      
        this.setState({
             newAmount:amount
         });
@@ -134,7 +157,7 @@ export class Encounter extends React.Component {
     render() { 
        
         const  InitGroups = this.state.CharData.map((CharData, index)=>
-            <li key={index}>
+            <li key={this.state.CharData[index].init }>
                 <InitGroup 
                     //char data
                     target={index}
@@ -164,17 +187,21 @@ export class Encounter extends React.Component {
                 onClick={() => this.cycleTurn()}
             />            
             <AddChar 
-               
                 onAddCharClick = {()=> this.addChar()}
                 toggleShowAmount = {()=> this.showAmount()}
                 toggleHideAmount = {()=> this.hideAmount()}
+                toggleShowHp = {()=> this.showHp()}
+                toggleHideHp = {()=> this.hideHp()}
                 amountVis = {this.state.amountVis}
+                hpVis = {this.state.hpVis}
                 toggleWizard = {this.state.toggleWizard}
                 closeWizard={() => this.closeWizard()}               
-                onChangeName = {this.changeName}
-                onChangeType = {this.changeType}
-                onChangeHp = {this.changeHp}
-                onChangeAmount = {this.changeAmount}
+                onChangeName = {this.setNewName}
+                onChangeType = {this.setNewType}
+                onChangeHp = {this.setNewHp}
+                onChangeInit = {this.setNewInit}
+                onChangeAmount = {this.setNewAmount}
+                selectedType = {this.state.newType}
             />
         </ul>       
         );

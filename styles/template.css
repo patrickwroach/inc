@@ -324,10 +324,12 @@ p {
   margin: 0 auto;
 }
 .content-container#init-container .character.NPC .group-name-bar,
-.content-container#init-container .character.PC .group-name-bar {
+.content-container#init-container .character.PC .group-name-bar,
+.content-container#init-container .character.nonChar .group-name-bar {
   display: none;
 }
-.content-container#init-container .character.PC .hp-count {
+.content-container#init-container .character.PC .hp-count,
+.content-container#init-container .character.nonChar .hp-count {
   display: none;
 }
 .content-container#init-container .character.Group .char-bar {
@@ -369,6 +371,29 @@ p {
 .content-container#init-container .character.Group.active .char-bar {
   display: table;
 }
+.content-container#init-container .character.nonChar {
+  min-height: 0;
+  padding: 5px 0;
+  margin: 5px 0;
+  width: 100%;
+  display: table;
+  border-top: none;
+  border-bottom: none;
+  background: #2f2f2f;
+}
+.content-container#init-container .character.nonChar .char-name,
+.content-container#init-container .character.nonChar .group-name-bar,
+.content-container#init-container .character.nonChar .char-bar {
+  width: 100%;
+  min-height: 0;
+  text-align: center;
+}
+.content-container#init-container .character.nonChar .char-name h1,
+.content-container#init-container .character.nonChar .group-name-bar h1,
+.content-container#init-container .character.nonChar .char-bar h1 {
+  color: #fdfdfd;
+  margin: 0;
+}
 #add-char-wizard {
   position: fixed;
   text-align: center;
@@ -386,14 +411,25 @@ p {
   width: 50%;
   background: #fdfdfd;
 }
-#add-char-wizard .choice-container input {
-  border: 1px solid #2f2f2f;
-}
 #add-char-wizard .choice-container .displayed {
   display: block;
 }
 #add-char-wizard .choice-container .hidden {
   display: none;
+}
+#add-char-wizard .choice-container .button {
+  display: inline-block;
+  margin: 5px;
+  width: 100px;
+}
+#add-char-wizard .choice-container .button.PCbox.PC {
+  background: #494949;
+}
+#add-char-wizard .choice-container .button.NPCbox.NPC {
+  background: #494949;
+}
+#add-char-wizard .choice-container .button.Groupbox.Group {
+  background: #494949;
 }
 #add-char-wizard .choice-container #closer {
   position: absolute;
@@ -402,19 +438,11 @@ p {
   text-align: center;
   display: inline-block;
   padding: 5px;
+  width: 20.67px;
 }
 #add-char-wizard .choice-container #closer p {
   margin: 0;
   width: 20.67px;
-}
-#add-char-wizard .choice-container .input-container {
-  width: 100%;
-  text-align: center;
-}
-#add-char-wizard .choice-container .input-container .button {
-  display: inline-block;
-  margin: 5px;
-  width: 100px;
 }
 #add-char-wizard.inactive {
   display: none;

@@ -386,13 +386,14 @@ p {
     }
 
     &.NPC,
-    &.PC {
+    &.PC,
+    &.nonChar {
       .group-name-bar {
         display: none;
       }
     }
 
-    &.PC {
+    &.PC, &.nonChar {
       .hp-count {
         display: none;
       }
@@ -463,6 +464,25 @@ p {
       }
 
     }
+    &.nonChar{
+    min-height: 0;
+    padding: 5px 0;
+    margin: 5px 0;
+    width: 100%;
+    display: table;
+    border-top: none;
+    border-bottom: none;
+    background: @dark;
+     .char-name, .group-name-bar, .char-bar{
+       width:100%;
+       min-height: 0;
+       text-align:center;
+       h1{
+         color:@light;
+         margin:0;
+        }
+     }
+    }
   }
 
 }
@@ -484,41 +504,49 @@ p {
     width: 50%;
     background: #fdfdfd;
   
-    input[type=*]{
-       border:1px solid @dark;
-    }
+  
     .displayed{
       display:block;
     }
     .hidden{
       display:none;
     }
-    #closer {
+  
+     .button {
+        display: inline-block;
+        margin: 5px;
+        width: 100px;
+        &.PCbox{
+          &.PC{
+              background: lighten(@dark, 10%);
+          }
+        }
+        &.NPCbox{
+          &.NPC{
+              background: lighten(@dark, 10%);
+          }
+        }
+        &.Groupbox{
+          &.Group{
+              background: lighten(@dark, 10%);
+          }
+        }
+      }
+      #closer {
       position: absolute;
       top: 5px;
       right: 5px;
       text-align: center;
       display: inline-block;
       padding: 5px;
+      width: 20.67px;
 
       p {
         margin: 0;
         width: 20.67px;
       }
     }
-
-    .input-container {
-
-      width: 100%;
-
-      text-align: center;
-
-      .button {
-        display: inline-block;
-        margin: 5px;
-        width: 100px;
-      }
-    }
+    
   }
 
   &.inactive {

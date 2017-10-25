@@ -3,22 +3,14 @@ import { Button } from './button.jsx';
 export class AddChar extends React.Component {
      constructor(props) {
     super(props);
-        this.state={                   
-                        name:"",
-                        type:"",
-                        hp:0,
-                        hpmax:0,
-                        init:0,
-                        amount:2,
-                    
-                    }
-     
+    
         this.handleNewName = this.handleNewName.bind(this);
         this.handleNewPC = this.handleNewPC.bind(this);
         this.handleNewGroup= this.handleNewGroup.bind(this);
         this.handleNewNPC = this.handleNewNPC.bind(this);
         this.handleNewHp= this.handleNewHp.bind(this);
         this.handleNewAmount = this.handleNewAmount.bind(this);
+        this.handleNewInit = this.handleNewInit.bind(this);
              
              
      }
@@ -27,21 +19,36 @@ export class AddChar extends React.Component {
         const name = e.target.value;
         this.props.onChangeName(name);
     }
+
+    handleNewInit(e) {
+    const init = e.target.value;
+    this.props.onChangeInit(init)
+    }
     
     handleNewPC() {
         const type='PC';
         this.props.onChangeType(type);
         this.props.toggleHideAmount();
+        this.props.toggleHideHp();
+        //Todo -reset here is clumsy
+        document.getElementById("NPC-entries").reset();
+        document.getElementById("Group-entries").reset();
+    
     }
     handleNewNPC() {
         const type='NPC';
         this.props.onChangeType(type);
         this.props.toggleHideAmount();
+        this.props.toggleShowHp();
+        //Todo -reset here is clumsy
+        document.getElementById("Group-entries").reset();
+      
     }
     handleNewGroup() {
         const type='Group';
         this.props.onChangeType(type);
         this.props.toggleShowAmount();
+        this.props.toggleShowHp();
     }
 
     handleNewHp(e) {
@@ -60,18 +67,25 @@ export class AddChar extends React.Component {
             <div className="choice-container">
             <Button id="closer" text="&#10006;" onClick={() => this.props.closeWizard()} />
                 <h2> Add a character to the Encoutner </h2>
-                <div className="input-container">
+                <form id="char-wiz-form" className="input-container">
                     <h1>{this.props.nameT}</h1>
                     <p>Name:<input onChange={this.handleNewName}  type="text" /></p>
-                    <p>Hit Points <input onChange={this.handleNewHp} type="number" /></p>
-                    <Button text="PC" onClick={() => this.handleNewPC()} />
-                    <Button  text="NPC" onClick={() => this.handleNewNPC()} />
-                    <Button  text="Group" onClick={() => this.handleNewGroup()} />
-                     <p class={this.props.amountVis}>How many? <input onChange={this.handleNewAmount} type="number" min="1"/></p>
-                     <br />
-                    <Button text="Add" onClick={() => this.props.onAddCharClick()} />
-                  
-                </div>
+                    <p>Initiative <input onChange={this.handleNewInit} type="number" /></p>
+                </form>
+                <Button addClass={this.props.selectedType +' '+"PCbox"} text="PC" onClick={() => 
+                    this.handleNewPC()} />
+                <Button addClass={this.props.selectedType +' '+"NPCbox"} text="NPC" onClick={() => this.handleNewNPC()} />
+                <Button addClass={this.props.selectedType +' '+"Groupbox"}  text="Group" onClick={() => this.handleNewGroup()} />
+                <form id="NPC-entries">
+                     <p id="hp-entry" className={this.props.hpVis}>Hit Points <input onChange={this.handleNewHp} type="number"  /></p>
+                </form>
+                <form id="Group-entries">
+                     <p id="amount-entry" className={this.props.amountVis}>How many? <input onChange={this.handleNewAmount} type="number"  min="1"/></p>
+                </form>
+                <br />
+                <Button text="Add" onClick={() => this.props.onAddCharClick()} />
+                 
+               
             </div>
         </div>  
      )
