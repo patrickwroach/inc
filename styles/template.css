@@ -311,12 +311,12 @@ p {
   box-sizing: border-box;
   margin: 0 auto;
 }
-.content-container#init-container .character.NPC .groupNumber,
-.content-container#init-container .character.PC .groupNumber,
-.content-container#init-container .character.nonChar .groupNumber,
 .content-container#init-container .character.NPC .group-name-bar,
 .content-container#init-container .character.PC .group-name-bar,
-.content-container#init-container .character.nonChar .group-name-bar {
+.content-container#init-container .character.nonChar .group-name-bar,
+.content-container#init-container .character.NPC .groupNumber,
+.content-container#init-container .character.PC .groupNumber,
+.content-container#init-container .character.nonChar .groupNumber {
   display: none;
 }
 .content-container#init-container .character.PC .hp-count,
@@ -372,21 +372,83 @@ p {
   border-bottom: none;
   background: #2f2f2f;
 }
+.content-container#init-container .character.nonChar .edit-pen,
 .content-container#init-container .character.nonChar .init-number {
   display: none;
 }
+.content-container#init-container .character.nonChar .char-bar,
 .content-container#init-container .character.nonChar .char-name,
-.content-container#init-container .character.nonChar .group-name-bar,
-.content-container#init-container .character.nonChar .char-bar {
+.content-container#init-container .character.nonChar .group-name-bar {
   width: 100%;
   min-height: 0;
   text-align: center;
 }
+.content-container#init-container .character.nonChar .char-bar h1,
 .content-container#init-container .character.nonChar .char-name h1,
-.content-container#init-container .character.nonChar .group-name-bar h1,
-.content-container#init-container .character.nonChar .char-bar h1 {
+.content-container#init-container .character.nonChar .group-name-bar h1 {
   color: #fdfdfd;
   margin: 0;
+}
+.content-container#init-container .edit-pen {
+  transform: rotate(120deg);
+  display: inline-block;
+  font-size: 50%;
+  position: absolute;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.content-container#init-container .init-edit,
+.content-container#init-container .name-edit {
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(47, 47, 47, 0.2);
+}
+.content-container#init-container .init-edit .choice-container,
+.content-container#init-container .name-edit .choice-container {
+  padding: 50px;
+  position: relative;
+  top: 25%;
+  margin: 0 auto;
+  width: 50%;
+  background: #fdfdfd;
+}
+.content-container#init-container .init-edit .choice-container #closer,
+.content-container#init-container .name-edit .choice-container #closer {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  text-align: center;
+  display: inline-block;
+  padding: 5px;
+  width: 20.67px;
+}
+.content-container#init-container .init-edit .choice-container input,
+.content-container#init-container .name-edit .choice-container input {
+  border: 3px solid #2f2f2f;
+}
+.content-container#init-container .init-edit .choice-container input[type="number"],
+.content-container#init-container .name-edit .choice-container input[type="number"] {
+  text-align: center;
+  width: 50px;
+  display: inline-block;
+}
+.content-container#init-container .init-edit .choice-container .button,
+.content-container#init-container .name-edit .choice-container .button {
+  display: block;
+  margin: 10px auto;
+  width: 120px;
+}
+.content-container#init-container .init-edit.displayed,
+.content-container#init-container .name-edit.displayed {
+  display: block;
+}
+.content-container#init-container .init-edit.hidden,
+.content-container#init-container .name-edit.hidden {
+  display: none;
 }
 #add-char-wizard {
   position: fixed;

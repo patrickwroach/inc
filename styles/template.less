@@ -266,7 +266,7 @@ p {
   padding-bottom: @footer-height;
   position: relative;
   display: table;
-  
+
   .character {
     min-height: @character-min-height;
     padding: 25px 0;
@@ -275,14 +275,15 @@ p {
     display: table;
     border-top: 1px solid @dark;
     border-bottom: 1px solid @dark;
-    position:relative;
+    position: relative;
 
-    .init-number{
-    position: absolute;
-    bottom:26px;
-    left:5px;
-    color:lighten(@dark, 30%);
-     }
+    .init-number {
+      position: absolute;
+      bottom: 26px;
+      left: 5px;
+      color: lighten(@dark, 30%);
+    }
+
     .button,
     .char-name,
     .hp-count {
@@ -290,13 +291,12 @@ p {
       vertical-align: middle;
     }
 
-  
     .char-bar,
     .group-name-bar {
       width: 100%;
       display: table;
       vertical-align: middle;
-       min-height: @character-min-height;
+      min-height: @character-min-height;
     }
 
     .hp-count {
@@ -336,24 +336,21 @@ p {
           height: 30px;
           box-sizing: border-box;
           border: 3px solid @dark;
-         
-           text-align: center;
-           -moz-appearance: textfield;
+          text-align: center;
+          -moz-appearance: textfield;
 
         }
-        
 
-          .inputToggle:focus {
-            outline: 0;
-          }
+        .inputToggle:focus {
+          outline: 0;
+        }
 
-          .inputToggle::-webkit-inner-spin-button,
-          .inputToggle::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
+        .inputToggle::-webkit-inner-spin-button,
+        .inputToggle::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
 
-        
       }
     }
 
@@ -377,13 +374,14 @@ p {
     &.NPC,
     &.PC,
     &.nonChar {
-      .groupNumber,
-      .group-name-bar {
+      .group-name-bar,
+      .groupNumber {
         display: none;
       }
     }
 
-    &.PC, &.nonChar {
+    &.PC,
+    &.nonChar {
       .hp-count {
         display: none;
       }
@@ -454,30 +452,100 @@ p {
       }
 
     }
-    &.nonChar{
-    min-height: 0;
-    padding: 5px 0;
-    margin: 5px 0;
-    width: 100%;
-    display: table;
-    border-top: none;
-    border-bottom: none;
-    background: @dark;
-      .init-number{
-        display:none;
+
+    &.nonChar {
+      min-height: 0;
+      padding: 5px 0;
+      margin: 5px 0;
+      width: 100%;
+      display: table;
+      border-top: none;
+      border-bottom: none;
+      background: @dark;
+
+      .edit-pen,
+      .init-number {
+        display: none;
       }
-     .char-name, .group-name-bar, .char-bar{
-       width:100%;
-       min-height: 0;
-       text-align:center;
-       h1{
-         color:@light;
-         margin:0;
+
+      .char-bar,
+      .char-name,
+      .group-name-bar {
+        width: 100%;
+        min-height: 0;
+        text-align: center;
+
+        h1 {
+          color: @light;
+          margin: 0;
         }
-     }
+      }
     }
   }
+  //Editing items
+  .edit-pen {
+    transform: rotate(120deg);
+    display: inline-block;
+    font-size: 50%;
+    position: absolute;
+    margin-left: 5px;
+    cursor: pointer;
+  }
 
+  .init-edit,
+ 
+  .name-edit {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: fade(@dark, 20%);
+
+    .choice-container {
+      padding: 50px;
+      position: relative;
+      top: 25%;
+      margin: 0 auto;
+      width: 50%;
+      background: #fdfdfd;
+      #closer {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      text-align: center;
+      display: inline-block;
+      padding: 5px;
+      width: 20.67px;
+
+     
+    }
+    input{
+      border:3px solid @dark;
+      
+    }
+    input[type="number"]{
+      text-align:center;
+      width:50px;
+      display:inline-block;
+    }
+     .button{
+        display:block;
+        margin:10px auto;
+        width:120px;
+      }  
+     
+     
+    }
+     &.displayed {
+        display: block;
+      }
+
+      &.hidden {
+        display: none;
+      }
+  }
 }
 //Add Character Wizard
 #add-char-wizard {
@@ -496,36 +564,40 @@ p {
     margin: 0 auto;
     width: 50%;
     background: #fdfdfd;
-  
-  
-    .displayed{
-      display:block;
+
+    .displayed {
+      display: block;
     }
-    .hidden{
-      display:none;
+
+    .hidden {
+      display: none;
     }
-  
-     .button {
-        display: inline-block;
-        margin: 5px;
-        width: 100px;
-        &.PCbox{
-          &.PC{
-              background: lighten(@dark, 10%);
-          }
-        }
-        &.NPCbox{
-          &.NPC{
-              background: lighten(@dark, 10%);
-          }
-        }
-        &.Groupbox{
-          &.Group{
-              background: lighten(@dark, 10%);
-          }
+
+    .button {
+      display: inline-block;
+      margin: 5px;
+      width: 100px;
+
+      &.PCbox {
+        &.PC {
+          background: lighten(@dark, 10%);
         }
       }
-      #closer {
+
+      &.NPCbox {
+        &.NPC {
+          background: lighten(@dark, 10%);
+        }
+      }
+
+      &.Groupbox {
+        &.Group {
+          background: lighten(@dark, 10%);
+        }
+      }
+    }
+
+    #closer {
       position: absolute;
       top: 5px;
       right: 5px;
@@ -539,7 +611,7 @@ p {
         width: 20.67px;
       }
     }
-    
+
   }
 
   &.inactive {

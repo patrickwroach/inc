@@ -21,10 +21,11 @@ export class Encounter extends React.Component {
                     newAmount:1,
                     amountVis:'hidden',  
                     hpVis:'hidden',   
-                    test : 9                            
+                                        
                      };
-        this.addHp = this.addHp.bind(this);
-        this.minusHp = this.minusHp.bind(this);
+        this.editHp = this.editHp.bind(this);
+        this.editName = this.editName.bind(this);
+        this.editInit = this.editInit.bind(this);
         this.addChar = this.addChar.bind(this);
         this.openWizard = this.openWizard.bind(this);
         this.setNewName = this.setNewName.bind(this);
@@ -45,7 +46,7 @@ export class Encounter extends React.Component {
   
    //HP adjustment functions
     
-    addHp(index, amount) {
+    editHp(index, amount) {
       const currentIndex = index;
       const currentAmount = amount;
       var newArray = this.state.CharData.slice();    
@@ -59,7 +60,26 @@ export class Encounter extends React.Component {
   
     }
 
-  
+    //Name/Init adjustment
+
+    editName(index, newName) {
+        const currentIndex = index;
+        const incomingName = newName;
+        var newArray = this.state.CharData.slice();    
+        newArray[currentIndex].name = incomingName;
+            this.setState({CharData:newArray});
+
+    }
+     editInit(index, newInit) {
+        const currentIndex = index;
+        const incomingInit = newInit;
+        console.log(currentIndex);
+        var newArray = this.state.CharData.slice();    
+        newArray[currentIndex].init = incomingInit;
+        this.setState({CharData:newArray});
+
+    }
+        
             
     //Add Character Sections, specific types to be stripped out after wizard is complete
     openWizard() {
@@ -174,8 +194,9 @@ export class Encounter extends React.Component {
                     CharData={CharData}
                     //functions to pass to char
                    
-                    minusHp={() => this.minusHp()} 
-                    onAddHp= {this.addHp}           
+                    onAddHp= {this.editHp} 
+                    onEditName = {this.editName}  
+                    onEditInit = {this.editInit}         
                                         
                                      
                 />
