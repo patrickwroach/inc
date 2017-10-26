@@ -235,9 +235,9 @@ p {
 }
 .content-container#init-container .character .init-number {
   position: absolute;
-  bottom: 26px;
-  left: 5px;
-  color: #7c7c7c;
+  top: 2px;
+  left: 0px;
+  color: #e4e4e4;
 }
 .content-container#init-container .character .button,
 .content-container#init-container .character .char-name,
@@ -327,6 +327,12 @@ p {
   border-bottom: none;
   display: none;
 }
+.content-container#init-container .character.Group .char-bar .groupNumber {
+  position: relative;
+  bottom: 5px;
+  font-size: .5em;
+  color: #626262;
+}
 .content-container#init-container .character.Group .char-bar .char-name h1 {
   font-size: 1.75em;
   color: #626262;
@@ -341,9 +347,6 @@ p {
   color: #494949;
 }
 .content-container#init-container .character.Group .char-bar .hp-toggles a {
-  background-color: #494949;
-}
-.content-container#init-container .character.Group .char-bar .hp-toggles .inputToggle {
   background-color: #494949;
 }
 .content-container#init-container .character.Group .char-bar .hp-toggles .inputToggle input {
@@ -406,6 +409,7 @@ p {
   top: 0;
   left: 0;
   background-color: rgba(47, 47, 47, 0.2);
+  z-index: 10;
 }
 .content-container#init-container .init-edit .choice-container,
 .content-container#init-container .name-edit .choice-container {
@@ -458,6 +462,7 @@ p {
   top: 0;
   left: 0;
   background-color: rgba(47, 47, 47, 0.2);
+  z-index: 10;
 }
 #add-char-wizard .choice-container {
   padding: 50px;

@@ -279,9 +279,9 @@ p {
 
     .init-number {
       position: absolute;
-      bottom: 26px;
-      left: 5px;
-      color: lighten(@dark, 30%);
+      top: 2px;
+      left: 0px;
+      color: darken(@light, 10%);
     }
 
     .button,
@@ -392,6 +392,13 @@ p {
       .char-bar {
         border-bottom: none;
         display: none;
+        .groupNumber {
+          position:relative;
+          bottom:5px;
+          font-size: .5em;
+            color: lighten(@dark, 20%);
+
+        }
 
         .char-name {
           h1 {
@@ -420,7 +427,7 @@ p {
           }
 
           .inputToggle {
-            background-color: lighten(@dark, 10%);
+          
 
             input {
 
@@ -502,6 +509,7 @@ p {
     top: 0;
     left: 0;
     background-color: fade(@dark, 20%);
+    z-index:10;
 
     .choice-container {
       padding: 50px;
@@ -556,6 +564,7 @@ p {
   top: 0;
   left: 0;
   background-color: fade(@dark, 20%);
+  z-index:10;
 
   .choice-container {
     padding: 50px;

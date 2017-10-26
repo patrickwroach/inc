@@ -21,7 +21,7 @@ export class AddChar extends React.Component {
     }
 
     handleNewInit(e) {
-    const init = e.target.value;
+    const init = parseInt(e.target.value);
     this.props.onChangeInit(init)
     }
     
@@ -55,12 +55,12 @@ export class AddChar extends React.Component {
     }
 
     handleNewHp(e) {
-    const hp= e.target.value;
+    const hp = parseInt(e.target.value);
     this.props.onChangeHp(hp)
     }
 
     handleNewAmount(e) {
-    const amount = e.target.value;
+    const amount = parseInt(e.target.value);
     this.props.onChangeAmount(amount)
     }
 
@@ -71,7 +71,6 @@ export class AddChar extends React.Component {
             <Button id="closer" text="&#10006;" onClick={() => this.props.closeWizard()} />
                 <h2> Add a character to the Encoutner </h2>
                 <form id="char-wiz-form" className="input-container">
-                    <h1>{this.props.nameT}</h1>
                     <p>Name:<input onChange={this.handleNewName}  type="text" /></p>
                     <p>Initiative <input onChange={this.handleNewInit} type="number" placeholder="0"/></p>
                 </form>

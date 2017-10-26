@@ -8,15 +8,17 @@ export class Encounter extends React.Component {
     super(props);
         this.state={
                     CharData:[ {
-                        name:"start of new round",
+                        name:["start of new round"],
                         type:"nonChar",
                         init:-20,
+                        hp:[0],
+                        hpmax:[0],
                         amount:1}
                         ],
                     toggleWizard:'inactive',                                 
                     newName:'Unnamed',
                     newType:'PC',
-                    newHp:1,
+                    newHp:[1],
                     newInit:0,
                     newAmount:1,
                     amountVis:'hidden',  
@@ -46,13 +48,14 @@ export class Encounter extends React.Component {
   
    //HP adjustment functions
     
-    editHp(index, amount) {
-      const currentIndex = index;
+    editHp(charIndex, hpIndex, amount) {
+      const currentCharIndex = charIndex;
+      const currentHpIndex = hpIndex;
       const currentAmount = amount;
       var newArray = this.state.CharData.slice();    
-      newArray[currentIndex].hp = parseInt(newArray[currentIndex].hp) + amount;
-        this.setState({CharData:newArray});
-
+      newArray[currentCharIndex].hp[currentHpIndex] = parseInt(newArray[currentCharIndex].hp[currentHpIndex]) + amount;
+      this.setState({CharData:newArray}
+      );
     }
 
     minusHp() {      
@@ -62,12 +65,13 @@ export class Encounter extends React.Component {
 
     //Name/Init adjustment
 
-    editName(index, newName) {
-        const currentIndex = index;
+    editName( charDataIndex, nameIndex, newName) {
+        const currentCharDataIndex = charDataIndex;
+        const currentNameIndex = nameIndex;
         const incomingName = newName;
-        var newArray = this.state.CharData.slice();    
-        newArray[currentIndex].name = incomingName;
-            this.setState({CharData:newArray});
+        var newArray = this.state.CharData.slice();  
+        newArray[currentCharDataIndex].name[currentNameIndex] = incomingName;
+        this.setState({CharData:newArray});
 
     }
      editInit(index, newInit) {
@@ -112,11 +116,17 @@ export class Encounter extends React.Component {
     }
   
    addChar(){
-         var newArray = this.state.CharData.slice();    
+         var newArray = this.state.CharData.slice();  
+         var hpArr = [];
+         var nameArr = [];
+         hpArr.length = this.state.newAmount;
+         nameArr.length = this.state.newAmount + 1;      
+         hpArr.fill(this.state.newHp); 
+         nameArr.fill(this.state.newName); 
             newArray.push({
-            name:this.state.newName,
+            name:nameArr,
             type:this.state.newType, 
-            hp:this.state.newHp,
+            hp:hpArr,
             hpmax:this.state.newHp,
             init:this.state.newInit,  
             amount:this.state.newAmount 
@@ -127,7 +137,7 @@ export class Encounter extends React.Component {
                        toggleWizard:'inactive',
                         newName:'Unnamed',
                         newType:'PC',
-                        newHp:1,
+                        newHp:[1],
                         newInit:0,
                         newAmount:1,
                         hpVis:'hidden',
@@ -141,9 +151,11 @@ export class Encounter extends React.Component {
         
    }
 
-    setNewName(name) {                  
+    setNewName(name) {   
+        
+                       
             this.setState({
-            newName: name
+            newName: [name]
         });
      }
     setNewInit(init) {                  
@@ -191,9 +203,7 @@ export class Encounter extends React.Component {
                 <InitGroup 
                     //char data
                     target={index}
-                    CharData={CharData}
-                    //functions to pass to char
-                   
+                    CharData={CharData}       
                     onAddHp= {this.editHp} 
                     onEditName = {this.editName}  
                     onEditInit = {this.editInit}         

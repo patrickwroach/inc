@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './button.jsx';
-
+import { Character } from './character.jsx';
 
 export class InitGroup extends React.Component {
     constructor(props) {
@@ -10,13 +10,10 @@ export class InitGroup extends React.Component {
             toggleButtonText: 'Show Group',
             NameEdit: 'hidden',
             InitEdit: 'hidden',
-            inputHp:5,
             inputName:'',
             inputInit:0
         };
         this.toggleGroup = this.toggleGroup.bind(this);
-        this.handleMathHp =  this.handleMathHp.bind(this);
-        this.handleInputHp =  this.handleInputHp.bind(this);
         this.handleInputName =  this.handleInputName.bind(this);
         this.submitName =  this.submitName.bind(this);
         this.handleInputInit =  this.handleInputInit.bind(this);
@@ -64,14 +61,7 @@ export class InitGroup extends React.Component {
             });
         }
     }
-    handleInputHp(e){
-        const newInputHp = e.target.value;
-      
-       this.setState({
-            inputHp:newInputHp
-        });
-
-    }
+ 
 
     handleInputName(e){
         const newName= e.target.value;
@@ -84,12 +74,14 @@ export class InitGroup extends React.Component {
     }
     submitName(){
         const arrIndex = this.props.target;
+        const nameIndex = this.props.CharData.name.length-1;
         const newName= this.state.inputName;
-        this.props.onEditName(arrIndex, newName);
+        this.props.onEditName(arrIndex, nameIndex, newName);
         this.setState({
              NameEdit: 'hidden' 
         });
     }
+
 
      handleInputInit(e){
         const newInit= parseInt(e.target.value);    
@@ -109,12 +101,7 @@ export class InitGroup extends React.Component {
     }
 
 
-    handleMathHp(toMath) {
-     const amountToMath = toMath;
-     const arrIndex = this.props.target;
-     this.props.onAddHp(arrIndex, amountToMath);
-    }
-    
+  
 
     render() { 
         const amountArr = [0];
@@ -123,25 +110,20 @@ export class InitGroup extends React.Component {
         amountArr.fill(0); 
         //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here    
         const Characters = amountArr.map((amountArr, index)=>           
-                <li key={index} className="char-bar">
-                    <div className="char-name">
-                        <h1 >{this.props.CharData.name} <span class="groupNumber">{index + 1}</span> 
-                            <span class="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
-                            </h1>
-                    </div>
-                    
-                    <div className="hp-count">
-                        <div className="hp">
-                            <h2>{this.props.CharData.hp}/{this.props.CharData.hpmax}</h2>
-                        </div>
-                        <div className="hp-toggles">
-                            <Button onClick={() => this.handleMathHp(1)} text="+1"  />
-                            <Button onClick={() => this.handleMathHp(+this.state.inputHp)} text="+"  />
-                            <input  onChange={this.handleInputHp} type="number" min="1" placeholder="5" className="inputToggle"/>
-                            <Button onClick={() => this.handleMathHp(-this.state.inputHp)} text="-"  />
-                            <Button onClick={() => this.handleMathHp(-1)} text="-1" />
-                        </div>
-                    </div>
+                <li key={index} >
+
+                 <Character
+                    //char data
+                    hpTarget={index}
+                    target = {this.props.target}
+                    CharData={this.props.CharData}       
+                    onAddHp= {this.props.onAddHp} 
+                    onEditName = {this.props.onEditName}
+                    onToggleNameEdit = {() => this.toggleNameEdit()}  
+                       
+                                        
+                                     
+                />
                 </li>
         );
        
@@ -149,7 +131,7 @@ export class InitGroup extends React.Component {
             <ul id={this.props.key} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.CharData.type}> 
                 <div className="group-name-bar">
                         <div className="char-name">
-                            <h1>{this.props.CharData.name}s</h1>
+                            <h1>{this.props.CharData.name[this.props.CharData.name.length-1]}s<span class="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>
                         </div>
                         <div className="button-container">
                             <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} />
