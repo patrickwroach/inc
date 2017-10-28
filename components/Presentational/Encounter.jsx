@@ -3,6 +3,10 @@ import { InitGroup } from './initgroup.jsx';
 import { Button } from './button.jsx';
 import { AddChar } from './addchar.jsx';
 
+function sortCharData (a, b) {
+	return a.init - b.init;
+}
+
 export class Encounter extends React.Component {
   constructor(props) {
     super(props);
@@ -80,6 +84,7 @@ export class Encounter extends React.Component {
         console.log(currentIndex);
         var newArray = this.state.CharData.slice();    
         newArray[currentIndex].init = incomingInit;
+		newArray.sort(sortCharData);
         this.setState({CharData:newArray});
 
     }
@@ -123,18 +128,18 @@ export class Encounter extends React.Component {
          nameArr.length = this.state.newAmount + 1;      
          hpArr.fill(this.state.newHp); 
          nameArr.fill(this.state.newName); 
-            newArray.push({
+		 newArray.push({
             name:nameArr,
             type:this.state.newType, 
             hp:hpArr,
             hpmax:this.state.newHp,
             init:this.state.newInit,  
-            amount:this.state.newAmount 
+            amount:this.state.newAmount
+         });   
+		 newArray.sort(sortCharData);
         
-        });   
-        
-        this.setState({CharData:newArray,
-                       toggleWizard:'inactive',
+         this.setState({CharData:newArray,
+                        toggleWizard:'inactive',
                         newName:'Unnamed',
                         newType:'PC',
                         newHp:[1],
@@ -142,8 +147,7 @@ export class Encounter extends React.Component {
                         newAmount:1,
                         hpVis:'hidden',
                         amountVis:'hidden'
-                        } 
-        );
+                        });
         
         document.getElementById("char-wiz-form").reset();
         document.getElementById("NPC-entries").reset();
