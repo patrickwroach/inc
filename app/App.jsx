@@ -6,7 +6,7 @@ import { Footer } from './components/presentational/footer.jsx';
 import './styles/template.less';
 import Logo from './assets/incounter-logo.svg';
 
-class App extends React.Component {
+export default class App extends React.Component {
    render() {
       return (     
         <div>  
@@ -20,7 +20,7 @@ class App extends React.Component {
    }
 }
 
-export default App;
+//export default App;
 ReactDOM.render(
 <App />,
 document.getElementById('app')
