@@ -1,29 +1,31 @@
+var HTMLWebpackPlugin = require('html-webpack-plugin');
+var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
+	template: __dirname + '/app/index.html',
+	filename: 'index.html',
+	inject: 'body'
+});
+
 var config = {
-   entry: './main.js',
-	
+   entry: __dirname + '/app/main.js',
    output: {
-      path:'/',
-      filename: 'index.js',
+		filename: 'index.js',
+		path: __dirname + '/build'
    },
-	
-   devServer: {
-      inline: true,
-      port: 8080
-   },
-	
    module: {
       loaders: [
          {
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loader: 'babel-loader',
-				
-            query: {
-               presets: ['es2015', 'react']
-            }
+            loader: 'babel-loader'
          }
       ]
-   }
+   },
+   devServer: {
+      inline: true
+   },
+   plugins: [
+		HTMLWebpackPluginConfig
+   ]
 }
 
 module.exports = config;
