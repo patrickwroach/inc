@@ -19,10 +19,11 @@ var config = {
             exclude: /node_modules/,
             loader: 'babel-loader'
          }, {
-			test: /\.css$/,
+			test: /\.less$/,
 			use: [
 				'style-loader',
-				'css-loader'
+				'css-loader',
+				'less-loader'
 			]
 		 }, {
 			test: /\.(png|svg|jpg|gif)$/,
