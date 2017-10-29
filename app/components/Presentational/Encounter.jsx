@@ -4,7 +4,7 @@ import { Button } from './button.jsx';
 import { AddChar } from './addchar.jsx';
 
 function sortCharData (a, b) {
-	return a.init - b.init;
+	return b.init - a.init;
 }
 
 export class Encounter extends React.Component {
@@ -14,7 +14,7 @@ export class Encounter extends React.Component {
                     CharData:[ {
                         name:["start of new round"],
                         type:"nonChar",
-                        init:-20,
+                        init: Number.MAX_SAFE_INTEGER,
                         hp:[0],
                         hpmax:[0],
                         amount:1}
