@@ -5,6 +5,7 @@ const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 	inject: 'body'
 });
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 var config = {
    entry: __dirname + '/app/main.js',
@@ -38,7 +39,8 @@ var config = {
    },
    plugins: [
 		new CleanWebpackPlugin(['build']),
-		HTMLWebpackPluginConfig
+		HTMLWebpackPluginConfig,
+		new UglifyJSPlugin()
    ]
 }
 
