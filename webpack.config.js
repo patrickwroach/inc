@@ -1,9 +1,10 @@
-var HTMLWebpackPlugin = require('html-webpack-plugin');
-var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 	template: __dirname + '/app/index.html',
 	filename: 'index.html',
 	inject: 'body'
 });
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var config = {
    entry: __dirname + '/app/main.js',
@@ -35,6 +36,7 @@ var config = {
       inline: true
    },
    plugins: [
+		new CleanWebpackPlugin(['build']),
 		HTMLWebpackPluginConfig
    ]
 }
