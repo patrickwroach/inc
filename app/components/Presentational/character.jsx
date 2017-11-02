@@ -106,7 +106,7 @@ export class Character extends React.Component {
                             <span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
                             </h1>
                     </div>
-                    <div class="aliveDead button-container ">
+                    <div className="aliveDead button-container ">
                     <Button  onClick={() => this.toggleAliveDead()} text={this.state.killButtonText} />
                     </div>
                     <div className="hp-count">
