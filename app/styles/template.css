@@ -310,6 +310,7 @@ p {
   box-shadow: 0 0 0;
   box-sizing: border-box;
   margin: 0 auto;
+  text-align: center;
 }
 .content-container#init-container .character.NPC .group-name-bar,
 .content-container#init-container .character.PC .group-name-bar,
@@ -326,6 +327,7 @@ p {
 .content-container#init-container .character.Group .char-bar {
   border-bottom: none;
   display: none;
+  padding-bottom: 5px;
 }
 .content-container#init-container .character.Group .char-bar .groupNumber {
   position: relative;
@@ -376,7 +378,8 @@ p {
   background: #2f2f2f;
 }
 .content-container#init-container .character.nonChar .edit-pen,
-.content-container#init-container .character.nonChar .init-number {
+.content-container#init-container .character.nonChar .init-number,
+.content-container#init-container .character.nonChar .aliveDead {
   display: none;
 }
 .content-container#init-container .character.nonChar .char-bar,
@@ -391,6 +394,11 @@ p {
 .content-container#init-container .character.nonChar .group-name-bar h1 {
   color: #fdfdfd;
   margin: 0;
+}
+.content-container#init-container .character .char-bar .button-container.aliveDead {
+  width: 75px;
+  padding-right: 10px;
+  vertical-align: bottom;
 }
 .content-container#init-container .character .char-bar.dead .char-name h1,
 .content-container#init-container .character .char-bar.dead .char-name .groupNumber {
@@ -419,6 +427,12 @@ p {
 }
 .content-container#init-container .character.NPC .char-bar.dead .char-name h1:after {
   content: "has been slain!";
+}
+.content-container#init-container .character.Group .char-bar .aliveDead {
+  width: 75px;
+  padding-right: 10px;
+  vertical-align: bottom;
+  padding-bottom: 3px;
 }
 .content-container#init-container .edit-pen {
   transform: rotate(120deg);

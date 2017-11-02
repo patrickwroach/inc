@@ -9,6 +9,8 @@ export class Character extends React.Component {
             NameEdit: 'hidden',        
             inputHp:5,
             inputName:'',
+            status:'alive',
+            killButtonText:'Kill'
          
         };
      
@@ -51,6 +53,23 @@ export class Character extends React.Component {
             });
         }
     }
+
+     toggleAliveDead() {
+      
+        if (this.state.status === 'alive') {
+            this.setState({
+                status: 'dead',
+                killButtonText: 'Revive'           
+            });
+        }
+        else {
+            this.setState({
+                status: 'alive', 
+                killButtonText: 'Kill' 
+
+            });
+        }
+    }
  
     submitName(){
         const arrIndex = this.props.target;
@@ -81,13 +100,15 @@ export class Character extends React.Component {
        
         return (
              
-               <div className="char-bar">
+               <div className={"char-bar" + " " + this.state.status}>
                     <div className="char-name">
                         <h1 >{this.props.CharData.name[this.props.hpTarget]} <span className="groupNumber">{this.props.hpTarget + 1}</span> 
                             <span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
                             </h1>
                     </div>
-                    
+                    <div class="aliveDead button-container ">
+                    <Button  onClick={() => this.toggleAliveDead()} text={this.state.killButtonText} />
+                    </div>
                     <div className="hp-count">
                         <div className="hp">
                             <h2>{this.props.CharData.hp[this.props.hpTarget]}/{this.props.CharData.hpmax}</h2>
