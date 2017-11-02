@@ -134,12 +134,18 @@ h4,
 h5 {
   font-weight: bold;
   margin-bottom: .25em;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
 
@@ -179,12 +185,13 @@ table {
 //standardized widths and heights
 @character-min-height: 105px;
 @footer-height: 40px;
+@nav-height:65px;
 //standard layouts
 
 body,
 html {
   min-width: 300px;
- 
+
   height: 100%;
   transition: all .5s;
 }
@@ -230,12 +237,18 @@ p {
   padding: 10px 20px;
   box-shadow: 2px 2px 1px lighten(@dark, 30%);
   cursor: pointer;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 
 }
@@ -244,13 +257,24 @@ p {
   background: lighten(@dark, 10%);
 }
 
-//id specific button styles 
+//id specific button/element styles 
+#roundCounter {
+  position:fixed;
+  top:15px;
+  right:11%;
+  z-index:6;
+  h2 {
+    display: block;
+    color: @light;
+  }
+}
+
 #addCharButton {
   position: fixed;
-  bottom: 10%;
+  bottom: 12%;
   right: 2%;
 }
-//resituate for responsive
+
 #endTurnButton {
   position: fixed;
   top: 150px;
@@ -282,6 +306,7 @@ p {
   padding-bottom: @footer-height;
   position: relative;
   display: table;
+  padding-top:@nav-height;
 
   .character {
     min-height: @character-min-height;
@@ -564,8 +589,9 @@ p {
     }
 
     &.NPC {
-      &.dead {
+      
         .char-bar {
+          &.dead {
           .edit-pen {
             display: none;
           }
@@ -672,7 +698,10 @@ p {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: fade(@dark, 20%);
+  // adorable mode 
+  //background: url(../assets/modal-background.png)  fade(@dark, 20%);
+  background: fade(@dark, 20%);
+
   z-index: 10;
 
   .choice-container {
@@ -761,6 +790,9 @@ p {
 //Nav and Footer
 .content-container#navbar {
   background: @dark;
+  position:fixed;
+  top:0;
+  z-index:5;
 
   p {
     color: @light;
@@ -811,16 +843,22 @@ p {
   }
 
 }
-@media screen and (min-width:501px) and  (max-width:900px) {
-  .content-container .content{
-    margin:0 auto 0 5%;
+@media screen and (min-width:501px) and (max-width:900px) {
+  .content-container .content {
+    margin: 0 auto 0 5%;
+  }
+
+  #addCharButton,
+  #endTurnButton {
+    right: 5px;
+    padding: 10px 5px;
   }
 
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   #add-char-wizard {
     .choice-container {
-      padding: 50px;
+      padding: 30px;
       top: 10%;
       margin: 0 auto;
       width: 75%;
@@ -838,8 +876,9 @@ p {
   .content-container#footer {
     height: 70px;
     background-color: lighten(@dark,5%);
-    position:fixed;
-    bottom:0;
+    position: fixed;
+    bottom: 0;
+
     p {
       display: none;
     }
@@ -850,12 +889,12 @@ p {
     top: inherit;
     right: inherit;
     bottom: 10px;
-    z-index:5;
+    z-index: 5;
     box-shadow: none;
   }
 
   #addCharButton {
-   
+
     left: 10px;
   }
 
@@ -864,10 +903,10 @@ p {
   }
 }
 @media screen and (orientation:landscape) {
-    #add-char-wizard {
+  #add-char-wizard {
     .choice-container {
       padding: 25px;
-      top: 5%;
+      top: 15%;
       margin: 0 auto;
       width: 75%;
       background: #fdfdfd;

@@ -17,7 +17,8 @@ export class Encounter extends React.Component {
                         init: Number.MAX_SAFE_INTEGER,
                         hp:[0],
                         hpmax:[0],
-                        amount:1}
+                        amount:1,
+                        }
                         ],
                     toggleWizard:'inactive',                                 
                     newName:'Unnamed',
@@ -26,7 +27,9 @@ export class Encounter extends React.Component {
                     newInit:0,
                     newAmount:1,
                     amountVis:'hidden',  
-                    hpVis:'hidden',   
+                    hpVis:'hidden', 
+                    round:1,
+                    turns:0  
                                         
                      };
         this.editHp = this.editHp.bind(this);
@@ -190,12 +193,20 @@ export class Encounter extends React.Component {
 
  
    
-
+//Joe, This works to count rounds as long as you dont add more characters to the combat heh, so definately a bandaid.  I dont care to actually fix it since we are going to dismiss it. 
     cycleTurn(){
+        if (this.state.CharData.length > 1){
+        var turnsEnded = this.state.turns;
+        turnsEnded = turnsEnded+1;      
+        var currentRound = Math.floor((turnsEnded/(this.state.CharData.length))+1);  
         var newArray = this.state.CharData;    
         newArray.push(newArray.shift());        
-        this.setState({CharData:newArray}
+        this.setState({
+            CharData:newArray,
+            turns:turnsEnded,
+            round:currentRound}
         );       
+        }
     }
      
    
@@ -217,9 +228,13 @@ export class Encounter extends React.Component {
             </li>
         );      
             
-        return (        
+        return ( 
+            <div>
+             <div id="roundCounter">
+            <h2>Round {this.state.round}</h2>
+            </div>       
         <ul> 
-          
+           
             {InitGroups}         
            
             <Button 
@@ -249,7 +264,8 @@ export class Encounter extends React.Component {
                 onChangeAmount = {this.setNewAmount}
                 selectedType = {this.state.newType}
             />
-        </ul>       
+        </ul>  
+        </div>     
         );
     }
 }

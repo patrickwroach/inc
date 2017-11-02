@@ -219,9 +219,19 @@ p {
 .button:hover {
   background: #494949;
 }
+#roundCounter {
+  position: fixed;
+  top: 15px;
+  right: 11%;
+  z-index: 6;
+}
+#roundCounter h2 {
+  display: block;
+  color: #fdfdfd;
+}
 #addCharButton {
   position: fixed;
-  bottom: 10%;
+  bottom: 12%;
   right: 2%;
 }
 #endTurnButton {
@@ -249,6 +259,7 @@ p {
   padding-bottom: 40px;
   position: relative;
   display: table;
+  padding-top: 65px;
 }
 .content-container#init-container .character {
   min-height: 105px;
@@ -446,13 +457,13 @@ p {
 .content-container#init-container .character.PC .char-bar.dead .char-name h1:after {
   content: " has fallen!";
 }
-.content-container#init-container .character.NPC.dead .char-bar .edit-pen {
+.content-container#init-container .character.NPC .char-bar.dead .edit-pen {
   display: none;
 }
-.content-container#init-container .character.NPC.dead .char-bar .char-name h1:before {
+.content-container#init-container .character.NPC .char-bar.dead .char-name h1:before {
   content: "";
 }
-.content-container#init-container .character.NPC.dead .char-bar .char-name h1:after {
+.content-container#init-container .character.NPC .char-bar.dead .char-name h1:after {
   content: "has been slain!";
 }
 .content-container#init-container .character.Group .char-bar .aliveDead {
@@ -530,7 +541,7 @@ p {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(47, 47, 47, 0.2);
+  background: rgba(47, 47, 47, 0.2);
   z-index: 10;
 }
 #add-char-wizard .choice-container {
@@ -595,6 +606,9 @@ p {
 }
 .content-container#navbar {
   background: #2f2f2f;
+  position: fixed;
+  top: 0;
+  z-index: 5;
 }
 .content-container#navbar p {
   color: #fdfdfd;
@@ -635,10 +649,15 @@ p {
   .content-container .content {
     margin: 0 auto 0 5%;
   }
+  #addCharButton,
+  #endTurnButton {
+    right: 5px;
+    padding: 10px 5px;
+  }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   #add-char-wizard .choice-container {
-    padding: 50px;
+    padding: 30px;
     top: 10%;
     margin: 0 auto;
     width: 75%;
@@ -675,7 +694,7 @@ p {
 @media screen and (orientation: landscape) {
   #add-char-wizard .choice-container {
     padding: 25px;
-    top: 5%;
+    top: 15%;
     margin: 0 auto;
     width: 75%;
     background: #fdfdfd;
