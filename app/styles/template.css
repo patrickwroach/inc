@@ -377,9 +377,9 @@ p {
   border-bottom: none;
   background: #2f2f2f;
 }
+.content-container#init-container .character.nonChar .aliveDead,
 .content-container#init-container .character.nonChar .edit-pen,
-.content-container#init-container .character.nonChar .init-number,
-.content-container#init-container .character.nonChar .aliveDead {
+.content-container#init-container .character.nonChar .init-number {
   display: none;
 }
 .content-container#init-container .character.nonChar .char-bar,
@@ -400,8 +400,8 @@ p {
   padding-right: 10px;
   vertical-align: bottom;
 }
-.content-container#init-container .character .char-bar.dead .char-name h1,
-.content-container#init-container .character .char-bar.dead .char-name .groupNumber {
+.content-container#init-container .character .char-bar.dead .char-name .groupNumber,
+.content-container#init-container .character .char-bar.dead .char-name h1 {
   color: rgba(47, 47, 47, 0.3);
 }
 .content-container#init-container .character .char-bar.dead .char-name h1:before {
@@ -410,7 +410,7 @@ p {
 .content-container#init-container .character .char-bar.dead .hp-count {
   display: none;
 }
-.content-container#init-container .character.PC .char-bar .edit-pen {
+.content-container#init-container .character.PC .char-bar.dead .edit-pen {
   display: none;
 }
 .content-container#init-container .character.PC .char-bar.dead .char-name h1:before {
@@ -419,13 +419,13 @@ p {
 .content-container#init-container .character.PC .char-bar.dead .char-name h1:after {
   content: " has fallen!";
 }
-.content-container#init-container .character.NPC .char-bar .edit-pen {
+.content-container#init-container .character.NPC.dead .char-bar .edit-pen {
   display: none;
 }
-.content-container#init-container .character.NPC .char-bar.dead .char-name h1:before {
+.content-container#init-container .character.NPC.dead .char-bar .char-name h1:before {
   content: "";
 }
-.content-container#init-container .character.NPC .char-bar.dead .char-name h1:after {
+.content-container#init-container .character.NPC.dead .char-bar .char-name h1:after {
   content: "has been slain!";
 }
 .content-container#init-container .character.Group .char-bar .aliveDead {
@@ -526,13 +526,29 @@ p {
   width: 100px;
 }
 #add-char-wizard .choice-container .button.PCbox.PC {
-  background: #494949;
+  background: #6f6f6f;
 }
 #add-char-wizard .choice-container .button.NPCbox.NPC {
-  background: #494949;
+  background: #6f6f6f;
 }
 #add-char-wizard .choice-container .button.Groupbox.Group {
-  background: #494949;
+  background: #6f6f6f;
+}
+#add-char-wizard .choice-container .button.submit {
+  width: 100%;
+  padding: 10px 0;
+}
+#add-char-wizard .choice-container input {
+  border: 1px solid #2f2f2f;
+  margin-left: 5px;
+}
+#add-char-wizard .choice-container input:focus {
+  outline-color: rgba(47, 47, 47, 0.25);
+}
+#add-char-wizard .choice-container input[type="number"] {
+  text-align: center;
+  width: 50px;
+  display: inline-block;
 }
 #add-char-wizard .choice-container #closer {
   position: absolute;
@@ -586,4 +602,41 @@ p {
 }
 .content-container#footer .content p {
   text-align: center;
+  color: #fdfdfd;
+}
+@media screen and (max-width: 750px) {
+  #add-char-wizard .choice-container {
+    padding: 50px;
+    top: 10%;
+    margin: 0 auto;
+    width: 75%;
+    background: #fdfdfd;
+  }
+  #add-char-wizard .choice-container .button {
+    width: 70px;
+    padding: 10px 5px;
+  }
+  .content-container#footer {
+    height: 70px;
+    background-color: #3c3c3c;
+    position: fixed;
+    bottom: 0;
+  }
+  .content-container#footer p {
+    display: none;
+  }
+  #addCharButton,
+  #endTurnButton {
+    top: inherit;
+    right: inherit;
+    bottom: 10px;
+    z-index: 5;
+    box-shadow: none;
+  }
+  #addCharButton {
+    left: 10px;
+  }
+  #endTurnButton {
+    right: 10px;
+  }
 }

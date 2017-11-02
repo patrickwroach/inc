@@ -85,7 +85,7 @@ export class AddChar extends React.Component {
                      <p id="amount-entry" className={this.props.amountVis}>How many? <input onChange={this.handleNewAmount} type="number"  min="2" placeholder="2"/></p>
                 </form>
                 <br />
-                <Button text="Add" onClick={() => this.props.onAddCharClick()} />
+                <Button addClass="submit" text="Add Character(s)" onClick={() => this.props.onAddCharClick()} />
                  
                
             </div>

@@ -367,7 +367,7 @@ p {
         box-shadow: 0 0 0;
         box-sizing: border-box;
         margin: 0 auto;
-        text-align:center;
+        text-align: center;
       }
 
     }
@@ -386,14 +386,14 @@ p {
       .hp-count {
         display: none;
       }
-      
+
     }
 
     &.Group {
       .char-bar {
         border-bottom: none;
         display: none;
-        padding-bottom:5px;
+        padding-bottom: 5px;
 
         .groupNumber {
           position: relative;
@@ -471,9 +471,9 @@ p {
       border-bottom: none;
       background: @dark;
 
+      .aliveDead,
       .edit-pen,
-      .init-number, 
-      .aliveDead {
+      .init-number {
         display: none;
       }
 
@@ -493,20 +493,20 @@ p {
     //Death styles
 
     .char-bar {
-       .button-container {
-         &.aliveDead{
-          width:75px;
-          padding-right:10px;
+      .button-container {
+        &.aliveDead {
+          width: 75px;
+          padding-right: 10px;
           vertical-align: bottom;
-         
-         }
-        
-      
-        
-       }
+
+        }
+
+      }
+
       &.dead {
         .char-name {
-          h1, .groupNumber {
+          .groupNumber,
+          h1 {
 
             color: fade(@dark, 30%);
           }
@@ -515,9 +515,9 @@ p {
             content: "A dead ";
 
           }
-          
+
         }
-        
+
         .hp-count {
           display: none;
         }
@@ -526,11 +526,11 @@ p {
 
     &.PC {
       .char-bar {
-        .edit-pen {
-          display: none;
-        }
-
         &.dead {
+          .edit-pen {
+            display: none;
+          }
+
           .char-name {
             h1:before {
               content: "Poor ";
@@ -548,16 +548,17 @@ p {
     }
 
     &.NPC {
-      .char-bar {
-        .edit-pen {
-          display: none;
-        }
+      &.dead {
+        .char-bar {
+          .edit-pen {
+            display: none;
+          }
 
-        &.dead {
           .char-name {
-             h1:before {
-               content:"";
-             }
+            h1:before {
+              content: "";
+            }
+
             h1:after {
               content: "has been slain!";
 
@@ -567,14 +568,15 @@ p {
         }
       }
     }
-    &.Group{
-      .char-bar{
-       .aliveDead{
-          width:75px;
-          padding-right:10px;
+
+    &.Group {
+      .char-bar {
+        .aliveDead {
+          width: 75px;
+          padding-right: 10px;
           vertical-align: bottom;
-          padding-bottom:3px;
-         }
+          padding-bottom: 3px;
+        }
       }
     }
   }
@@ -680,21 +682,43 @@ p {
 
       &.PCbox {
         &.PC {
-          background: lighten(@dark, 10%);
+          background: lighten(@dark, 25%);
         }
       }
 
       &.NPCbox {
         &.NPC {
-          background: lighten(@dark, 10%);
+          background: lighten(@dark, 25%);
         }
       }
 
       &.Groupbox {
         &.Group {
-          background: lighten(@dark, 10%);
+          background: lighten(@dark, 25%);
         }
       }
+
+      &.submit {
+        width: 100%;
+        padding: 10px 0;
+      }
+    }
+
+    input {
+      border: 1px solid @dark;
+      margin-left: 5px;
+
+    }
+
+    input:focus {
+      outline-color: fade(@dark, 25%);
+
+    }
+
+    input[type="number"] {
+      text-align: center;
+      width: 50px;
+      display: inline-block;
     }
 
     #closer {
@@ -766,7 +790,54 @@ p {
     p {
 
       text-align: center;
+      color: @light;
     }
   }
 
+}
+@media screen and (max-width: 750px) {
+  #add-char-wizard {
+    .choice-container {
+      padding: 50px;
+      top: 10%;
+      margin: 0 auto;
+      width: 75%;
+      background: #fdfdfd;
+
+      .button {
+        width: 70px;
+        padding: 10px 5px;
+
+      }
+
+    }
+  }
+
+  .content-container#footer {
+    height: 70px;
+    background-color: lighten(@dark,5%);
+    position:fixed;
+    bottom:0;
+    p {
+      display: none;
+    }
+  }
+
+  #addCharButton,
+  #endTurnButton {
+    top: inherit;
+    right: inherit;
+    bottom: 10px;
+    z-index:5;
+    box-shadow: none;
+  }
+
+  #addCharButton {
+   
+    left: 10px;
+  }
+
+  #endTurnButton {
+    right: 10px;
+  }
 }
