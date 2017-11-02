@@ -1,0 +1,575 @@
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+input,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  line-height: 1.3em;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: '';
+  content: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+  margin-bottom: .25em;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.25em;
+}
+h4 {
+  font-size: 1.125em;
+}
+p {
+  margin-bottom: .25em;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body,
+html {
+  min-width: 300px;
+  height: 100%;
+}
+#app {
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+a,
+h1,
+h2,
+html,
+p {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #2f2f2f;
+}
+.content-container {
+  width: 100%;
+}
+.content-container .content {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 25px 0;
+}
+.button {
+  background: #2f2f2f;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 1px #7c7c7c;
+  cursor: pointer;
+}
+.button a,
+.button h1,
+.button h2,
+.button h3,
+.button h4,
+.button h5,
+.button p {
+  color: #fdfdfd;
+}
+.button:hover {
+  background: #494949;
+}
+#addCharButton {
+  position: fixed;
+  bottom: 10%;
+  right: 2%;
+}
+#endTurnButton {
+  position: fixed;
+  top: 150px;
+  right: 2%;
+}
+#roundEndButton {
+  box-shadow: 0 0 0;
+  margin: 25px 0;
+  text-align: center;
+  border: 2px dotted #626262;
+  background: #fdfdfd;
+}
+#roundEndButton p {
+  color: #626262;
+}
+#roundEndButton:hover {
+  border: 2px dotted #2f2f2f;
+}
+#roundEndButton:hover p {
+  color: #2f2f2f;
+}
+.content-container#init-container {
+  padding-bottom: 40px;
+  position: relative;
+  display: table;
+}
+.content-container#init-container .character {
+  min-height: 105px;
+  padding: 25px 0;
+  margin: 5px 0;
+  width: 100%;
+  display: table;
+  border-top: 1px solid #2f2f2f;
+  border-bottom: 1px solid #2f2f2f;
+  position: relative;
+}
+.content-container#init-container .character .init-number {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  color: #e4e4e4;
+}
+.content-container#init-container .character .button,
+.content-container#init-container .character .char-name,
+.content-container#init-container .character .hp-count {
+  display: table-cell;
+  vertical-align: middle;
+}
+.content-container#init-container .character .char-bar,
+.content-container#init-container .character .group-name-bar {
+  width: 100%;
+  display: table;
+  vertical-align: middle;
+  min-height: 105px;
+}
+.content-container#init-container .character .hp-count {
+  text-align: center;
+  width: 75px;
+  color: #494949;
+  margin-left: 10px;
+}
+.content-container#init-container .character .hp-count .hp {
+  font-size: 2em;
+}
+.content-container#init-container .character .hp-count .hp-toggles {
+  display: table;
+  height: 30px;
+  box-sizing: border-box;
+  margin: 0 0 0 auto;
+  border-spacing: 2px;
+}
+.content-container#init-container .character .hp-count .hp-toggles .button {
+  background-color: #2f2f2f;
+  color: #fdfdfd;
+  cursor: pointer;
+  padding: 0 5px;
+  box-shadow: none;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle {
+  background-color: #fdfdfd;
+  margin: 0 -2px;
+  width: 40px;
+  display: table;
+  height: 30px;
+  box-sizing: border-box;
+  border: 3px solid #2f2f2f;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle:focus {
+  outline: 0;
+}
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle::-webkit-inner-spin-button,
+.content-container#init-container .character .hp-count .hp-toggles .inputToggle::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.content-container#init-container .character .button-container {
+  height: 25px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 111px;
+}
+.content-container#init-container .character .button-container .button {
+  display: block;
+  padding: 5px;
+  box-shadow: 0 0 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.content-container#init-container .character.NPC .group-name-bar,
+.content-container#init-container .character.PC .group-name-bar,
+.content-container#init-container .character.nonChar .group-name-bar,
+.content-container#init-container .character.NPC .groupNumber,
+.content-container#init-container .character.PC .groupNumber,
+.content-container#init-container .character.nonChar .groupNumber {
+  display: none;
+}
+.content-container#init-container .character.PC .hp-count,
+.content-container#init-container .character.nonChar .hp-count {
+  display: none;
+}
+.content-container#init-container .character.Group .char-bar {
+  border-bottom: none;
+  display: none;
+}
+.content-container#init-container .character.Group .char-bar .groupNumber {
+  position: relative;
+  bottom: 5px;
+  font-size: .5em;
+  color: #626262;
+}
+.content-container#init-container .character.Group .char-bar .char-name h1 {
+  font-size: 1.75em;
+  color: #626262;
+}
+.content-container#init-container .character.Group .char-bar .hp-count {
+  margin-left: 10px;
+}
+.content-container#init-container .character.Group .char-bar .hp-count .hp {
+  font-size: 1.75em;
+}
+.content-container#init-container .character.Group .char-bar .hp-count .hp h2 {
+  color: #494949;
+}
+.content-container#init-container .character.Group .char-bar .hp-toggles a {
+  background-color: #494949;
+}
+.content-container#init-container .character.Group .char-bar .hp-toggles .inputToggle input {
+  border-top: 3px solid #494949;
+  border-bottom: 3px solid #494949;
+}
+.content-container#init-container .character.Group .char-bar:last-child {
+  border-bottom: 1px solid #2f2f2f;
+}
+.content-container#init-container .character.Group.inactive .char-bar {
+  display: none;
+}
+.content-container#init-container .character.Group.active {
+  border-bottom: none;
+}
+.content-container#init-container .character.Group.active .char-bar {
+  display: table;
+}
+.content-container#init-container .character.nonChar {
+  min-height: 0;
+  padding: 5px 0;
+  margin: 5px 0;
+  width: 100%;
+  display: table;
+  border-top: none;
+  border-bottom: none;
+  background: #2f2f2f;
+}
+.content-container#init-container .character.nonChar .edit-pen,
+.content-container#init-container .character.nonChar .init-number {
+  display: none;
+}
+.content-container#init-container .character.nonChar .char-bar,
+.content-container#init-container .character.nonChar .char-name,
+.content-container#init-container .character.nonChar .group-name-bar {
+  width: 100%;
+  min-height: 0;
+  text-align: center;
+}
+.content-container#init-container .character.nonChar .char-bar h1,
+.content-container#init-container .character.nonChar .char-name h1,
+.content-container#init-container .character.nonChar .group-name-bar h1 {
+  color: #fdfdfd;
+  margin: 0;
+}
+.content-container#init-container .character .char-bar.dead .char-name h1,
+.content-container#init-container .character .char-bar.dead .char-name .groupNumber {
+  color: rgba(47, 47, 47, 0.3);
+}
+.content-container#init-container .character .char-bar.dead .char-name h1:before {
+  content: "A dead ";
+}
+.content-container#init-container .character .char-bar.dead .hp-count {
+  display: none;
+}
+.content-container#init-container .character.PC .char-bar .edit-pen {
+  display: none;
+}
+.content-container#init-container .character.PC .char-bar.dead .char-name h1:before {
+  content: "Poor ";
+}
+.content-container#init-container .character.PC .char-bar.dead .char-name h1:after {
+  content: " has fallen!";
+}
+.content-container#init-container .character.NPC .char-bar .edit-pen {
+  display: none;
+}
+.content-container#init-container .character.NPC .char-bar.dead .char-name h1:before {
+  content: "";
+}
+.content-container#init-container .character.NPC .char-bar.dead .char-name h1:after {
+  content: "has been slain!";
+}
+.content-container#init-container .edit-pen {
+  transform: rotate(120deg);
+  display: inline-block;
+  font-size: 50%;
+  position: absolute;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.content-container#init-container .init-edit,
+.content-container#init-container .name-edit {
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(47, 47, 47, 0.2);
+  z-index: 10;
+}
+.content-container#init-container .init-edit .choice-container,
+.content-container#init-container .name-edit .choice-container {
+  padding: 50px;
+  position: relative;
+  top: 25%;
+  margin: 0 auto;
+  width: 50%;
+  background: #fdfdfd;
+}
+.content-container#init-container .init-edit .choice-container #closer,
+.content-container#init-container .name-edit .choice-container #closer {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  text-align: center;
+  display: inline-block;
+  padding: 5px;
+  width: 20.67px;
+}
+.content-container#init-container .init-edit .choice-container input,
+.content-container#init-container .name-edit .choice-container input {
+  border: 3px solid #2f2f2f;
+}
+.content-container#init-container .init-edit .choice-container input[type="number"],
+.content-container#init-container .name-edit .choice-container input[type="number"] {
+  text-align: center;
+  width: 50px;
+  display: inline-block;
+}
+.content-container#init-container .init-edit .choice-container .button,
+.content-container#init-container .name-edit .choice-container .button {
+  display: block;
+  margin: 10px auto;
+  width: 120px;
+}
+.content-container#init-container .init-edit.displayed,
+.content-container#init-container .name-edit.displayed {
+  display: block;
+}
+.content-container#init-container .init-edit.hidden,
+.content-container#init-container .name-edit.hidden {
+  display: none;
+}
+#add-char-wizard {
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(47, 47, 47, 0.2);
+  z-index: 10;
+}
+#add-char-wizard .choice-container {
+  padding: 50px;
+  position: relative;
+  top: 25%;
+  margin: 0 auto;
+  width: 50%;
+  background: #fdfdfd;
+}
+#add-char-wizard .choice-container .displayed {
+  display: block;
+}
+#add-char-wizard .choice-container .hidden {
+  display: none;
+}
+#add-char-wizard .choice-container .button {
+  display: inline-block;
+  margin: 5px;
+  width: 100px;
+}
+#add-char-wizard .choice-container .button.PCbox.PC {
+  background: #494949;
+}
+#add-char-wizard .choice-container .button.NPCbox.NPC {
+  background: #494949;
+}
+#add-char-wizard .choice-container .button.Groupbox.Group {
+  background: #494949;
+}
+#add-char-wizard .choice-container #closer {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  text-align: center;
+  display: inline-block;
+  padding: 5px;
+  width: 20.67px;
+}
+#add-char-wizard .choice-container #closer p {
+  margin: 0;
+  width: 20.67px;
+}
+#add-char-wizard.inactive {
+  display: none;
+}
+.content-container#navbar {
+  background: #2f2f2f;
+}
+.content-container#navbar p {
+  color: #fdfdfd;
+}
+.content-container#navbar .content {
+  display: table;
+  padding: 5px;
+}
+.content-container#navbar .content .logo,
+.content-container#navbar .content p {
+  display: table-cell;
+  vertical-align: middle;
+}
+.content-container#navbar .content .logo img {
+  height: 50px;
+}
+.content-container#navbar .content p {
+  text-align: right;
+}
+.content-container#footer {
+  height: 40px;
+  background: #2f2f2f;
+  color: #fdfdfd;
+  position: absolute;
+  bottom: 0;
+  display: table;
+}
+.content-container#footer .content {
+  display: table-cell;
+  padding: 0;
+  vertical-align: middle;
+}
+.content-container#footer .content p {
+  text-align: center;
+}

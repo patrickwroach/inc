@@ -280,7 +280,7 @@ p {
     .init-number {
       position: absolute;
       top: 2px;
-      left: 0px;
+      left: 0;
       color: darken(@light, 10%);
     }
 
@@ -392,11 +392,12 @@ p {
       .char-bar {
         border-bottom: none;
         display: none;
+
         .groupNumber {
-          position:relative;
-          bottom:5px;
+          position: relative;
+          bottom: 5px;
           font-size: .5em;
-            color: lighten(@dark, 20%);
+          color: lighten(@dark, 20%);
 
         }
 
@@ -427,8 +428,6 @@ p {
           }
 
           .inputToggle {
-          
-
             input {
 
               border-top: 3px solid lighten(@dark, 10%);
@@ -488,6 +487,72 @@ p {
         }
       }
     }
+    //Death styles
+
+    .char-bar {
+      &.dead {
+        .char-name {
+          h1, .groupNumber {
+
+            color: fade(@dark, 30%);
+          }
+
+          h1:before {
+            content: "A dead ";
+
+          }
+          
+        }
+        
+        .hp-count {
+          display: none;
+        }
+      }
+    }
+
+    &.PC {
+      .char-bar {
+        .edit-pen {
+          display: none;
+        }
+
+        &.dead {
+          .char-name {
+            h1:before {
+              content: "Poor ";
+
+            }
+
+            h1:after {
+              content: " has fallen!";
+
+            }
+          }
+
+        }
+      }
+    }
+
+    &.NPC {
+      .char-bar {
+        .edit-pen {
+          display: none;
+        }
+
+        &.dead {
+          .char-name {
+             h1:before {
+               content:"";
+             }
+            h1:after {
+              content: "has been slain!";
+
+            }
+          }
+
+        }
+      }
+    }
   }
   //Editing items
   .edit-pen {
@@ -500,7 +565,6 @@ p {
   }
 
   .init-edit,
- 
   .name-edit {
     position: fixed;
     text-align: center;
@@ -509,7 +573,7 @@ p {
     top: 0;
     left: 0;
     background-color: fade(@dark, 20%);
-    z-index:10;
+    z-index: 10;
 
     .choice-container {
       padding: 50px;
@@ -518,41 +582,44 @@ p {
       margin: 0 auto;
       width: 50%;
       background: #fdfdfd;
+
       #closer {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      text-align: center;
-      display: inline-block;
-      padding: 5px;
-      width: 20.67px;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        text-align: center;
+        display: inline-block;
+        padding: 5px;
+        width: 20.67px;
 
-     
-    }
-    input{
-      border:3px solid @dark;
-      
-    }
-    input[type="number"]{
-      text-align:center;
-      width:50px;
-      display:inline-block;
-    }
-     .button{
-        display:block;
-        margin:10px auto;
-        width:120px;
-      }  
-     
-     
-    }
-     &.displayed {
+      }
+
+      input {
+        border: 3px solid @dark;
+
+      }
+
+      input[type="number"] {
+        text-align: center;
+        width: 50px;
+        display: inline-block;
+      }
+
+      .button {
         display: block;
+        margin: 10px auto;
+        width: 120px;
       }
 
-      &.hidden {
-        display: none;
-      }
+    }
+
+    &.displayed {
+      display: block;
+    }
+
+    &.hidden {
+      display: none;
+    }
   }
 }
 //Add Character Wizard
@@ -564,7 +631,7 @@ p {
   top: 0;
   left: 0;
   background-color: fade(@dark, 20%);
-  z-index:10;
+  z-index: 10;
 
   .choice-container {
     padding: 50px;
