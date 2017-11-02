@@ -127,6 +127,19 @@ h4,
 h5 {
   font-weight: bold;
   margin-bottom: .25em;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 h1 {
   font-size: 2em;
@@ -151,6 +164,7 @@ body,
 html {
   min-width: 300px;
   height: 100%;
+  transition: all .5s;
 }
 #app {
   min-height: 100%;
@@ -179,6 +193,19 @@ p {
   padding: 10px 20px;
   box-shadow: 2px 2px 1px #7c7c7c;
   cursor: pointer;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 .button a,
 .button h1,
@@ -604,7 +631,12 @@ p {
   text-align: center;
   color: #fdfdfd;
 }
-@media screen and (max-width: 750px) {
+@media screen and (min-width: 501px) and (max-width: 900px) {
+  .content-container .content {
+    margin: 0 auto 0 5%;
+  }
+}
+@media screen and (max-width: 500px) {
   #add-char-wizard .choice-container {
     padding: 50px;
     top: 10%;
@@ -638,5 +670,18 @@ p {
   }
   #endTurnButton {
     right: 10px;
+  }
+}
+@media screen and (orientation: landscape) {
+  #add-char-wizard .choice-container {
+    padding: 25px;
+    top: 5%;
+    margin: 0 auto;
+    width: 75%;
+    background: #fdfdfd;
+  }
+  #add-char-wizard .choice-container .button {
+    width: 70px;
+    padding: 10px 5px;
   }
 }

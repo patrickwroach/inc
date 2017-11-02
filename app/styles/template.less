@@ -134,6 +134,13 @@ h4,
 h5 {
   font-weight: bold;
   margin-bottom: .25em;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 
 h1 {
@@ -177,7 +184,9 @@ table {
 body,
 html {
   min-width: 300px;
+ 
   height: 100%;
+  transition: all .5s;
 }
 
 #app {
@@ -221,6 +230,13 @@ p {
   padding: 10px 20px;
   box-shadow: 2px 2px 1px lighten(@dark, 30%);
   cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 
 }
 
@@ -795,7 +811,13 @@ p {
   }
 
 }
-@media screen and (max-width: 750px) {
+@media screen and (min-width:501px) and  (max-width:900px) {
+  .content-container .content{
+    margin:0 auto 0 5%;
+  }
+
+}
+@media screen and (max-width: 500px) {
   #add-char-wizard {
     .choice-container {
       padding: 50px;
@@ -839,5 +861,23 @@ p {
 
   #endTurnButton {
     right: 10px;
+  }
+}
+@media screen and (orientation:landscape) {
+    #add-char-wizard {
+    .choice-container {
+      padding: 25px;
+      top: 5%;
+      margin: 0 auto;
+      width: 75%;
+      background: #fdfdfd;
+
+      .button {
+        width: 70px;
+        padding: 10px 5px;
+
+      }
+
+    }
   }
 }
