@@ -422,6 +422,9 @@ p {
   border-bottom: none;
   background: #2f2f2f;
 }
+.content-container#init-container .character.nonChar.index0 {
+  margin-bottom: 12px;
+}
 .content-container#init-container .character.nonChar .aliveDead,
 .content-container#init-container .character.nonChar .edit-pen,
 .content-container#init-container .character.nonChar .init-number {
