@@ -185,7 +185,7 @@ table {
 //standardized widths and heights
 @character-min-height: 105px;
 @footer-height: 40px;
-@nav-height:65px;
+@nav-height: 65px;
 //standard layouts
 
 body,
@@ -259,10 +259,11 @@ p {
 
 //id specific button/element styles 
 #roundCounter {
-  position:fixed;
-  top:15px;
-  right:11%;
-  z-index:6;
+  position: fixed;
+  top: 15px;
+  right: 11%;
+  z-index: 6;
+
   h2 {
     display: block;
     color: @light;
@@ -306,7 +307,7 @@ p {
   padding-bottom: @footer-height;
   position: relative;
   display: table;
-  padding-top:@nav-height;
+  padding-top: @nav-height;
 
   .character {
     min-height: @character-min-height;
@@ -318,11 +319,20 @@ p {
     border-bottom: 1px solid @dark;
     position: relative;
 
+    &.index0 {
+      box-shadow: 0 10px 2px -5px fade(@dark, 50%);
+      margin-bottom: 13px;
+    }
+
     .init-number {
       position: absolute;
       top: 2px;
-      left: 0;
+      left: 5px;
       color: darken(@light, 10%);
+    }
+
+    .char-name {
+      padding-left: 5px;
     }
 
     .button,
@@ -589,9 +599,8 @@ p {
     }
 
     &.NPC {
-      
-        .char-bar {
-          &.dead {
+      .char-bar {
+        &.dead {
           .edit-pen {
             display: none;
           }
@@ -790,9 +799,9 @@ p {
 //Nav and Footer
 .content-container#navbar {
   background: @dark;
-  position:fixed;
-  top:0;
-  z-index:5;
+  position: fixed;
+  top: 0;
+  z-index: 5;
 
   p {
     color: @light;
@@ -856,6 +865,8 @@ p {
 
 }
 @media screen and (max-width: 600px) {
+   @nav-height: 30px;
+
   #add-char-wizard {
     .choice-container {
       padding: 30px;
@@ -873,9 +884,51 @@ p {
     }
   }
 
+  #roundCounter {
+    position: fixed;
+    top: 2px;
+
+    h2 {
+      font-size: 1.3em;
+    }
+  }
+
+  .content-container#navbar {
+    .content {
+      .logo {
+        img {
+          height: 20px;
+        }
+      }
+    }
+  }
+
+  .content-container#init-container {
+    padding-top: @nav-height;
+
+    .content {
+      width: 95%;
+
+      .character {
+        .char-bar {
+          .aliveDead {
+            padding: 0;
+            width: 50px;
+
+            .button {
+              padding: 5px;
+
+            }
+          }
+        }
+      }
+    }
+
+  }
+
   .content-container#footer {
-    height: 70px;
-    background-color: lighten(@dark,5%);
+
+    background-color: fade(@dark,25%);
     position: fixed;
     bottom: 0;
 
@@ -888,9 +941,10 @@ p {
   #endTurnButton {
     top: inherit;
     right: inherit;
-    bottom: 10px;
+    bottom: 2px;
     z-index: 5;
     box-shadow: none;
+    padding: 5px 10px;
   }
 
   #addCharButton {

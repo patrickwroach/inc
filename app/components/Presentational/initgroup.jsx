@@ -11,7 +11,8 @@ export class InitGroup extends React.Component {
             NameEdit: 'hidden',
             InitEdit: 'hidden',
             inputName:'',
-            inputInit:0
+            inputInit:0,
+           
         };
         this.toggleGroup = this.toggleGroup.bind(this);
         this.handleInputName =  this.handleInputName.bind(this);
@@ -128,7 +129,7 @@ export class InitGroup extends React.Component {
         );
        
         return (
-            <ul id={this.props.key} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.CharData.type}> 
+            <ul id={this.props.key} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.CharData.type + ' index' + this.props.target}> 
                 <div className="group-name-bar">
                         <div className="char-name">
                             <h1>{this.props.CharData.name[this.props.CharData.name.length-1]}s<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>

@@ -271,11 +271,18 @@ p {
   border-bottom: 1px solid #2f2f2f;
   position: relative;
 }
+.content-container#init-container .character.index0 {
+  box-shadow: 0 10px 2px -5px rgba(47, 47, 47, 0.5);
+  margin-bottom: 13px;
+}
 .content-container#init-container .character .init-number {
   position: absolute;
   top: 2px;
-  left: 0;
+  left: 5px;
   color: #e4e4e4;
+}
+.content-container#init-container .character .char-name {
+  padding-left: 5px;
 }
 .content-container#init-container .character .button,
 .content-container#init-container .character .char-name,
@@ -667,9 +674,31 @@ p {
     width: 70px;
     padding: 10px 5px;
   }
+  #roundCounter {
+    position: fixed;
+    top: 2px;
+  }
+  #roundCounter h2 {
+    font-size: 1.3em;
+  }
+  .content-container#navbar .content .logo img {
+    height: 20px;
+  }
+  .content-container#init-container {
+    padding-top: 30px;
+  }
+  .content-container#init-container .content {
+    width: 95%;
+  }
+  .content-container#init-container .content .character .char-bar .aliveDead {
+    padding: 0;
+    width: 50px;
+  }
+  .content-container#init-container .content .character .char-bar .aliveDead .button {
+    padding: 5px;
+  }
   .content-container#footer {
-    height: 70px;
-    background-color: #3c3c3c;
+    background-color: rgba(47, 47, 47, 0.25);
     position: fixed;
     bottom: 0;
   }
@@ -680,9 +709,10 @@ p {
   #endTurnButton {
     top: inherit;
     right: inherit;
-    bottom: 10px;
+    bottom: 2px;
     z-index: 5;
     box-shadow: none;
+    padding: 5px 10px;
   }
   #addCharButton {
     left: 10px;
