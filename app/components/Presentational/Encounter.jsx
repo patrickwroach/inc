@@ -192,20 +192,21 @@ export class Encounter extends React.Component {
     //Turn updater
 
  
-   
-//Joe, This works to count rounds as long as you dont add more characters to the combat heh, so definately a bandaid.  I dont care to actually fix it since we are going to dismiss it. 
+
     cycleTurn(){
         if (this.state.CharData.length > 1){
-        var turnsEnded = this.state.turns;
-        turnsEnded = turnsEnded+1;      
-        var currentRound = Math.floor((turnsEnded/(this.state.CharData.length))+1);  
         var newArray = this.state.CharData;    
         newArray.push(newArray.shift());        
         this.setState({
             CharData:newArray,
-            turns:turnsEnded,
-            round:currentRound}
-        );       
+           }
+        );
+            if (this.state.CharData[0].name[0] === "start of new round"){
+                var currentRound = this.state.round + 1;
+                this.setState({
+                round:currentRound        
+            });
+            }      
         }
     }
      
