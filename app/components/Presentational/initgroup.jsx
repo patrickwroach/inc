@@ -104,11 +104,13 @@ export class InitGroup extends React.Component {
   
 
     render() { 
+		console.log(this.props.charArray);
         const amountArr = [0];
-        const amountInt = parseInt(this.props.CharData.amount);
+        const amountInt = 0;//parseInt(this.props.CharData.amount);
         amountArr.length = amountInt;   
         amountArr.fill(0); 
-        //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here    
+        //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here  
+		/*		
         const Characters = amountArr.map((amountArr, index)=>           
                 <li key={index} >
 
@@ -120,24 +122,34 @@ export class InitGroup extends React.Component {
                     onAddHp= {this.props.onAddHp} 
                     onEditName = {this.props.onEditName}
                     onToggleNameEdit = {() => this.toggleNameEdit()}  
-                       
-                                        
-                                     
                 />
                 </li>
         );
+		*/
+		const Characters = this.props.charArray.map((c) =>
+			<li key={c.key} >
+				<Character
+					hpTarget={c.key} // needed?
+					target={this.props.initGroup.key} // needed?
+					CharData={c}
+					onAddHp= {this.props.onAddHp} 
+                    onEditName = {this.props.onEditName}
+                    onToggleNameEdit = {() => this.toggleNameEdit()}
+				/>
+			</li>
+		);
        
         return (
-            <ul id={this.props.key} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.CharData.type}> 
+            <ul id={this.props.key} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.initGroup.type}> 
                 <div className="group-name-bar">
                         <div className="char-name">
-                            <h1>{this.props.CharData.name[this.props.CharData.name.length-1]}s<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>
+                            <h1>{this.props.initGroup.name}<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>
                         </div>
                         <div className="button-container">
                             <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} />
                         </div>                 
                 </div>
-                <h3 className="init-number">Init: {this.props.CharData.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>                           
+                <h3 className="init-number">Init: {this.props.initGroup.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>                           
                 {Characters}
                 <div className={"name-edit " + this.state.NameEdit}>
                      

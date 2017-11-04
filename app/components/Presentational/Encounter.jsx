@@ -2,6 +2,70 @@ import React from 'react';
 import { InitGroup } from './initgroup.jsx';
 import { Button } from './button.jsx';
 import { AddChar } from './addchar.jsx';
+/*
+let initGroupTemplate = {
+	name: "", // If empty/null/ then use name of first characterSet
+	init: 0,
+	charIds: ["char-1", "char-2", "char-3"]
+};
+let characterTemplate = {
+	key: "doggo-1" 
+	name: "Doggo",
+	type: "PC", "NPC", or "nonChar",
+	hp: 0,
+	hpMax: 0
+};
+*/
+let charArray = [
+	{
+		key: "new-round",
+		name: "start of new round",
+		
+		hp: 0,
+		hpMax: 0
+	}, {
+		key: "doggo-1",
+		name: "Doggo 1",
+		
+		hp: 10,
+		hpMax: 10
+	}, {
+		key: "joe-1",
+		name: "Joe",
+		type: "PC",
+		hp: 0,
+		hpMax: 0 // if hpMax is 0 or null/undefined don't display/pass
+	}, {
+		key: "doggo-2",
+		name: "Doggo 2",
+		
+		hp: 15,
+		hpMax: 15
+	}
+];
+
+let initGroupArray = [
+	{
+		key: "group-1",
+		name: "start of new round",
+		init: Number.MAX_SAFE_INTEGER,
+		type: "nonChar",
+		charIds: ["new-round"]
+		
+	}, {
+		key: "group-2",
+		name: "",
+		init: 17,
+		type: "PC",
+		charIds: ["joe-1"]
+	}, {
+		key: "group-3",
+		name: "Doggo Group",
+		init: 12,
+		type: "NPC",
+		charIds: ["doggo-1", "doggo-2"]
+	}
+];
 
 function sortCharData (a, b) {
 	return b.init - a.init;
@@ -11,6 +75,7 @@ export class Encounter extends React.Component {
   constructor(props) {
     super(props);
         this.state={
+					/*
                     CharData:[ {
                         name:["start of new round"],
                         type:"nonChar",
@@ -19,6 +84,9 @@ export class Encounter extends React.Component {
                         hpmax:[0],
                         amount:1}
                         ],
+					*/
+					initGroups: initGroupArray,
+					characters: charArray,
                     toggleWizard:'inactive',                                 
                     newName:'Unnamed',
                     newType:'PC',
@@ -201,7 +269,7 @@ export class Encounter extends React.Component {
    
 
     render() { 
-       
+		/*
         const  InitGroups = this.state.CharData.map((CharData, index)=>
             <li key={index}>
                 <InitGroup 
@@ -215,12 +283,25 @@ export class Encounter extends React.Component {
                                      
                 />
             </li>
-        );      
+        );
+		*/
+		const InitGroups1 = this.state.initGroups.map((ig) =>
+			<li key={ig.key} >
+				<InitGroup
+					target={ig.key}
+					initGroup={ig}
+					charArray={this.state.characters.filter(character => ig.charIds.includes(character.key) )}
+					handleAddHp={this.editHp}
+					handleEditName = {this.editName}
+					handleEditInit = {this.editInit}
+				/>
+			</li>
+		);
             
         return (        
         <ul> 
           
-            {InitGroups}         
+            {InitGroups1}         
            
             <Button 
                 text="Add Char" 
