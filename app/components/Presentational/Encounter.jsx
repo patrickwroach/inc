@@ -6,10 +6,10 @@ import { AddChar } from './addchar.jsx';
 let initGroupTemplate = {
 	name: "", // If empty/null/ then use name of first characterSet
 	init: 0,
-	charIds: ["char-1", "char-2", "char-3"]
+	charKeys: ["char-1", "char-2", "char-3"]
 };
 let characterTemplate = {
-	key: "doggo-1" 
+	id: "doggo-1" 
 	name: "Doggo",
 	type: "PC", "NPC", or "nonChar",
 	hp: 0,
@@ -18,27 +18,24 @@ let characterTemplate = {
 */
 let charArray = [
 	{
-		key: "new-round",
+		id: "new-round",
 		name: "start of new round",
-		
 		hp: 0,
 		hpMax: 0
 	}, {
-		key: "doggo-1",
+		id: "doggo-1",
 		name: "Doggo 1",
-		
 		hp: 10,
 		hpMax: 10
 	}, {
-		key: "joe-1",
+		id: "joe-1",
 		name: "Joe",
 		type: "PC",
 		hp: 0,
 		hpMax: 0 // if hpMax is 0 or null/undefined don't display/pass
 	}, {
-		key: "doggo-2",
+		id: "doggo-2",
 		name: "Doggo 2",
-		
 		hp: 15,
 		hpMax: 15
 	}
@@ -46,24 +43,23 @@ let charArray = [
 
 let initGroupArray = [
 	{
-		key: "group-1",
+		id: "group-1",
 		name: "start of new round",
 		init: Number.MAX_SAFE_INTEGER,
 		type: "nonChar",
-		charIds: ["new-round"]
-		
+		charKeys: ["new-round"]
 	}, {
-		key: "group-2",
+		id: "group-2",
 		name: "",
 		init: 17,
 		type: "PC",
-		charIds: ["joe-1"]
+		charKeys: ["joe-1"]
 	}, {
-		key: "group-3",
+		id: "group-3",
 		name: "Doggo Group",
 		init: 12,
 		type: "NPC",
-		charIds: ["doggo-1", "doggo-2"]
+		charKeys: ["doggo-1", "doggo-2"]
 	}
 ];
 
@@ -285,12 +281,17 @@ export class Encounter extends React.Component {
             </li>
         );
 		*/
-		const InitGroups1 = this.state.initGroups.map((ig) =>
-			<li key={ig.key} >
+		const InitGroups = this.state.initGroups.map((ig) =>
+			<li key={ig.id} >
 				<InitGroup
-					target={ig.key}
+					target={ig.id}
 					initGroup={ig}
-					charArray={this.state.characters.filter(character => ig.charIds.includes(character.key) )}
+					key = {ig.id}
+					name = {ig.name}
+					init = {ig.init}
+					type = {ig.type}
+					//charKeys = {ig.charKeys},
+					charArray={this.state.characters.filter(character => ig.charKeys.includes(character.id) )}
 					handleAddHp={this.editHp}
 					handleEditName = {this.editName}
 					handleEditInit = {this.editInit}
@@ -301,7 +302,7 @@ export class Encounter extends React.Component {
         return (        
         <ul> 
           
-            {InitGroups1}         
+            {InitGroups}         
            
             <Button 
                 text="Add Char" 

@@ -127,29 +127,35 @@ export class InitGroup extends React.Component {
         );
 		*/
 		const Characters = this.props.charArray.map((c) =>
-			<li key={c.key} >
+			<li key={c.id} >
 				<Character
-					hpTarget={c.key} // needed?
-					target={this.props.initGroup.key} // needed?
+					hpTarget={c.id} // needed?
+					target={this.props.id} // needed?
 					CharData={c}
+					
+					key = {c.id}
+					id = {c.id}
+					name = {c.name}
+					hp = {c.hp}
+					hpMax = {c.hpMax}
 					onAddHp= {this.props.onAddHp} 
                     onEditName = {this.props.onEditName}
                     onToggleNameEdit = {() => this.toggleNameEdit()}
 				/>
 			</li>
 		);
-       
+        
         return (
-            <ul id={this.props.key} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.initGroup.type}> 
+            <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type}> 
                 <div className="group-name-bar">
                         <div className="char-name">
-                            <h1>{this.props.initGroup.name}<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>
+                            <h1>{this.props.name}<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>
                         </div>
                         <div className="button-container">
                             <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} />
                         </div>                 
                 </div>
-                <h3 className="init-number">Init: {this.props.initGroup.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>                           
+                <h3 className="init-number">Init: {this.props.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>                           
                 {Characters}
                 <div className={"name-edit " + this.state.NameEdit}>
                      

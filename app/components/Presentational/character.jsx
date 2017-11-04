@@ -77,20 +77,19 @@ export class Character extends React.Component {
     render() { 
      
         //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here    
-       
-       
+
         return (
              
                <div className="char-bar">
                     <div className="char-name">
-                        <h1 >{this.props.CharData.name[this.props.hpTarget]} <span className="groupNumber">{this.props.hpTarget + 1}</span> 
+                        <h1 >{this.props.name} <span className="groupNumber">{this.props.hpTarget + 1}</span> 
                             <span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
                             </h1>
                     </div>
                     
                     <div className="hp-count">
                         <div className="hp">
-                            <h2>{this.props.CharData.hp[this.props.hpTarget]}/{this.props.CharData.hpmax}</h2>
+							<h2>{this.props.hp}/{this.props.hpMax}</h2>
                         </div>
                         <div className="hp-toggles">
                             <Button onClick={() => this.handleMathHp(1)} text="+1"  />
