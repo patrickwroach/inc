@@ -104,7 +104,7 @@ export class Encounter extends React.Component {
                     hpVis:'hidden',   
                                         
                      };
-        this.editHp = this.editHp.bind(this);
+        this.addHp = this.addHp.bind(this);
         this.editName = this.editName.bind(this);
         this.editInit = this.editInit.bind(this);
         this.addChar = this.addChar.bind(this);
@@ -123,25 +123,14 @@ export class Encounter extends React.Component {
     
  //ToDo: Add var to handle anytoggleWizard setStates, best practice update
  //ToDO store functions in individual components
-   //Name Updater
-  
-   //HP adjustment functions
-    
-    editHp(charIndex, hpIndex, amount) {
-      const currentCharIndex = charIndex;
-      const currentHpIndex = hpIndex;
-      const currentAmount = amount;
-      var newArray = this.state.CharData.slice();    
-      newArray[currentCharIndex].hp[currentHpIndex] = parseInt(newArray[currentCharIndex].hp[currentHpIndex]) + amount;
-      this.setState({CharData:newArray}
-      );
-    }
-
-    minusHp() {      
-
-  
-    }
-
+	addHp(charId, amount) {
+		var newCharArray = this.state.characters.slice();
+		var charIndex = newCharArray.findIndex(c => c.id === charId);
+		newCharArray[charIndex].hp += amount;
+		
+		this.setState({ characters: newCharArray });
+	}
+	
     //Name/Init adjustment
 
     editName( charDataIndex, nameIndex, newName) {
@@ -304,7 +293,7 @@ export class Encounter extends React.Component {
 					type = {ig.type}
 					//charKeys = {ig.charKeys},
 					charArray={this.state.characters.filter(character => ig.charKeys.includes(character.id) )}
-					handleAddHp={this.editHp}
+					handleAddHp = {this.addHp}
 					handleEditName = {this.editName}
 					handleEditInit = {this.editInit}
 				/>

@@ -137,7 +137,7 @@ export class InitGroup extends React.Component {
 					name = {c.name}
 					hp = {c.hp}
 					hpMax = {c.hpMax}
-					onAddHp= {this.props.onAddHp} 
+					handleAddHp = {this.props.handleAddHp}
                     onEditName = {this.props.onEditName}
                     onToggleNameEdit = {() => this.toggleNameEdit()}
 				/>
