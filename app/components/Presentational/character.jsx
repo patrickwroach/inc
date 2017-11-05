@@ -71,7 +71,7 @@ export class Character extends React.Component {
         //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here
         return (
              
-               <div className="char-bar">
+               <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ''}`}>
                     <div className="char-name">
                         <h1 >{this.props.name} <span className="groupNumber">{this.props.hpTarget + 1}</span> 
                             <span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
