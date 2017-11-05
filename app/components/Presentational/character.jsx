@@ -68,9 +68,10 @@ export class Character extends React.Component {
              
                <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ''}`}>
                     <div className="char-name">
-                        <h1 >{this.props.name} <span className="groupNumber">{this.props.hpTarget + 1}</span> 
-                            <span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
-                            </h1>
+						<h1>
+							{this.props.name}
+							<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
+						</h1>
                     </div>
                     
                     <div className="hp-count">
