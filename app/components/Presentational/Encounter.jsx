@@ -105,7 +105,7 @@ export class Encounter extends React.Component {
                                         
                      };
         this.addHp = this.addHp.bind(this);
-        this.editName = this.editName.bind(this);
+        this.editCharName = this.editCharName.bind(this);
         this.editInit = this.editInit.bind(this);
         this.addChar = this.addChar.bind(this);
         this.openWizard = this.openWizard.bind(this);
@@ -130,17 +130,12 @@ export class Encounter extends React.Component {
 		
 		this.setState({ characters: newCharArray });
 	}
-	
-    //Name/Init adjustment
 
-    editName( charDataIndex, nameIndex, newName) {
-        const currentCharDataIndex = charDataIndex;
-        const currentNameIndex = nameIndex;
-        const incomingName = newName;
-        var newArray = this.state.CharData.slice();  
-        newArray[currentCharDataIndex].name[currentNameIndex] = incomingName;
-        this.setState({CharData:newArray});
-
+    editCharName(charId, newName) {
+        var newCharArray = this.state.characters.slice();
+		var charIndex = newCharArray.findIndex(c => c.id === charId);
+        newCharArray[charIndex].name = newName;
+        this.setState({ characters: newCharArray});
     }
 	
 	editInit(initGroupId, newInit) {
@@ -278,7 +273,7 @@ export class Encounter extends React.Component {
 					type = {ig.type}
 					charArray = {this.state.characters.filter(character => ig.charKeys.includes(character.id) )}
 					handleAddHp = {this.addHp}
-					handleEditName = {this.editName}
+					handleEditCharName = {this.editCharName}
 					handleEditInit = {this.editInit}
 				/>
 			</li>

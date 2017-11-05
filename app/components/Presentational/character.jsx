@@ -51,15 +51,10 @@ export class Character extends React.Component {
         }
     }
  
-    submitName(){
-        const arrIndex = this.props.target;
-        const nameIndex = this.props.hpTarget;
-        const newName= this.state.inputName;
-        this.props.onEditName(arrIndex, nameIndex, newName);
-        console.log ( arrIndex, nameIndex, newName);
-        this.setState({
-             NameEdit: 'hidden' 
-        });
+	submitName() {
+		const newName = this.state.inputName;
+		this.props.handleEditName(this.props.id, newName);
+		this.setState({ NameEdit: 'hidden' });
     }
 
 	handleClickAddHp(amount) {
