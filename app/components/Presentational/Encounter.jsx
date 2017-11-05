@@ -118,7 +118,7 @@ export class Encounter extends React.Component {
         this.hideAmount = this.hideAmount.bind(this);
         this.showHp = this.showHp.bind(this);
         this.hideHp = this.hideHp.bind(this);
-         
+		this.endTurn = this.endTurn.bind(this);
     }  
     
  //ToDo: Add var to handle anytoggleWizard setStates, best practice update
@@ -246,24 +246,13 @@ export class Encounter extends React.Component {
             newAmount:amount
         });
      }
-
-    
-   
-    
-    //Turn updater
-
- 
-   
-
-    cycleTurn(){
-        var newArray = this.state.CharData;    
-        newArray.push(newArray.shift());        
-        this.setState({CharData:newArray}
-        );       
-    }
-     
-   
-
+	
+	endTurn(){
+		var newInitGroupsArray = this.state.initGroups.slice();
+		newInitGroupsArray.push(newInitGroupsArray.shift());
+		this.setState({ initGroups: newInitGroupsArray });
+	}
+	
     render() { 
 		/*
         const  InitGroups = this.state.CharData.map((CharData, index)=>
@@ -313,7 +302,7 @@ export class Encounter extends React.Component {
             <Button 
                 text="End Turn" 
                 id="endTurnButton" 
-                onClick={() => this.cycleTurn()}
+                onClick = {this.endTurn}
             />            
             <AddChar 
                 onAddCharClick = {()=> this.addChar()}
