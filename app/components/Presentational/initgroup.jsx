@@ -103,8 +103,7 @@ export class InitGroup extends React.Component {
 
   
 
-    render() { 
-		console.log(this.props.charArray);
+    render() {
         const amountArr = [0];
         const amountInt = 0;//parseInt(this.props.CharData.amount);
         amountArr.length = amountInt;   

@@ -38,28 +38,39 @@ let charArray = [
 		name: "Doggo 2",
 		hp: 15,
 		hpMax: 15
+	}, {
+		id: "snip-snap-1",
+		name: "Snip Snap Doggo",
+		hp: 25,
+		hpMax: 25
 	}
 ];
 
 let initGroupArray = [
 	{
-		id: "group-1",
+		id: "group-start",
 		name: "start of new round",
 		init: Number.MAX_SAFE_INTEGER,
 		type: "nonChar",
 		charKeys: ["new-round"]
 	}, {
-		id: "group-2",
+		id: "group-joe",
 		name: "",
 		init: 17,
 		type: "PC",
 		charKeys: ["joe-1"]
 	}, {
-		id: "group-3",
+		id: "group-doggos",
 		name: "Doggo Group",
 		init: 12,
-		type: "NPC",
+		type: "Group",
 		charKeys: ["doggo-1", "doggo-2"]
+	}, {
+		id: "group-snip-snap-doggo",
+		name: "Snip Snap Doggo Group",
+		init: 5,
+		type: "NPC",
+		charKeys: ["snip-snap-1"]
 	}
 ];
 
@@ -285,8 +296,9 @@ export class Encounter extends React.Component {
 			<li key={ig.id} >
 				<InitGroup
 					target={ig.id}
-					initGroup={ig}
+					
 					key = {ig.id}
+					id = {ig.id}
 					name = {ig.name}
 					init = {ig.init}
 					type = {ig.type}
