@@ -83,26 +83,16 @@ export class InitGroup extends React.Component {
     }
 
 
-     handleInputInit(e){
-        const newInit= parseInt(e.target.value);    
-         this.setState({
-             inputInit:newInit
-        });
-          
-
+	handleInputInit(e){
+		const newInit = parseInt(e.target.value);
+		this.setState({ inputInit: newInit });
     }
-    submitInit(){
-        const arrIndex = this.props.target;
-        const newInit= this.state.inputInit;
-        this.props.onEditInit(arrIndex, newInit);
-        this.setState({
-             InitEdit: 'hidden' 
-        });
+	
+    submitInit() {
+        this.props.handleEditInit(this.props.id, this.state.inputInit);
+        this.setState({ InitEdit: 'hidden' });
     }
-
-
-  
-
+	
     render() {
         const amountArr = [0];
         const amountInt = 0;//parseInt(this.props.CharData.amount);

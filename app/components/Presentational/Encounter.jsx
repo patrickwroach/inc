@@ -74,8 +74,8 @@ let initGroupArray = [
 	}
 ];
 
-function sortCharData (a, b) {
-	return b.init - a.init;
+function sortInitGroups (left, right) {
+	return right.init - left.init;
 }
 
 export class Encounter extends React.Component {
@@ -142,15 +142,13 @@ export class Encounter extends React.Component {
         this.setState({CharData:newArray});
 
     }
-     editInit(index, newInit) {
-        const currentIndex = index;
-        const incomingInit = newInit;
-        console.log(currentIndex);
-        var newArray = this.state.CharData.slice();    
-        newArray[currentIndex].init = incomingInit;
-		newArray.sort(sortCharData);
-        this.setState({CharData:newArray});
-
+	
+	editInit(initGroupId, newInit) {
+		var newInitGroupArray = this.state.initGroups.slice();
+		var initGroupIndex = newInitGroupArray.findIndex(ig => ig.id === initGroupId)
+		newInitGroupArray[initGroupIndex].init = newInit;
+		newInitGroupArray.sort(sortInitGroups);
+        this.setState({ initGroups: newInitGroupArray});
     }
         
             
@@ -273,15 +271,12 @@ export class Encounter extends React.Component {
 		const InitGroups = this.state.initGroups.map((ig) =>
 			<li key={ig.id} >
 				<InitGroup
-					target={ig.id}
-					
 					key = {ig.id}
 					id = {ig.id}
 					name = {ig.name}
 					init = {ig.init}
 					type = {ig.type}
-					//charKeys = {ig.charKeys},
-					charArray={this.state.characters.filter(character => ig.charKeys.includes(character.id) )}
+					charArray = {this.state.characters.filter(character => ig.charKeys.includes(character.id) )}
 					handleAddHp = {this.addHp}
 					handleEditName = {this.editName}
 					handleEditInit = {this.editInit}
