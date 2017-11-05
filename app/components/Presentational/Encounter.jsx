@@ -106,6 +106,7 @@ export class Encounter extends React.Component {
                      };
         this.addHp = this.addHp.bind(this);
         this.editCharName = this.editCharName.bind(this);
+		this.editInitGroupName = this.editInitGroupName.bind(this);
         this.editInit = this.editInit.bind(this);
         this.addChar = this.addChar.bind(this);
         this.openWizard = this.openWizard.bind(this);
@@ -137,6 +138,13 @@ export class Encounter extends React.Component {
         newCharArray[charIndex].name = newName;
         this.setState({ characters: newCharArray});
     }
+	
+	editInitGroupName(initGroupId, newName) {
+		var newInitGroupArray = this.state.initGroups.slice();
+		var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
+		newInitGroupArray[index].name = newName;
+		this.setState({ initGroups: newInitGroupArray });
+	}
 	
 	editInit(initGroupId, newInit) {
 		var newInitGroupArray = this.state.initGroups.slice();
@@ -273,6 +281,7 @@ export class Encounter extends React.Component {
 					type = {ig.type}
 					charArray = {this.state.characters.filter(character => ig.charKeys.includes(character.id) )}
 					handleAddHp = {this.addHp}
+					handleEditName = {this.editInitGroupName}
 					handleEditCharName = {this.editCharName}
 					handleEditInit = {this.editInit}
 				/>

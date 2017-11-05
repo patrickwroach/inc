@@ -63,26 +63,17 @@ export class InitGroup extends React.Component {
     }
  
 
-    handleInputName(e){
-        const newName= e.target.value;
-    
-         this.setState({
-             inputName:newName 
-        });
-          
-
+	handleInputName(e) {
+		const newName = e.target.value;
+		this.setState({ inputName: newName });
     }
-    submitName(){
-        const arrIndex = this.props.target;
-        const nameIndex = this.props.CharData.name.length-1;
-        const newName= this.state.inputName;
-        this.props.onEditName(arrIndex, nameIndex, newName);
-        this.setState({
-             NameEdit: 'hidden' 
-        });
+	
+	submitName() {
+		const newName = this.state.inputName;
+		this.props.handleEditName(this.props.id, newName);
+		this.setState({ NameEdit: 'hidden' });
     }
-
-
+	
 	handleInputInit(e){
 		const newInit = parseInt(e.target.value);
 		this.setState({ inputInit: newInit });
