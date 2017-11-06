@@ -101,7 +101,7 @@ export class InitGroup extends React.Component {
 		);
         
         return (
-            <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type}> 
+            <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type + ' index'+ this.props.initPostion}> 
                 <div className="group-name-bar">
                         <div className="char-name">
                             <h1>{this.props.name}<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>

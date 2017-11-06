@@ -22,7 +22,7 @@ let charArray = [
 	{
 		id: "new-round",
 		name: "start of new round",
-		hp: 0,
+		hp: 1,
 		hpMax: 0
 	}
 ];
@@ -33,6 +33,7 @@ let initGroupArray = [
 		name: "start of new round",
 		init: Number.MAX_SAFE_INTEGER,
 		type: "nonChar",
+	
 		charIds: ["new-round"]
 	}
 ];
@@ -214,15 +215,15 @@ export class Encounter extends React.Component {
 
 	// May not be used anymore after merge with data-organization branch.  Keeping so it can
 	//  be incorporated into endTurn (renamed function in branch)
-    cycleTurn(){
-        if (this.state.CharData.length > 1){
-        var newArray = this.state.CharData;    
-        newArray.push(newArray.shift());        
+    endTurn(){
+        if (this.state.initGroups.length > 1){
+        var newInitGroupsArray = this.state.initGroups.slice();    
+        newInitGroupsArray.push(newInitGroupsArray.shift()); 
         this.setState({
-            CharData:newArray,
+            initGroups: newInitGroupsArray
            }
         );
-            if (this.state.CharData[0].name[0] === "start of new round"){
+            if (this.state.initGroups[0].name === "start of new round"){
                 var currentRound = this.state.round + 1;
                 this.setState({
                 round:currentRound        
@@ -231,20 +232,21 @@ export class Encounter extends React.Component {
         }
     }
 	
-	endTurn(){
-		var newInitGroupsArray = this.state.initGroups.slice();
-		newInitGroupsArray.push(newInitGroupsArray.shift());
-		this.setState({ initGroups: newInitGroupsArray });
-	}
+	// endTurn(){
+	// 	var newInitGroupsArray = this.state.initGroups.slice();
+	// 	newInitGroupsArray.push(newInitGroupsArray.shift());
+	// 	this.setState({ initGroups: newInitGroupsArray });
+	// }
 	
     render() {
-		const InitGroups = this.state.initGroups.map((ig) =>
-			<li key={ig.id} >
+		const InitGroups = this.state.initGroups.map((ig, index) =>
+			<li key={ig.id}>
 				<InitGroup
 					id = {ig.id}
 					name = {ig.name}
 					init = {ig.init}
 					type = {ig.type}
+					initPostion = {index}
 					charArray = {this.state.characters.filter(character => ig.charIds.includes(character.id) )}
 					handleAddHp = {this.addHp}
 					handleEditName = {this.editInitGroupName}

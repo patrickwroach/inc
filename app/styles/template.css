@@ -474,7 +474,7 @@ p {
   content: "";
 }
 .content-container#init-container .character.NPC .char-bar.dead .char-name h1:after {
-  content: "has been slain!";
+  content: " has been slain!";
 }
 .content-container#init-container .character.Group .char-bar .aliveDead {
   width: 75px;
