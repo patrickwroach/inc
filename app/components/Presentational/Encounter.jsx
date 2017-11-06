@@ -82,7 +82,7 @@ export class Encounter extends React.Component {
 	addHp(charId, amount) {
 		var newCharArray = this.state.characters.slice();
 		var charIndex = newCharArray.findIndex(c => c.id === charId);
-		newCharArray[charIndex].hp += amount;
+		newCharArray[charIndex].hp += parseInt(amount);
 		
 		this.setState({ characters: newCharArray });
 	}
@@ -173,7 +173,7 @@ export class Encounter extends React.Component {
 			toggleWizard:'inactive',
 			newName:'Unnamed',
 			newType:'PC',
-			newHp:[1],
+			newHp:1,
 			newInit:0,
 			newAmount:1,
 			hpVis:'hidden',

@@ -8,9 +8,8 @@ export class Character extends React.Component {
         this.state = {
             NameEdit: 'hidden',        
             inputHp:5,
-            inputName:'',
-            status:'alive',
-            killButtonText:'Kill'
+            inputName:''           
+        
          
         };
      
@@ -55,18 +54,15 @@ export class Character extends React.Component {
 
      toggleAliveDead() {
       
-        if (this.state.status === 'alive') {
-            this.setState({
-                status: 'dead',
-                killButtonText: 'Revive'           
-            });
+        if (this.props.hp >= 1) {
+            const currentAmount = this.props.hp * -1;
+            this.props.handleAddHp(this.props.id, currentAmount);          
+           
         }
         else {
-            this.setState({
-                status: 'alive', 
-                killButtonText: 'Kill' 
-
-            });
+            console.log('brah');
+            const currentAmount = (this.props.hp * -1) + 1;
+            this.props.handleAddHp(this.props.id, currentAmount);
         }
     }
  
@@ -82,10 +78,9 @@ export class Character extends React.Component {
 	}
 	
     render() {
-        //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here
-        return (
+       return (
              
-               <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ''}`}>
+               <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ' alive'}`}>
                     <div className="char-name">
 						<h1>
 							{this.props.name}
@@ -93,7 +88,8 @@ export class Character extends React.Component {
 						</h1>
                     </div>
                     <div className="aliveDead button-container ">
-                    <Button  onClick={() => this.toggleAliveDead()} text={this.state.killButtonText} />
+                     <Button onClick={() => this.toggleAliveDead()} text={this.props.hp <= 0 ? 'revive' : ' kill'} />
+                 
                     </div>
                     <div className="hp-count">
                         <div className="hp">
