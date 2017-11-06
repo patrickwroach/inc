@@ -241,7 +241,6 @@ export class Encounter extends React.Component {
 		const InitGroups = this.state.initGroups.map((ig) =>
 			<li key={ig.id} >
 				<InitGroup
-					key = {ig.id}
 					id = {ig.id}
 					name = {ig.name}
 					init = {ig.init}

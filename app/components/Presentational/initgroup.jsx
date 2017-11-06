@@ -89,11 +89,6 @@ export class InitGroup extends React.Component {
 		const Characters = this.props.charArray.map((c) =>
 			<li key={c.id} >
 				<Character
-					hpTarget={c.id} // needed?
-					target={this.props.id} // needed?
-					CharData={c}
-					
-					key = {c.id}
 					id = {c.id}
 					name = {c.name}
 					hp = {c.hp}
