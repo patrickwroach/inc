@@ -14,11 +14,10 @@ export class Character extends React.Component {
          
         };
      
-        this.handleMathHp =  this.handleMathHp.bind(this);
+        this.handleClickAddHp =  this.handleClickAddHp.bind(this);
         this.handleInputHp =  this.handleInputHp.bind(this);
         this.handleInputName =  this.handleInputName.bind(this);
         this.submitName =  this.submitName.bind(this);
-        
     }
   
    
@@ -71,54 +70,41 @@ export class Character extends React.Component {
         }
     }
  
-    submitName(){
-        const arrIndex = this.props.target;
-        const nameIndex = this.props.hpTarget;
-        const newName= this.state.inputName;
-        this.props.onEditName(arrIndex, nameIndex, newName);
-        console.log ( arrIndex, nameIndex, newName);
-        this.setState({
-             NameEdit: 'hidden' 
-        });
+	submitName() {
+		const newName = this.state.inputName;
+		this.props.handleEditName(this.props.id, newName);
+		this.setState({ NameEdit: 'hidden' });
     }
 
-   
-
-
-    handleMathHp(toMath) {
-     const amountToMath = toMath;
-     const arrIndex = this.props.target;
-     const hpIndex = this.props.hpTarget;
-     this.props.onAddHp(arrIndex, hpIndex, amountToMath);
-    }
-    
-
-    render() { 
-     
-        //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here    
-       
-       
+	handleClickAddHp(amount) {
+		const currentAmount = amount;
+		this.props.handleAddHp(this.props.id, currentAmount);
+	}
+	
+    render() {
+        //To Be Cleaned Up: Joe, Passing arrays as props kept wiping their length or their content and keeping them as a blank array, and the map function wasn't picking up on the blank arrays, so I just fill it here
         return (
              
-               <div className={"char-bar" + " " + this.state.status}>
+               <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ''}`}>
                     <div className="char-name">
-                        <h1 >{this.props.CharData.name[this.props.hpTarget]} <span className="groupNumber">{this.props.hpTarget + 1}</span> 
-                            <span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
-                            </h1>
+						<h1>
+							{this.props.name}
+							<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
+						</h1>
                     </div>
                     <div className="aliveDead button-container ">
                     <Button  onClick={() => this.toggleAliveDead()} text={this.state.killButtonText} />
                     </div>
                     <div className="hp-count">
                         <div className="hp">
-                            <h2>{this.props.CharData.hp[this.props.hpTarget]}/{this.props.CharData.hpmax}</h2>
+							<h2>{this.props.hp}/{this.props.hpMax}</h2>
                         </div>
                         <div className="hp-toggles">
-                            <Button onClick={() => this.handleMathHp(1)} text="+1"  />
-                            <Button onClick={() => this.handleMathHp(+this.state.inputHp)} text="+"  />
+                            <Button onClick={() => this.handleClickAddHp(1)} text="+1"  />
+                            <Button onClick={() => this.handleClickAddHp(+this.state.inputHp)} text="+"  />
                             <input  onChange={this.handleInputHp} type="number" min="1" placeholder="5" className="inputToggle"/>
-                            <Button onClick={() => this.handleMathHp(-this.state.inputHp)} text="-"  />
-                            <Button onClick={() => this.handleMathHp(-1)} text="-1" />
+                            <Button onClick={() => this.handleClickAddHp(-this.state.inputHp)} text="-"  />
+                            <Button onClick={() => this.handleClickAddHp(-1)} text="-1" />
                         </div>
                     </div>
                         <div className={"name-edit " + this.state.NameEdit}>

@@ -1,16 +1,51 @@
 import React from 'react';
+import Shortid from 'shortid';
 import { InitGroup } from './initgroup.jsx';
 import { Button } from './button.jsx';
 import { AddChar } from './addchar.jsx';
+/*
+let initGroupTemplate = {
+	id: "group-doggos",
+		name: "",
+		init: 12,
+		type: "Group",
+		charIds: ["doggo-1"]
+};
+let characterTemplate = {
+	id: "doggo-1",
+	name: "Doggo",
+	hp: 10,
+	hpMax: 10
+};
+*/
+let charArray = [
+	{
+		id: "new-round",
+		name: "start of new round",
+		hp: 0,
+		hpMax: 0
+	}
+];
 
-function sortCharData (a, b) {
-	return b.init - a.init;
+let initGroupArray = [
+	{
+		id: "group-start",
+		name: "start of new round",
+		init: Number.MAX_SAFE_INTEGER,
+		type: "nonChar",
+		charIds: ["new-round"]
+	}
+];
+
+function sortInitGroups (left, right) {
+	return right.init - left.init;
 }
 
 export class Encounter extends React.Component {
   constructor(props) {
     super(props);
         this.state={
+					/*
                     CharData:[ {
                         name:["start of new round"],
                         type:"nonChar",
@@ -20,6 +55,9 @@ export class Encounter extends React.Component {
                         amount:1,
                         }
                         ],
+					*/
+					initGroups: initGroupArray,
+					characters: charArray,
                     toggleWizard:'inactive',                                 
                     newName:'Unnamed',
                     newType:'PC',
@@ -32,8 +70,9 @@ export class Encounter extends React.Component {
                     turns:0  
                                         
                      };
-        this.editHp = this.editHp.bind(this);
-        this.editName = this.editName.bind(this);
+        this.addHp = this.addHp.bind(this);
+        this.editCharName = this.editCharName.bind(this);
+		this.editInitGroupName = this.editInitGroupName.bind(this);
         this.editInit = this.editInit.bind(this);
         this.addChar = this.addChar.bind(this);
         this.openWizard = this.openWizard.bind(this);
@@ -46,62 +85,50 @@ export class Encounter extends React.Component {
         this.hideAmount = this.hideAmount.bind(this);
         this.showHp = this.showHp.bind(this);
         this.hideHp = this.hideHp.bind(this);
-         
+		this.endTurn = this.endTurn.bind(this);
     }  
     
  //ToDo: Add var to handle anytoggleWizard setStates, best practice update
  //ToDO store functions in individual components
-   //Name Updater
-  
-   //HP adjustment functions
-    
-    editHp(charIndex, hpIndex, amount) {
-      const currentCharIndex = charIndex;
-      const currentHpIndex = hpIndex;
-      const currentAmount = amount;
-      var newArray = this.state.CharData.slice();    
-      newArray[currentCharIndex].hp[currentHpIndex] = parseInt(newArray[currentCharIndex].hp[currentHpIndex]) + amount;
-      this.setState({CharData:newArray}
-      );
+	addHp(charId, amount) {
+		var newCharArray = this.state.characters.slice();
+		var charIndex = newCharArray.findIndex(c => c.id === charId);
+		newCharArray[charIndex].hp += amount;
+		
+		this.setState({ characters: newCharArray });
+	}
+
+    editCharName(charId, newName) {
+        var newCharArray = this.state.characters.slice();
+		var charIndex = newCharArray.findIndex(c => c.id === charId);
+        newCharArray[charIndex].name = newName;
+        this.setState({ characters: newCharArray});
     }
-
-    minusHp() {      
-
-  
-    }
-
-    //Name/Init adjustment
-
-    editName( charDataIndex, nameIndex, newName) {
-        const currentCharDataIndex = charDataIndex;
-        const currentNameIndex = nameIndex;
-        const incomingName = newName;
-        var newArray = this.state.CharData.slice();  
-        newArray[currentCharDataIndex].name[currentNameIndex] = incomingName;
-        this.setState({CharData:newArray});
-
-    }
-     editInit(index, newInit) {
-        const currentIndex = index;
-        const incomingInit = newInit;
-        console.log(currentIndex);
-        var newArray = this.state.CharData.slice();    
-        newArray[currentIndex].init = incomingInit;
-		newArray.sort(sortCharData);
-        this.setState({CharData:newArray});
-
+	
+	editInitGroupName(initGroupId, newName) {
+		var newInitGroupArray = this.state.initGroups.slice();
+		var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
+		newInitGroupArray[index].name = newName;
+		this.setState({ initGroups: newInitGroupArray });
+	}
+	
+	editInit(initGroupId, newInit) {
+		var newInitGroupArray = this.state.initGroups.slice();
+		var initGroupIndex = newInitGroupArray.findIndex(ig => ig.id === initGroupId)
+		newInitGroupArray[initGroupIndex].init = newInit;
+		newInitGroupArray.sort(sortInitGroups);
+        this.setState({ initGroups: newInitGroupArray});
     }
         
             
     //Add Character Sections, specific types to be stripped out after wizard is complete
     openWizard() {
-       this.setState({toggleWizard:'active'} 
-                       );
+		this.setState({ toggleWizard: 'active' });
     }
     closeWizard() {
-         this.setState({toggleWizard:'inactive'} 
-                       );
+		this.setState({ toggleWizard: 'inactive' });
     }
+	
     showAmount(){
          this.setState({
                     amountVis:'displayed'
@@ -123,40 +150,51 @@ export class Encounter extends React.Component {
         })
     }
   
-   addChar(){
-         var newArray = this.state.CharData.slice();  
-         var hpArr = [];
-         var nameArr = [];
-         hpArr.length = this.state.newAmount;
-         nameArr.length = this.state.newAmount + 1;      
-         hpArr.fill(this.state.newHp); 
-         nameArr.fill(this.state.newName); 
-		 newArray.push({
-            name:nameArr,
-            type:this.state.newType, 
-            hp:hpArr,
-            hpmax:this.state.newHp,
-            init:this.state.newInit,  
-            amount:this.state.newAmount
-         });   
-		 newArray.sort(sortCharData);
+	addChar() {
+		var newInitGroupArray = this.state.initGroups.slice();
+		var newCharArray = this.state.characters.slice();
+		
+		var newInitGroup = {
+			id: Shortid.generate(),
+			name: "",
+			init: this.state.newInit,
+			type: this.state.newType,
+		};
+		
+		var charIds = [];
+		for(var i = 0; i < this.state.newAmount; i++) {
+			var newCharacter = {
+				id: Shortid.generate(),
+				name: this.state.newName + (this.state.newType == "Group" ? " " + (i + 1) : ""),
+				hp: this.state.newHp,
+				hpMax: this.state.newHp
+			};
+			newCharArray.push(newCharacter);
+			charIds.push(newCharacter.id);
+		}
+		
+		newInitGroup.charIds = charIds;
+		newInitGroup.name = charIds.length > 1 ? this.state.newName + " Group" : "";
+		newInitGroupArray.push(newInitGroup);
+		newInitGroupArray.sort(sortInitGroups);
+		
+		this.setState({
+			initGroups: newInitGroupArray,
+			characters: newCharArray,
+			toggleWizard:'inactive',
+			newName:'Unnamed',
+			newType:'PC',
+			newHp:[1],
+			newInit:0,
+			newAmount:1,
+			hpVis:'hidden',
+			amountVis:'hidden'
+		});
         
-         this.setState({CharData:newArray,
-                        toggleWizard:'inactive',
-                        newName:'Unnamed',
-                        newType:'PC',
-                        newHp:[1],
-                        newInit:0,
-                        newAmount:1,
-                        hpVis:'hidden',
-                        amountVis:'hidden'
-                        });
-        
-        document.getElementById("char-wiz-form").reset();
-        document.getElementById("NPC-entries").reset();
-        document.getElementById("Group-entries").reset();
-        
-   }
+		document.getElementById("char-wiz-form").reset();
+		document.getElementById("NPC-entries").reset();
+		document.getElementById("Group-entries").reset();
+	}
 
     setNewName(name) {   
         
@@ -169,17 +207,16 @@ export class Encounter extends React.Component {
             this.setState({
             newInit: init
         });
-     }
-    setNewType(type) {
-            this.setState({
-                newType:type
-            });
-     }
-    setNewHp(hp) {                  
-            this.setState({
-            newHp: hp
-        });
-     }
+	}
+	
+	setNewType(type) {
+		this.setState({ newType: type });
+	}
+	
+	setNewHp(hp) {                  
+		this.setState({ newHp: hp });
+	}
+	
     setNewAmount(amount) {      
        this.setState({
             newAmount:amount
@@ -212,8 +249,15 @@ export class Encounter extends React.Component {
      
    
 
+	
+	endTurn(){
+		var newInitGroupsArray = this.state.initGroups.slice();
+		newInitGroupsArray.push(newInitGroupsArray.shift());
+		this.setState({ initGroups: newInitGroupsArray });
+	}
+	
     render() { 
-       
+		/*
         const  InitGroups = this.state.CharData.map((CharData, index)=>
             <li key={index}>
                 <InitGroup 
@@ -227,7 +271,24 @@ export class Encounter extends React.Component {
                                      
                 />
             </li>
-        );      
+        );
+		*/
+		const InitGroups = this.state.initGroups.map((ig) =>
+			<li key={ig.id} >
+				<InitGroup
+					key = {ig.id}
+					id = {ig.id}
+					name = {ig.name}
+					init = {ig.init}
+					type = {ig.type}
+					charArray = {this.state.characters.filter(character => ig.charIds.includes(character.id) )}
+					handleAddHp = {this.addHp}
+					handleEditName = {this.editInitGroupName}
+					handleEditCharName = {this.editCharName}
+					handleEditInit = {this.editInit}
+				/>
+			</li>
+		);
             
         return ( 
             <div>
@@ -238,18 +299,18 @@ export class Encounter extends React.Component {
            
             {InitGroups}         
            
-            <Button 
-                text="Add Char" 
-                id="addCharButton" 
-                onClick={() => this.openWizard()}
-            />            
+			<Button
+                text = "Add Char"
+                id = "addCharButton"
+                onClick = {this.openWizard}
+            />         
             <Button 
                 text="End Turn" 
                 id="endTurnButton" 
-                onClick={() => this.cycleTurn()}
+                onClick = {this.endTurn}
             />            
             <AddChar 
-                onAddCharClick = {()=> this.addChar()}
+                onAddCharClick = {this.addChar}
                 toggleShowAmount = {()=> this.showAmount()}
                 toggleHideAmount = {()=> this.hideAmount()}
                 toggleShowHp = {()=> this.showHp()}
