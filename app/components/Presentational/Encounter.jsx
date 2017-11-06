@@ -42,34 +42,23 @@ function sortInitGroups (left, right) {
 }
 
 export class Encounter extends React.Component {
-  constructor(props) {
-    super(props);
-        this.state={
-					/*
-                    CharData:[ {
-                        name:["start of new round"],
-                        type:"nonChar",
-                        init: Number.MAX_SAFE_INTEGER,
-                        hp:[0],
-                        hpmax:[0],
-                        amount:1,
-                        }
-                        ],
-					*/
-					initGroups: initGroupArray,
-					characters: charArray,
-                    toggleWizard:'inactive',                                 
-                    newName:'Unnamed',
-                    newType:'PC',
-                    newHp:[1],
-                    newInit:0,
-                    newAmount:1,
-                    amountVis:'hidden',  
-                    hpVis:'hidden', 
-                    round:1,
-                    turns:0  
-                                        
-                     };
+	constructor(props) {
+		super(props);
+        this.state = {
+			initGroups: initGroupArray,
+			characters: charArray,
+			toggleWizard: 'inactive',                                 
+			newName: 'Unnamed',
+			newType: 'PC',
+			newHp: 1,
+			newInit: 0,
+			newAmount: 1,
+			amountVis: 'hidden',  
+			hpVis: 'hidden', 
+			round: 1,
+			turns: 0  
+		};
+		
         this.addHp = this.addHp.bind(this);
         this.editCharName = this.editCharName.bind(this);
 		this.editInitGroupName = this.editInitGroupName.bind(this);
@@ -223,13 +212,8 @@ export class Encounter extends React.Component {
         });
      }
 
-    
-   
-    
-    //Turn updater
-
- 
-
+	// May not be used anymore after merge with data-organization branch.  Keeping so it can
+	//  be incorporated into endTurn (renamed function in branch)
     cycleTurn(){
         if (this.state.CharData.length > 1){
         var newArray = this.state.CharData;    
@@ -246,9 +230,6 @@ export class Encounter extends React.Component {
             }      
         }
     }
-     
-   
-
 	
 	endTurn(){
 		var newInitGroupsArray = this.state.initGroups.slice();
@@ -256,23 +237,7 @@ export class Encounter extends React.Component {
 		this.setState({ initGroups: newInitGroupsArray });
 	}
 	
-    render() { 
-		/*
-        const  InitGroups = this.state.CharData.map((CharData, index)=>
-            <li key={index}>
-                <InitGroup 
-                    //char data
-                    target={index}
-                    CharData={CharData}       
-                    onAddHp= {this.editHp} 
-                    onEditName = {this.editName}  
-                    onEditInit = {this.editInit}         
-                                        
-                                     
-                />
-            </li>
-        );
-		*/
+    render() {
 		const InitGroups = this.state.initGroups.map((ig) =>
 			<li key={ig.id} >
 				<InitGroup
