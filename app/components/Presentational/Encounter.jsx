@@ -5,16 +5,17 @@ import { Button } from './button.jsx';
 import { AddChar } from './addchar.jsx';
 /*
 let initGroupTemplate = {
-	name: "", // If empty/null/ then use name of first characterSet
-	init: 0,
-	charKeys: ["char-1", "char-2", "char-3"]
+	id: "group-doggos",
+		name: "",
+		init: 12,
+		type: "Group",
+		charIds: ["doggo-1"]
 };
 let characterTemplate = {
-	id: "doggo-1" 
+	id: "doggo-1",
 	name: "Doggo",
-	type: "PC", "NPC", or "nonChar",
-	hp: 0,
-	hpMax: 0
+	hp: 10,
+	hpMax: 10
 };
 */
 let charArray = [
@@ -23,27 +24,6 @@ let charArray = [
 		name: "start of new round",
 		hp: 0,
 		hpMax: 0
-	}, {
-		id: "doggo-1",
-		name: "Doggo 1",
-		hp: 10,
-		hpMax: 10
-	}, {
-		id: "joe-1",
-		name: "Joe",
-		type: "PC",
-		hp: 0,
-		hpMax: 0 // if hpMax is 0 or null/undefined don't display/pass
-	}, {
-		id: "doggo-2",
-		name: "Doggo 2",
-		hp: 15,
-		hpMax: 15
-	}, {
-		id: "snip-snap-1",
-		name: "Snip Snap Doggo",
-		hp: 25,
-		hpMax: 25
 	}
 ];
 
@@ -54,24 +34,6 @@ let initGroupArray = [
 		init: Number.MAX_SAFE_INTEGER,
 		type: "nonChar",
 		charIds: ["new-round"]
-	}, {
-		id: "group-joe",
-		name: "",
-		init: 17,
-		type: "PC",
-		charIds: ["joe-1"]
-	}, {
-		id: "group-doggos",
-		name: "Doggo Group",
-		init: 12,
-		type: "Group",
-		charIds: ["doggo-1", "doggo-2"]
-	}, {
-		id: "group-snip-snap-doggo",
-		name: "Snip Snap Doggo Group",
-		init: 5,
-		type: "NPC",
-		charIds: ["snip-snap-1"]
 	}
 ];
 
