@@ -186,24 +186,6 @@ export class Encounter extends React.Component {
     }
   
 	addChar() {
-		/*
-         var newArray = this.state.CharData.slice();  
-         var hpArr = [];
-         var nameArr = [];
-         hpArr.length = this.state.newAmount;
-         nameArr.length = this.state.newAmount + 1;      
-         hpArr.fill(this.state.newHp); 
-         nameArr.fill(this.state.newName); 
-		 newArray.push({
-            name:nameArr,
-            type:this.state.newType, 
-            hp:hpArr,
-            hpmax:this.state.newHp,
-            init:this.state.newInit,  
-            amount:this.state.newAmount
-         });
-		 */
-		 
 		var newInitGroupArray = this.state.initGroups.slice();
 		var newCharArray = this.state.characters.slice();
 		
@@ -218,7 +200,7 @@ export class Encounter extends React.Component {
 		for(var i = 0; i < this.state.newAmount; i++) {
 			var newCharacter = {
 				id: Shortid.generate(),
-				name: this.state.newName + (i > 0 ? " " + (i + 1) : ""),
+				name: this.state.newName + (this.state.newType == "Group" ? " " + (i + 1) : ""),
 				hp: this.state.newHp,
 				hpMax: this.state.newHp
 			};
@@ -227,6 +209,7 @@ export class Encounter extends React.Component {
 		}
 		
 		newInitGroup.charIds = charIds;
+		newInitGroup.name = charIds.length > 1 ? this.state.newName + " Group" : "";
 		newInitGroupArray.push(newInitGroup);
 		newInitGroupArray.sort(sortInitGroups);
 		
@@ -259,17 +242,16 @@ export class Encounter extends React.Component {
             this.setState({
             newInit: init
         });
-     }
-    setNewType(type) {
-            this.setState({
-                newType:type
-            });
-     }
-    setNewHp(hp) {                  
-            this.setState({
-            newHp: hp
-        });
-     }
+	}
+	
+	setNewType(type) {
+		this.setState({ newType: type });
+	}
+	
+	setNewHp(hp) {                  
+		this.setState({ newHp: hp });
+	}
+	
     setNewAmount(amount) {      
        this.setState({
             newAmount:amount
