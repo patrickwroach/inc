@@ -38,8 +38,67 @@ let initGroupArray = [
 	}
 ];
 
-function sortInitGroups (left, right) {
+function sortInitGroups(left, right) {
 	return right.init - left.init;
+}
+
+function indexOfMaxInit(initGroups) {
+    if (initGroups.length === 0) {
+        return -1;
+    }
+
+    var max = initGroups[0].init;
+    var maxIndex = 0;
+
+    for (var i = 1; i < initGroups.length; i++) {
+        if (initGroups[i].init > max) {
+            maxIndex = i;
+            max = initGroups[i].init;
+        }
+    }
+
+    return maxIndex;
+}
+
+// returns a new array with newInitGroup inserted into initGroupArray
+// initGroupArray should contain elements in init order, though the element with the
+//	largest init may not be at index 0.
+function insertInitGroup(newInitGroup, initGroupArray) {
+	var newInitGroupArray = initGroupArray.slice();
+	var indexMaxInit = indexOfMaxInit(newInitGroupArray);
+	
+	// Has the initGroups at top of order (when it contains any elements)
+	var leftArray = newInitGroupArray.slice(0, indexMaxInit);
+	// Starts with the element with the highest init value
+	var rightArray = newInitGroupArray.slice(indexMaxInit, newInitGroupArray.length); 
+	
+	// Checking new init from top of init order (beginning of rightArray) going down
+	var inserted = false;
+	for (var i = 0; i < rightArray.length; i++) {
+		if (inserted === false && newInitGroup.init > rightArray[i].init) {
+			rightArray.splice(i, 0, newInitGroup);
+			inserted = true;
+		}
+	}
+	
+	if (inserted === false) {
+		for (var i = 0; i < leftArray.length; i++) {
+			if (inserted === false && newInitGroup.init > leftArray[i].init) {
+				leftArray.splice(i, 0, newInitGroup);
+				inserted = true;
+			}
+		}
+		if (leftArray.length > 0 && inserted === false) {
+			leftArray.push(newInitGroup);
+			inserted = true;
+		}
+	}
+	
+	if (inserted === false) {
+		rightArray.push(newInitGroup);
+	}
+	
+	return leftArray.concat(rightArray);
 }
 
 export class Encounter extends React.Component {
@@ -104,9 +163,13 @@ export class Encounter extends React.Component {
 	
 	editInit(initGroupId, newInit) {
 		var newInitGroupArray = this.state.initGroups.slice();
-		var initGroupIndex = newInitGroupArray.findIndex(ig => ig.id === initGroupId)
-		newInitGroupArray[initGroupIndex].init = newInit;
-		newInitGroupArray.sort(sortInitGroups);
+		var initGroupIndex = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
+		
+		var elemArr = newInitGroupArray.splice(initGroupIndex, 1);
+		var initGroup = elemArr[0];
+		initGroup.init = newInit;
+		newInitGroupArray = insertInitGroup(initGroup, newInitGroupArray);
+		
         this.setState({ initGroups: newInitGroupArray});
     }
         
@@ -141,16 +204,7 @@ export class Encounter extends React.Component {
     }
   
 	addChar() {
-		var newInitGroupArray = this.state.initGroups.slice();
 		var newCharArray = this.state.characters.slice();
-		
-		var newInitGroup = {
-			id: Shortid.generate(),
-			name: "",
-			init: this.state.newInit,
-			type: this.state.newType,
-		};
-		
 		var charIds = [];
 		for(var i = 0; i < this.state.newAmount; i++) {
 			var newCharacter = {
@@ -163,10 +217,15 @@ export class Encounter extends React.Component {
 			charIds.push(newCharacter.id);
 		}
 		
-		newInitGroup.charIds = charIds;
-		newInitGroup.name = charIds.length > 1 ? this.state.newName + " Group" : "";
-		newInitGroupArray.push(newInitGroup);
-		newInitGroupArray.sort(sortInitGroups);
+		var newInitGroup = {
+			id: Shortid.generate(),
+			name: charIds.length > 1 ? this.state.newName + " Group" : "",
+			init: this.state.newInit,
+			type: this.state.newType,
+			charIds: charIds
+		};
+		
+		var newInitGroupArray = insertInitGroup(newInitGroup, this.state.initGroups);
 		
 		this.setState({
 			initGroups: newInitGroupArray,
