@@ -307,6 +307,7 @@ p {
   right: 1px;
   padding: 1px 3px;
   font-size: 10px;
+  box-shadow: none;
 }
 .content-container#init-container .character .hp-count {
   text-align: center;
@@ -434,7 +435,7 @@ p {
   display: table;
   border-top: none;
   border-bottom: none;
-  background: #2f2f2f;
+  border: 1px solid #2f2f2f;
 }
 .content-container#init-container .character.nonChar.index0 {
   margin-bottom: 12px;
@@ -455,7 +456,6 @@ p {
 .content-container#init-container .character.nonChar .char-bar h1,
 .content-container#init-container .character.nonChar .char-name h1,
 .content-container#init-container .character.nonChar .group-name-bar h1 {
-  color: #fdfdfd;
   margin: 0;
 }
 .content-container#init-container .character .char-bar .button-container.aliveDead {
