@@ -433,9 +433,6 @@ p {
   margin: 5px 0;
   width: 100%;
   display: table;
-  border-top: none;
-  border-bottom: none;
-  border: 1px solid #2f2f2f;
 }
 .content-container#init-container .character.nonChar.index0 {
   margin-bottom: 12px;
