@@ -69,7 +69,7 @@ export class AddChar extends React.Component {
         <div id="add-char-wizard" className={this.props.toggleWizard}>
             <div className="choice-container">
             <Button id="closer" text="&#10006;" onClick={() => this.props.closeWizard()} />
-                <h2> Add a character to the Encoutner </h2>
+                <h2> Add a character to the Encounter </h2>
                 <form id="char-wiz-form" className="input-container">
                     <p>Name:<input onChange={this.handleNewName}  type="text" /></p>
                     <p>Initiative <input onChange={this.handleNewInit} type="number" placeholder="0"/></p>
