@@ -31,7 +31,7 @@ let initGroupArray = [
 	{
 		id: "group-start",
 		name: "start of new round",
-		init: Number.MAX_SAFE_INTEGER,
+		init: Number.MIN_SAFE_INTEGER,
 		type: "nonChar",
 	
 		charIds: ["new-round"]
