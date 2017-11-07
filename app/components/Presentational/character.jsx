@@ -17,6 +17,7 @@ export class Character extends React.Component {
         this.handleInputHp =  this.handleInputHp.bind(this);
         this.handleInputName =  this.handleInputName.bind(this);
         this.submitName =  this.submitName.bind(this);
+        this.handleRemoveCharacter = this.handleRemoveCharacter.bind(this);
     }
   
    
@@ -51,7 +52,10 @@ export class Character extends React.Component {
             });
         }
     }
-
+    handleRemoveCharacter(){
+         this.props.handleRemoveCharacter(this.props.id, this.props.igid);
+    }
+   
      toggleAliveDead() {
       
         if (this.props.hp >= 1) {
@@ -60,7 +64,6 @@ export class Character extends React.Component {
            
         }
         else {
-            console.log('brah');
             const currentAmount = (this.props.hp * -1) + 1;
             this.props.handleAddHp(this.props.id, currentAmount);
         }
@@ -81,7 +84,9 @@ export class Character extends React.Component {
        return (
              
                <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ' alive'}`}>
+                
                     <div className="char-name">
+                    <Button text="&#10006;" addClass="remove "  onClick={() => this.handleRemoveCharacter()} />
 						<h1>
 							{this.props.name}
 							<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
@@ -91,6 +96,7 @@ export class Character extends React.Component {
                      <Button onClick={() => this.toggleAliveDead()} text={this.props.hp <= 0 ? 'revive' : ' kill'} />
                  
                     </div>
+                  
                     <div className="hp-count">
                         <div className="hp">
 							<h2>{this.props.hp}/{this.props.hpMax}</h2>

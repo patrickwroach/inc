@@ -348,6 +348,17 @@ p {
       display: table;
       vertical-align: middle;
       min-height: @character-min-height;
+      position: relative;
+      .remove{
+        position: absolute;
+        display:block;
+        text-align:center;
+        top:-5px;
+        right:1px;
+        padding:1px 3px;
+        font-size:10px;
+        
+      }
     }
 
     .hp-count {
@@ -441,11 +452,14 @@ p {
     }
 
     &.Group {
+     
       .char-bar {
         border-bottom: none;
         display: none;
         padding-bottom: 5px;
-
+        .remove{
+          top:1px;
+        }
         .groupNumber {
           position: relative;
           bottom: 5px;
@@ -524,7 +538,7 @@ p {
       &.index0{
         margin-bottom:12px;
       }
-
+      .remove,
       .aliveDead,
       .edit-pen,
       .init-number {

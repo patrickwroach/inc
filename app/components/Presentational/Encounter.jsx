@@ -5,15 +5,15 @@ import { Button } from './button.jsx';
 import { AddChar } from './addchar.jsx';
 /*
 let initGroupTemplate = {
-	id: "group-doggos",
+	id: "group-kitties",
 		name: "",
 		init: 12,
 		type: "Group",
-		charIds: ["doggo-1"]
+		charIds: ["kitty-1"]
 };
 let characterTemplate = {
-	id: "doggo-1",
-	name: "Doggo",
+	id: "kittie-1",
+	name: "Kitty",
 	hp: 10,
 	hpMax: 10
 };
@@ -122,6 +122,8 @@ export class Encounter extends React.Component {
         this.addHp = this.addHp.bind(this);
         this.editCharName = this.editCharName.bind(this);
 		this.editInitGroupName = this.editInitGroupName.bind(this);
+		this.removeInitGroup = this.removeInitGroup.bind(this);
+		this.removeCharacter = this.removeCharacter.bind(this);
         this.editInit = this.editInit.bind(this);
         this.addChar = this.addChar.bind(this);
         this.openWizard = this.openWizard.bind(this);
@@ -137,7 +139,7 @@ export class Encounter extends React.Component {
 		this.endTurn = this.endTurn.bind(this);
     }  
     
- //ToDo: Add var to handle anytoggleWizard setStates, best practice update
+
  //ToDO store functions in individual components
 	addHp(charId, amount) {
 		var newCharArray = this.state.characters.slice();
@@ -160,6 +162,28 @@ export class Encounter extends React.Component {
 		newInitGroupArray[index].name = newName;
 		this.setState({ initGroups: newInitGroupArray });
 	}
+
+	removeCharacter(charId, initGroupId) {
+		var newInitGroupArray = this.state.initGroups.slice();
+		var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
+		var newCharArray = newInitGroupArray[index].charIds;
+		var charIndex = newCharArray.indexOf(charId);
+		newInitGroupArray[index].charIds.splice(charIndex, 1);
+		
+		if (newInitGroupArray[index].charIds.length === 0){
+			newInitGroupArray.splice(index, 1);
+		 }		
+		this.setState({ initGroups: newInitGroupArray});
+	}
+
+	removeInitGroup(initGroupId) {
+		var newInitGroupArray = this.state.initGroups.slice();
+		var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
+		newInitGroupArray.splice(index, 1);
+		this.setState({ initGroups: newInitGroupArray });
+	}
+
+	
 	
 	editInit(initGroupId, newInit) {
 		var newInitGroupArray = this.state.initGroups.slice();
@@ -290,12 +314,7 @@ export class Encounter extends React.Component {
             }      
         }
     }
-	
-	// endTurn(){
-	// 	var newInitGroupsArray = this.state.initGroups.slice();
-	// 	newInitGroupsArray.push(newInitGroupsArray.shift());
-	// 	this.setState({ initGroups: newInitGroupsArray });
-	// }
+
 	
     render() {
 		const InitGroups = this.state.initGroups.map((ig, index) =>
@@ -309,6 +328,8 @@ export class Encounter extends React.Component {
 					charArray = {this.state.characters.filter(character => ig.charIds.includes(character.id) )}
 					handleAddHp = {this.addHp}
 					handleEditName = {this.editInitGroupName}
+					handleRemoveInitGroup = {this.removeInitGroup}
+					handleRemoveCharacter = {this.removeCharacter}
 					handleEditCharName = {this.editCharName}
 					handleEditInit = {this.editInit}
 				/>

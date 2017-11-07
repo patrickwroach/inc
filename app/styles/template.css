@@ -296,6 +296,17 @@ p {
   display: table;
   vertical-align: middle;
   min-height: 105px;
+  position: relative;
+}
+.content-container#init-container .character .char-bar .remove,
+.content-container#init-container .character .group-name-bar .remove {
+  position: absolute;
+  display: block;
+  text-align: center;
+  top: -5px;
+  right: 1px;
+  padding: 1px 3px;
+  font-size: 10px;
 }
 .content-container#init-container .character .hp-count {
   text-align: center;
@@ -374,6 +385,9 @@ p {
   display: none;
   padding-bottom: 5px;
 }
+.content-container#init-container .character.Group .char-bar .remove {
+  top: 1px;
+}
 .content-container#init-container .character.Group .char-bar .groupNumber {
   position: relative;
   bottom: 5px;
@@ -425,6 +439,7 @@ p {
 .content-container#init-container .character.nonChar.index0 {
   margin-bottom: 12px;
 }
+.content-container#init-container .character.nonChar .remove,
 .content-container#init-container .character.nonChar .aliveDead,
 .content-container#init-container .character.nonChar .edit-pen,
 .content-container#init-container .character.nonChar .init-number {

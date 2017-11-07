@@ -19,6 +19,7 @@ export class InitGroup extends React.Component {
         this.submitName =  this.submitName.bind(this);
         this.handleInputInit =  this.handleInputInit.bind(this);
         this.submitInit =  this.submitInit.bind(this);
+        this.handleRemoveInitGroup = this.handleRemoveInitGroup.bind(this);
     }
     toggleGroup() {
 
@@ -84,17 +85,24 @@ export class InitGroup extends React.Component {
         this.props.handleEditInit(this.props.id, this.state.inputInit);
         this.setState({ InitEdit: 'hidden' });
     }
+    
+    handleRemoveInitGroup(){
+        this.props.handleRemoveInitGroup(this.props.id);
+    }
 	
     render() {
 		const Characters = this.props.charArray.map((c) =>
 			<li key={c.id} >
 				<Character
-					id = {c.id}
+                    id = {c.id}
+                    igid = {this.props.id}
 					name = {c.name}
 					hp = {c.hp}
 					hpMax = {c.hpMax}
 					handleAddHp = {this.props.handleAddHp}
                     handleEditName = {this.props.handleEditCharName}
+                    handleRemoveCharacter = {this.props.handleRemoveCharacter}
+                    handleRemoveInitGroup = {this.props.handleRemoveInitGroup}
                     onToggleNameEdit = {() => this.toggleNameEdit()}
 				/>
 			</li>
@@ -103,12 +111,15 @@ export class InitGroup extends React.Component {
         return (
             <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type + ' index'+ this.props.initPostion}> 
                 <div className="group-name-bar">
+                <Button text="&#10006;" addClass="remove " onClick={() => this.handleRemoveInitGroup()} />
                         <div className="char-name">
                             <h1>{this.props.name}<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>
                         </div>
                         <div className="button-container">
                             <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} />
-                        </div>                 
+                           
+                        </div>     
+                                   
                 </div>
                 <h3 className="init-number">Init: {this.props.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>                           
                 {Characters}
