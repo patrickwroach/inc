@@ -118,6 +118,7 @@ export class InitGroup extends React.Component {
 								value={this.state.inputName}
 								onChange={this.handleInputName}
 								onKeyPress={this.handleNameKeyPress}
+								autoFocus
 						/>
 						<Button onClick={this.submitName} text="Change Name" />
 					</div>
@@ -136,6 +137,7 @@ export class InitGroup extends React.Component {
 								value={this.state.inputInit}
 								onChange={this.handleInputInit}
 								onKeyPress={this.handleInitKeyPress}
+								autoFocus
 						/>
 						<Button onClick={this.submitInit} text="Change Initiative" />
 					</div>

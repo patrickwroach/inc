@@ -89,6 +89,7 @@ export class Character extends React.Component {
 								value={this.state.inputName}
 								onChange={this.handleInputName}
 								onKeyPress={this.handleNameKeyPress}
+								autoFocus
 						/>
 						<Button onClick={this.submitName} text="Change Name" />
 					</div>

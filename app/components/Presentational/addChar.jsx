@@ -79,8 +79,22 @@ export class AddChar extends React.Component {
 				<Button id="closer" text="&#10006;" onClick={this.props.toggleAddCharModal} />
 					<h2> Add a character to the Encounter </h2>
 					<form id="char-wiz-form" className="input-container">
-						<p>Name:<input onChange={this.handleNewName}  type="text" onKeyPress={this.handleKeyPress} /></p>
-						<p>Initiative <input onChange={this.handleNewInit} type="number" placeholder="0" onKeyPress={this.handleKeyPress} /></p>
+						<p>
+							Name:
+							<input  type="text"
+									onChange={this.handleNewName}
+									onKeyPress={this.handleKeyPress}
+									autoFocus
+							/>
+						</p>
+						<p>
+							Initiative
+							<input  type="number"
+									placeholder="0"
+									onChange={this.handleNewInit}
+									onKeyPress={this.handleKeyPress}
+							/>
+						</p>
 					</form>
 					<Button addClass={this.props.selectedType +' '+"PCbox"} text="PC" onClick={() => 
 						this.handleNewPC()} />
