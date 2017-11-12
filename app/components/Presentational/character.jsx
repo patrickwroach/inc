@@ -6,16 +6,16 @@ export class Character extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            NameEdit: 'hidden',        
+			isNameEditModalOpen: false,
             inputHp:5,
-            inputName:''           
-        
-         
+            inputName: this.props.name
         };
      
         this.handleClickAddHp =  this.handleClickAddHp.bind(this);
         this.handleInputHp =  this.handleInputHp.bind(this);
+		this.toggleNameEdit = this.toggleNameEdit.bind(this);
         this.handleInputName =  this.handleInputName.bind(this);
+		this.handleNameKeyPress = this.handleNameKeyPress.bind(this);
         this.submitName =  this.submitName.bind(this);
         this.handleRemoveCharacter = this.handleRemoveCharacter.bind(this);
     }
@@ -29,29 +29,31 @@ export class Character extends React.Component {
         });
 
     }
-
-    handleInputName(e){
-        const newName= e.target.value;
+	
+	toggleNameEdit() {
+		this.setState({ isNameEditModalOpen: !this.state.isNameEditModalOpen });
+    }
+	
+	handleInputName(e){
+		const newName= e.target.value;
     
-         this.setState({
-             inputName:newName 
+		this.setState({
+			inputName: newName
         });
-          
-
     }
-      toggleNameEdit() {
-      
-        if (this.state.NameEdit === 'hidden') {
-            this.setState({
-                NameEdit: 'displayed'               
-            });
-        }
-        else {
-            this.setState({
-                NameEdit: 'hidden'    
-            });
-        }
+	
+	handleNameKeyPress(e) {
+		if (e.key == 'Enter') {
+			this.submitName();
+		}
+	}
+	
+	submitName() {
+		const newName = this.state.inputName;
+		this.props.handleEditName(this.props.id, newName);
+		this.toggleNameEdit();
     }
+	
     handleRemoveCharacter(){
          this.props.handleRemoveCharacter(this.props.id, this.props.igid);
     }
@@ -68,12 +70,6 @@ export class Character extends React.Component {
             this.props.handleAddHp(this.props.id, currentAmount);
         }
     }
- 
-	submitName() {
-		const newName = this.state.inputName;
-		this.props.handleEditName(this.props.id, newName);
-		this.setState({ NameEdit: 'hidden' });
-    }
 
 	handleClickAddHp(amount) {
 		const currentAmount = amount;
@@ -81,7 +77,26 @@ export class Character extends React.Component {
 	}
 	
     render() {
-       return (
+		
+		var nameEditModal = null;
+		if (this.state.isNameEditModalOpen) {
+			nameEditModal = (
+				<div className="name-edit displayed">
+					<div className="choice-container">
+						<Button id="closer" text="&#10006;" onClick={this.toggleNameEdit} />
+						<h3>Enter New Name</h3>
+						<input  type="text"
+								value={this.state.inputName}
+								onChange={this.handleInputName}
+								onKeyPress={this.handleNameKeyPress}
+						/>
+						<Button onClick={this.submitName} text="Change Name" />
+					</div>
+                </div>
+			);
+		}
+		
+		return (
              
                <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ' alive'}`}>
                 
@@ -109,19 +124,10 @@ export class Character extends React.Component {
                             <Button onClick={() => this.handleClickAddHp(-1)} text="-1" />
                         </div>
                     </div>
-                        <div className={"name-edit " + this.state.NameEdit}>
-                     
-                        <div className="choice-container">
-                            <Button id="closer" text="&#10006;" onClick={() => this.toggleNameEdit()} />
-                            <h3>Enter new name</h3>
-                            <input onChange={this.handleInputName} type="text" />
-                            <Button onClick={this.submitName} text="Change Name" />
-                        </div>
-                </div>
-                    </div>
-        )
-
-    };
+                    {nameEditModal}
+				</div>
+        );
+	}
 }
 
 
