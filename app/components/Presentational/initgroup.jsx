@@ -9,7 +9,7 @@ export class InitGroup extends React.Component {
             toggleGroup: 'inactive',
             toggleButtonText: 'Show Group',
             NameEdit: 'hidden',
-            InitEdit: 'hidden',
+			isInitEditModalOpen: false,
             inputName:'',
             inputInit:0,
            
@@ -17,7 +17,9 @@ export class InitGroup extends React.Component {
         this.toggleGroup = this.toggleGroup.bind(this);
         this.handleInputName =  this.handleInputName.bind(this);
         this.submitName =  this.submitName.bind(this);
+		this.toggleInitEdit = this.toggleInitEdit.bind(this);
         this.handleInputInit =  this.handleInputInit.bind(this);
+		this.handleInitKeyPress = this.handleInitKeyPress.bind(this);
         this.submitInit =  this.submitInit.bind(this);
         this.handleRemoveInitGroup = this.handleRemoveInitGroup.bind(this);
     }
@@ -37,19 +39,7 @@ export class InitGroup extends React.Component {
             });
         }
     }
-    toggleInitEdit() {
-       
-        if (this.state.InitEdit === 'hidden') {
-            this.setState({
-                InitEdit: 'displayed'               
-            });
-        }
-        else {
-            this.setState({
-                InitEdit: 'hidden'    
-            });
-        }
-    }
+	
      toggleNameEdit() {
       
         if (this.state.NameEdit === 'hidden') {
@@ -76,14 +66,24 @@ export class InitGroup extends React.Component {
 		this.setState({ NameEdit: 'hidden' });
     }
 	
+	toggleInitEdit() {
+		this.setState({isInitEditModalOpen: !this.state.isInitEditModalOpen })
+    }
+	
 	handleInputInit(e){
 		const newInit = parseInt(e.target.value);
 		this.setState({ inputInit: newInit });
     }
 	
+	handleInitKeyPress(e) {
+		if (e.key == 'Enter') {
+			this.submitInit();
+		}
+	}
+	
     submitInit() {
         this.props.handleEditInit(this.props.id, this.state.inputInit);
-        this.setState({ InitEdit: 'hidden' });
+        this.toggleInitEdit();
     }
     
     handleRemoveInitGroup(){
@@ -107,6 +107,23 @@ export class InitGroup extends React.Component {
 				/>
 			</li>
 		);
+		
+		var initEditModal = null;
+		if (this.state.isInitEditModalOpen) {
+			initEditModal = (
+				<div className={"init-edit displayed"}>
+					<div className="choice-container">
+						<Button id="closer" text="&#10006;" onClick={this.toggleInitEdit} />
+						<h3>Enter new initiative</h3>
+						<input  onChange={this.handleInputInit}
+								onKeyPress={this.handleInitKeyPress}						
+								type="number" 
+								placeholder="0" />
+						<Button onClick={this.submitInit} text="Change Initiative" />
+					</div>
+				</div>
+			);
+		}
         
         return (
             <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type + ' index'+ this.props.initPostion}> 
@@ -132,15 +149,7 @@ export class InitGroup extends React.Component {
                             <Button onClick={this.submitName} text="Change Name" />
                         </div>
                 </div>
-                 <div className={"init-edit " + this.state.InitEdit}>
-                     
-                        <div className="choice-container">
-                            <Button id="closer" text="&#10006;" onClick={() => this.toggleInitEdit()} />
-                            <h3>Enter new initiative</h3>
-                            <input onChange={this.handleInputInit} type="number" placeholder="0" />
-                            <Button onClick={this.submitInit} text="Change Initiative" />
-                        </div>
-                </div>
+				{initEditModal}
             </ul>
         )
 
