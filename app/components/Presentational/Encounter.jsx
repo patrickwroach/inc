@@ -107,7 +107,7 @@ export class Encounter extends React.Component {
         this.state = {
 			initGroups: initGroupArray,
 			characters: charArray,
-			toggleWizard: 'inactive',                                 
+			isAddCharModalOpen: false,                      
 			newName: 'Unnamed',
 			newType: 'PC',
 			newHp: 1,
@@ -126,7 +126,7 @@ export class Encounter extends React.Component {
 		this.removeCharacter = this.removeCharacter.bind(this);
         this.editInit = this.editInit.bind(this);
         this.addChar = this.addChar.bind(this);
-        this.openWizard = this.openWizard.bind(this);
+		this.toggleAddCharModal = this.toggleAddCharModal.bind(this);
         this.setNewName = this.setNewName.bind(this);
         this.setNewType= this.setNewType.bind(this);
         this.setNewHp = this.setNewHp.bind(this);
@@ -199,12 +199,9 @@ export class Encounter extends React.Component {
         
             
     //Add Character Sections, specific types to be stripped out after wizard is complete
-    openWizard() {
-		this.setState({ toggleWizard: 'active' });
-    }
-    closeWizard() {
-		this.setState({ toggleWizard: 'inactive' });
-    }
+	toggleAddCharModal() {
+		this.setState({ isAddCharModalOpen: !this.state.isAddCharModalOpen });
+	}
 	
     showAmount(){
          this.setState({
@@ -254,7 +251,7 @@ export class Encounter extends React.Component {
 		this.setState({
 			initGroups: newInitGroupArray,
 			characters: newCharArray,
-			toggleWizard:'inactive',
+			isAddCharModalOpen: false,
 			newName:'Unnamed',
 			newType:'PC',
 			newHp:1,
@@ -337,43 +334,43 @@ export class Encounter extends React.Component {
 		);
             
         return ( 
-            <div>
-             <div id="roundCounter">
-            <h2>Round {this.state.round}</h2>
-            </div>       
-        <ul> 
+			<div>
+				<div id="roundCounter">
+					<h2>Round {this.state.round}</h2>
+				</div>       
+				<ul> 
            
-            {InitGroups}         
+					{InitGroups}         
            
-			<Button
-                text = "Add Char"
-                id = "addCharButton"
-                onClick = {this.openWizard}
-            />         
-            <Button 
-                text="End Turn" 
-                id="endTurnButton" 
-                onClick = {this.endTurn}
-            />            
-            <AddChar 
-                onAddCharClick = {this.addChar}
-                toggleShowAmount = {()=> this.showAmount()}
-                toggleHideAmount = {()=> this.hideAmount()}
-                toggleShowHp = {()=> this.showHp()}
-                toggleHideHp = {()=> this.hideHp()}
-                amountVis = {this.state.amountVis}
-                hpVis = {this.state.hpVis}
-                toggleWizard = {this.state.toggleWizard}
-                closeWizard={() => this.closeWizard()}               
-                onChangeName = {this.setNewName}
-                onChangeType = {this.setNewType}
-                onChangeHp = {this.setNewHp}
-                onChangeInit = {this.setNewInit}
-                onChangeAmount = {this.setNewAmount}
-                selectedType = {this.state.newType}
-            />
-        </ul>  
-        </div>     
+					<Button
+						text = "Add Char"
+						id = "addCharButton"
+						onClick = {this.toggleAddCharModal}
+					/>         
+					<Button 
+						text="End Turn" 
+						id="endTurnButton" 
+						onClick = {this.endTurn}
+					/>            
+					<AddChar 
+						onAddCharClick = {this.addChar}
+						toggleShowAmount = {()=> this.showAmount()}
+						toggleHideAmount = {()=> this.hideAmount()}
+						toggleShowHp = {()=> this.showHp()}
+						toggleHideHp = {()=> this.hideHp()}
+						amountVis = {this.state.amountVis}
+						hpVis = {this.state.hpVis}
+						isOpen = {this.state.isAddCharModalOpen}
+						toggleAddCharModal = {this.toggleAddCharModal}           
+						onChangeName = {this.setNewName}
+						onChangeType = {this.setNewType}
+						onChangeHp = {this.setNewHp}
+						onChangeInit = {this.setNewInit}
+						onChangeAmount = {this.setNewAmount}
+						selectedType = {this.state.newType}
+					/>
+				</ul>  
+			</div>     
         );
     }
 }

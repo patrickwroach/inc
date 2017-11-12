@@ -65,29 +65,32 @@ export class AddChar extends React.Component {
     }
 
     render() {
-       return (
-        <div id="add-char-wizard" className={this.props.toggleWizard}>
-            <div className="choice-container">
-            <Button id="closer" text="&#10006;" onClick={() => this.props.closeWizard()} />
-                <h2> Add a character to the Encounter </h2>
-                <form id="char-wiz-form" className="input-container">
-                    <p>Name:<input onChange={this.handleNewName}  type="text" /></p>
-                    <p>Initiative <input onChange={this.handleNewInit} type="number" placeholder="0"/></p>
-                </form>
-                <Button addClass={this.props.selectedType +' '+"PCbox"} text="PC" onClick={() => 
-                    this.handleNewPC()} />
-                <Button addClass={this.props.selectedType +' '+"NPCbox"} text="NPC" onClick={() => this.handleNewNPC()} />
-                <Button addClass={this.props.selectedType +' '+"Groupbox"}  text="Group" onClick={() => this.handleNewGroup()} />
-                <form id="NPC-entries">
-                     <p id="hp-entry" className={this.props.hpVis}>Hit Points <input onChange={this.handleNewHp} type="number" placeholder="1" /></p>
-                </form>
-                <form id="Group-entries">
-                     <p id="amount-entry" className={this.props.amountVis}>How many? <input onChange={this.handleNewAmount} type="number"  min="2" placeholder="2"/></p>
-                </form>
-                <br />
-                <Button addClass="submit" text="Add Character(s)" onClick={this.props.onAddCharClick} />
-            </div>
-        </div>  
-     )
-    };
+		if (!this.props.isOpen) {
+			return null;
+		}
+		return (
+			<div id="add-char-wizard" className="active">
+				<div className="choice-container">
+				<Button id="closer" text="&#10006;" onClick={this.props.toggleAddCharModal} />
+					<h2> Add a character to the Encounter </h2>
+					<form id="char-wiz-form" className="input-container">
+						<p>Name:<input onChange={this.handleNewName}  type="text" /></p>
+						<p>Initiative <input onChange={this.handleNewInit} type="number" placeholder="0"/></p>
+					</form>
+					<Button addClass={this.props.selectedType +' '+"PCbox"} text="PC" onClick={() => 
+						this.handleNewPC()} />
+					<Button addClass={this.props.selectedType +' '+"NPCbox"} text="NPC" onClick={() => this.handleNewNPC()} />
+					<Button addClass={this.props.selectedType +' '+"Groupbox"}  text="Group" onClick={() => this.handleNewGroup()} />
+					<form id="NPC-entries">
+						 <p id="hp-entry" className={this.props.hpVis}>Hit Points <input onChange={this.handleNewHp} type="number" placeholder="1" /></p>
+					</form>
+					<form id="Group-entries">
+						 <p id="amount-entry" className={this.props.amountVis}>How many? <input onChange={this.handleNewAmount} type="number"  min="2" placeholder="2"/></p>
+					</form>
+					<br />
+					<Button addClass="submit" text="Add Character(s)" onClick={this.props.onAddCharClick} />
+				</div>
+			</div>  
+		);
+    }
 }
