@@ -353,7 +353,7 @@ export class Encounter extends React.Component {
 						onClick = {this.endTurn}
 					/>            
 					<AddChar 
-						onAddCharClick = {this.addChar}
+						onAddCharSubmit = {this.addChar}
 						toggleShowAmount = {()=> this.showAmount()}
 						toggleHideAmount = {()=> this.hideAmount()}
 						toggleShowHp = {()=> this.showHp()}

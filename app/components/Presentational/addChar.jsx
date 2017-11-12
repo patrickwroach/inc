@@ -11,8 +11,7 @@ export class AddChar extends React.Component {
         this.handleNewHp= this.handleNewHp.bind(this);
         this.handleNewAmount = this.handleNewAmount.bind(this);
         this.handleNewInit = this.handleNewInit.bind(this);
-             
-             
+		this.handleKeyPress = this.handleKeyPress.bind(this);
      }
 
     handleNewName(e) {
@@ -63,6 +62,12 @@ export class AddChar extends React.Component {
     const amount = parseInt(e.target.value);
     this.props.onChangeAmount(amount)
     }
+	
+	handleKeyPress (e) {
+		if (e.key == 'Enter') {
+			this.props.onAddCharSubmit();
+		}
+	}
 
     render() {
 		if (!this.props.isOpen) {
@@ -74,21 +79,36 @@ export class AddChar extends React.Component {
 				<Button id="closer" text="&#10006;" onClick={this.props.toggleAddCharModal} />
 					<h2> Add a character to the Encounter </h2>
 					<form id="char-wiz-form" className="input-container">
-						<p>Name:<input onChange={this.handleNewName}  type="text" /></p>
-						<p>Initiative <input onChange={this.handleNewInit} type="number" placeholder="0"/></p>
+						<p>Name:<input onChange={this.handleNewName}  type="text" onKeyPress={this.handleKeyPress} /></p>
+						<p>Initiative <input onChange={this.handleNewInit} type="number" placeholder="0" onKeyPress={this.handleKeyPress} /></p>
 					</form>
 					<Button addClass={this.props.selectedType +' '+"PCbox"} text="PC" onClick={() => 
 						this.handleNewPC()} />
 					<Button addClass={this.props.selectedType +' '+"NPCbox"} text="NPC" onClick={() => this.handleNewNPC()} />
 					<Button addClass={this.props.selectedType +' '+"Groupbox"}  text="Group" onClick={() => this.handleNewGroup()} />
 					<form id="NPC-entries">
-						 <p id="hp-entry" className={this.props.hpVis}>Hit Points <input onChange={this.handleNewHp} type="number" placeholder="1" /></p>
+						<p id="hp-entry" className={this.props.hpVis}>
+							Hit Points 
+							<input  onChange={this.handleNewHp}
+									onKeyPress={this.handleKeyPress}
+									type="number" 
+									placeholder="1" 
+							/>
+						</p>
 					</form>
 					<form id="Group-entries">
-						 <p id="amount-entry" className={this.props.amountVis}>How many? <input onChange={this.handleNewAmount} type="number"  min="2" placeholder="2"/></p>
+						 <p id="amount-entry" className={this.props.amountVis}>
+							How many? 
+							<input  onChange={this.handleNewAmount} 
+									onKeyPress={this.handleKeyPress}
+									type="number"  
+									min="2" 
+									placeholder="2"
+							/>
+						</p>
 					</form>
 					<br />
-					<Button addClass="submit" text="Add Character(s)" onClick={this.props.onAddCharClick} />
+					<Button addClass="submit" text="Add Character(s)" onClick={this.props.onAddCharSubmit} />
 				</div>
 			</div>  
 		);
