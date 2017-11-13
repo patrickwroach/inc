@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from './button.jsx';
+import { SingleTextModal } from './SingleTextModal.jsx';
 import { Constants } from '../../other/Constants.js';
 
 
@@ -8,15 +9,12 @@ export class Character extends React.Component {
         super(props);
         this.state = {
 			isNameEditModalOpen: false,
-            inputHp:5,
-            inputName: this.props.name
+            inputHp:5
         };
      
         this.handleClickAddHp =  this.handleClickAddHp.bind(this);
         this.handleInputHp =  this.handleInputHp.bind(this);
 		this.toggleNameEdit = this.toggleNameEdit.bind(this);
-        this.handleInputName =  this.handleInputName.bind(this);
-		this.handleNameKeyPress = this.handleNameKeyPress.bind(this);
         this.submitName =  this.submitName.bind(this);
         this.handleRemoveCharacter = this.handleRemoveCharacter.bind(this);
     }
@@ -35,22 +33,8 @@ export class Character extends React.Component {
 		this.setState({ isNameEditModalOpen: !this.state.isNameEditModalOpen });
     }
 	
-	handleInputName(e){
-		const newName= e.target.value;
-    
-		this.setState({
-			inputName: newName
-        });
-    }
-	
-	handleNameKeyPress(e) {
-		if (e.key == Constants.enterKey) {
-			this.submitName();
-		}
-	}
-	
-	submitName() {
-		const newName = this.state.inputName;
+	submitName(name) {
+		const newName = name;
 		this.props.handleEditName(this.props.id, newName);
 		this.toggleNameEdit();
     }
@@ -78,26 +62,7 @@ export class Character extends React.Component {
 	}
 	
     render() {
-		
-		var nameEditModal = null;
-		if (this.state.isNameEditModalOpen) {
-			nameEditModal = (
-				<div className="name-edit displayed">
-					<div className="choice-container">
-						<Button id="closer" text="&#10006;" onClick={this.toggleNameEdit} />
-						<h3>Enter New Name</h3>
-						<input  type="text"
-								value={this.state.inputName}
-								onChange={this.handleInputName}
-								onKeyPress={this.handleNameKeyPress}
-								autoFocus
-						/>
-						<Button onClick={this.submitName} text="Change Name" />
-					</div>
-                </div>
-			);
-		}
-		
+
 		return (
              
                <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ' alive'}`}>
@@ -126,7 +91,15 @@ export class Character extends React.Component {
                             <Button onClick={() => this.handleClickAddHp(-1)} text="-1" />
                         </div>
                     </div>
-                    {nameEditModal}
+					
+					<SingleTextModal
+						isOpen = {this.state.isNameEditModalOpen}
+						toggle = {this.toggleNameEdit}
+						onSubmit = {this.submitName}
+						labelText = "Enter New Name"
+						inputValue = {this.props.name}
+						buttonText = "Change Name"
+					/>
 				</div>
         );
 	}
