@@ -3,7 +3,6 @@ import { Button } from './button.jsx';
 import { SingleTextModal } from './SingleTextModal.jsx';
 import { Constants } from '../../other/Constants.js';
 
-
 export class Character extends React.Component {
     constructor(props) {
         super(props);
@@ -34,8 +33,7 @@ export class Character extends React.Component {
     }
 	
 	submitName(name) {
-		const newName = name;
-		this.props.handleEditName(this.props.id, newName);
+		this.props.handleEditName(this.props.id, name);
 		this.toggleNameEdit();
     }
 	
@@ -96,9 +94,9 @@ export class Character extends React.Component {
 						isOpen = {this.state.isNameEditModalOpen}
 						toggle = {this.toggleNameEdit}
 						onSubmit = {this.submitName}
-						labelText = "Enter New Name"
+						labelText = {Constants.editNameLabelString}
 						inputValue = {this.props.name}
-						buttonText = "Change Name"
+						buttonText = {Constants.editNameButtonString}
 					/>
 				</div>
         );

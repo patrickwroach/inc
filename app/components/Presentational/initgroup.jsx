@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from './button.jsx';
 import { Character } from './character.jsx';
+import { SingleTextModal } from './SingleTextModal.jsx';
 import { Constants } from '../../other/Constants.js';
 
 export class InitGroup extends React.Component {
@@ -9,17 +10,13 @@ export class InitGroup extends React.Component {
         this.state = {
             toggleGroup: 'inactive',
             toggleButtonText: 'Show Group',
-            NameEdit: 'hidden',
 			isNameEditModalOpen: false,
 			isInitEditModalOpen: false,
-            inputName: this.props.name,
             inputInit: this.props.init,
            
         };
         this.toggleGroup = this.toggleGroup.bind(this);
 		this.toggleNameEdit = this.toggleNameEdit.bind(this);
-        this.handleInputName =  this.handleInputName.bind(this);
-		this.handleNameKeyPress = this.handleNameKeyPress.bind(this);
         this.submitName =  this.submitName.bind(this);
 		this.toggleInitEdit = this.toggleInitEdit.bind(this);
         this.handleInputInit =  this.handleInputInit.bind(this);
@@ -47,22 +44,9 @@ export class InitGroup extends React.Component {
 	toggleNameEdit() {
 		this.setState({ isNameEditModalOpen: !this.state.isNameEditModalOpen });
     }
- 
-
-	handleInputName(e) {
-		const newName = e.target.value;
-		this.setState({ inputName: newName });
-    }
 	
-	handleNameKeyPress(e) {
-		if (e.key == Constants.enterKey) {
-			this.submitName();
-		}
-	}
-	
-	submitName() {
-		const newName = this.state.inputName;
-		this.props.handleEditName(this.props.id, newName);
+	submitName(name) {
+		this.props.handleEditName(this.props.id, name);
 		this.toggleNameEdit();
     }
 	
@@ -108,25 +92,6 @@ export class InitGroup extends React.Component {
 			</li>
 		);
 		
-		var nameEditModal = null;
-		if (this.state.isNameEditModalOpen) {
-			nameEditModal = (
-				<div className="name-edit displayed">
-					<div className="choice-container">
-						<Button id="closer" text="&#10006;" onClick={this.toggleNameEdit} />
-						<h3>Enter new name</h3>
-						<input  type="text"
-								value={this.state.inputName}
-								onChange={this.handleInputName}
-								onKeyPress={this.handleNameKeyPress}
-								autoFocus
-						/>
-						<Button onClick={this.submitName} text="Change Name" />
-					</div>
-				</div>
-			);
-		}
-		
 		var initEditModal = null;
 		if (this.state.isInitEditModalOpen) {
 			initEditModal = (
@@ -161,7 +126,16 @@ export class InitGroup extends React.Component {
                 </div>
                 <h3 className="init-number">Init: {this.props.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>                           
                 {Characters}
-				{nameEditModal}
+				
+				<SingleTextModal
+					isOpen = {this.state.isNameEditModalOpen}
+					toggle = {this.toggleNameEdit}
+					onSubmit = {this.submitName}
+					labelText = {Constants.editNameLabelString}
+					inputValue = {this.props.name}
+					buttonText = {Constants.editNameButtonString}
+				/>
+				
 				{initEditModal}
             </ul>
         )
