@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from './button.jsx';
 import { Character } from './character.jsx';
+import { Constants } from '../../other/Constants.js';
 
 export class InitGroup extends React.Component {
     constructor(props) {
@@ -54,7 +55,7 @@ export class InitGroup extends React.Component {
     }
 	
 	handleNameKeyPress(e) {
-		if (e.key == 'Enter') {
+		if (e.key == Constants.enterKey) {
 			this.submitName();
 		}
 	}
@@ -75,7 +76,7 @@ export class InitGroup extends React.Component {
     }
 	
 	handleInitKeyPress(e) {
-		if (e.key == 'Enter') {
+		if (e.key == Constants.enterKey) {
 			this.submitInit();
 		}
 	}

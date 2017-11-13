@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from './button.jsx';
+import { Constants } from '../../other/Constants.js';
+
 export class AddChar extends React.Component {
      constructor(props) {
     super(props);
@@ -64,7 +66,7 @@ export class AddChar extends React.Component {
     }
 	
 	handleKeyPress (e) {
-		if (e.key == 'Enter') {
+		if (e.key == Constants.enterKey) {
 			this.props.onAddCharSubmit();
 		}
 	}

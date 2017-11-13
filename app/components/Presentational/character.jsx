@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from './button.jsx';
+import { Constants } from '../../other/Constants.js';
 
 
 export class Character extends React.Component {
@@ -43,7 +44,7 @@ export class Character extends React.Component {
     }
 	
 	handleNameKeyPress(e) {
-		if (e.key == 'Enter') {
+		if (e.key == Constants.enterKey) {
 			this.submitName();
 		}
 	}
