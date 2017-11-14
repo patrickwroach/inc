@@ -258,7 +258,6 @@ p {
 .content-container#init-container {
   padding-bottom: 40px;
   position: relative;
-  top: -92px;
   display: table;
   padding-top: 65px;
 }
@@ -272,11 +271,6 @@ p {
   position: relative;
 }
 .content-container#init-container .character.index0 {
-  display: none;
-  animation: hide-list-top linear 0.5s;
-  height: 92px;
-}
-.content-container#init-container .character.index1 {
   box-shadow: 0 10px 2px -5px rgba(47, 47, 47, 0.5);
   margin-bottom: 13px;
 }

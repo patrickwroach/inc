@@ -306,7 +306,7 @@ p {
 .content-container#init-container {
   padding-bottom: @footer-height;
   position: relative;
-  top:-92px;
+  
   display: table;
   padding-top: @nav-height;
  
@@ -320,12 +320,12 @@ p {
     border-bottom: 1px solid @dark;
     position: relative;
 
-    &.index0{
-      display:none;
-      animation: hide-list-top linear .5s;
-      height:92px;
-    }
-    &.index1 {
+    // &.index0{
+    //   display:none;
+    //   animation: hide-list-top linear .5s;
+    //   height:92px;
+    // }
+    &.index0 {
       box-shadow: 0 10px 2px -5px fade(@dark, 50%);
       margin-bottom: 13px;
     }
