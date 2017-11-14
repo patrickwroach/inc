@@ -3,6 +3,9 @@ import Shortid from 'shortid';
 import { InitGroup } from './initgroup.jsx';
 import { Button } from './button.jsx';
 import { AddChar } from './addchar.jsx';
+import { ClearEncounterModal } from './ClearEncounterModal.jsx';
+import { Constants } from '../../other/Constants.js';
+
 /*
 let initGroupTemplate = {
 	id: "group-kitties",
@@ -107,7 +110,8 @@ export class Encounter extends React.Component {
         this.state = {
 			initGroups: initGroupArray,
 			characters: charArray,
-			isAddCharModalOpen: false,                      
+			isAddCharModalOpen: false,
+			isClearEncounterModalOpen: false,
 			newName: 'Unnamed',
 			newType: 'PC',
 			newHp: 1,
@@ -137,6 +141,9 @@ export class Encounter extends React.Component {
         this.showHp = this.showHp.bind(this);
         this.hideHp = this.hideHp.bind(this);
 		this.endTurn = this.endTurn.bind(this);
+		this.toggleClearEncounterModal = this.toggleClearEncounterModal.bind(this);
+		this.clearNpcs = this.clearNpcs.bind(this);
+		this.clearAll = this.clearAll.bind(this);
     }  
     
 
@@ -311,6 +318,24 @@ export class Encounter extends React.Component {
             }      
         }
     }
+	
+	toggleClearEncounterModal() {
+		this.setState({ isClearEncounterModalOpen: !this.state.isClearEncounterModalOpen });
+	}
+	
+	clearNpcs() {
+		
+	}
+	
+	clearAll() {
+		this.setState({
+			initGroups: initGroupArray,
+			characters: charArray,
+			round: 1,
+			turns: 0
+		});
+		this.toggleClearEncounterModal();
+	}
 
 	
     render() {
@@ -351,7 +376,7 @@ export class Encounter extends React.Component {
 						text="End Turn" 
 						id="endTurnButton" 
 						onClick = {this.endTurn}
-					/>            
+					/>          
 					<AddChar 
 						onAddCharSubmit = {this.addChar}
 						toggleShowAmount = {()=> this.showAmount()}
@@ -368,6 +393,18 @@ export class Encounter extends React.Component {
 						onChangeInit = {this.setNewInit}
 						onChangeAmount = {this.setNewAmount}
 						selectedType = {this.state.newType}
+					/>
+					<Button 
+						text = {Constants.clearEncounterModalButtonString}
+						id = "clearEncounter" 
+						onClick = {this.toggleClearEncounterModal}
+					/>
+					<ClearEncounterModal
+						isOpen = {this.state.isClearEncounterModalOpen}
+						toggle = {this.toggleClearEncounterModal}
+						labelText = {Constants.clearEncounterLabelString}
+						clearAllButtonText = {Constants.clearAllButtonString}
+						onClearAll = {this.clearAll}
 					/>
 				</ul>  
 			</div>     

@@ -10,4 +10,16 @@ export class Constants {
 	static get editNameButtonString() {
 		return 'Change Name';
 	}
+	
+	static get clearEncounterModalButtonString() {
+		return 'Clear Encounter';
+	}
+	
+	static get clearEncounterLabelString() {
+		return 'Clear which characters?';
+	}
+	
+	static get clearAllButtonString() {
+		return 'Clear All';
+	}
 }
