@@ -373,7 +373,7 @@ export class Encounter extends React.Component {
 						onClick = {this.toggleAddCharModal}
 					/>         
 					<Button 
-						text="End Turn" 
+						text= {String.fromCharCode(9668) + "End Turn"}
 						id="endTurnButton" 
 						onClick = {this.endTurn}
 					/>          

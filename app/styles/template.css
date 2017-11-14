@@ -221,22 +221,31 @@ p {
 }
 #roundCounter {
   position: fixed;
-  top: 15px;
-  right: 11%;
+  top: 20px;
+  right: 10px;
   z-index: 6;
 }
 #roundCounter h2 {
   display: block;
   color: #fdfdfd;
 }
-#addCharButton {
+#addCharButton,
+#clearEncounter {
   position: fixed;
-  bottom: 12%;
-  right: 2%;
+  top: 10px;
+  border: 1px solid #fdfdfd;
+  z-index: 6;
+  box-shadow: none;
+}
+#clearEncounter {
+  right: 100px;
+}
+#addCharButton {
+  right: 250px;
 }
 #endTurnButton {
   position: fixed;
-  top: 150px;
+  top: 115px;
   right: 2%;
 }
 #roundEndButton {
@@ -440,10 +449,13 @@ p {
 }
 .content-container#init-container .character.nonChar {
   min-height: 0;
-  padding: 5px 0;
+  padding: 10px 0;
   margin: 5px 0;
   width: 100%;
   display: table;
+}
+.content-container#init-container .character.nonChar .char-name {
+  padding: 15px 0;
 }
 .content-container#init-container .character.nonChar.index0 {
   margin-bottom: 12px;
@@ -688,7 +700,6 @@ p {
   .content-container .content {
     margin: 0 auto 0 5%;
   }
-  #addCharButton,
   #endTurnButton {
     right: 5px;
     padding: 10px 5px;
@@ -735,16 +746,21 @@ p {
     display: none;
   }
   #addCharButton,
-  #endTurnButton {
+  #endTurnButton,
+  #clearEncounter {
     top: inherit;
     right: inherit;
     bottom: 2px;
     z-index: 5;
     box-shadow: none;
     padding: 5px 10px;
+    border: none;
   }
   #addCharButton {
     left: 10px;
+  }
+  #clearEncounter {
+    left: 100px;
   }
   #endTurnButton {
     right: 10px;
