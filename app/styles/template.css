@@ -142,16 +142,16 @@ h5 {
                                   supported by Chrome and Opera */
 }
 h1 {
-  font-size: 2em;
+  font-size: 1.75em;
 }
 h2 {
-  font-size: 1.5em;
+  font-size: 1.1em;
 }
 h3 {
-  font-size: 1.25em;
+  font-size: 1.0em;
 }
 h4 {
-  font-size: 1.125em;
+  font-size: .95 em;
 }
 p {
   margin-bottom: .25em;
@@ -258,12 +258,12 @@ p {
 .content-container#init-container {
   padding-bottom: 40px;
   position: relative;
+  top: -92px;
   display: table;
   padding-top: 65px;
 }
 .content-container#init-container .character {
-  min-height: 105px;
-  padding: 25px 0;
+  padding: 10px 0;
   margin: 5px 0;
   width: 100%;
   display: table;
@@ -272,6 +272,11 @@ p {
   position: relative;
 }
 .content-container#init-container .character.index0 {
+  display: none;
+  animation: hide-list-top linear 0.5s;
+  height: 92px;
+}
+.content-container#init-container .character.index1 {
   box-shadow: 0 10px 2px -5px rgba(47, 47, 47, 0.5);
   margin-bottom: 13px;
 }
@@ -295,8 +300,11 @@ p {
   width: 100%;
   display: table;
   vertical-align: middle;
-  min-height: 105px;
   position: relative;
+}
+.content-container#init-container .character .char-bar .char-name,
+.content-container#init-container .character .group-name-bar .char-name {
+  padding: 9px 0px 9px 5px;
 }
 .content-container#init-container .character .char-bar .remove,
 .content-container#init-container .character .group-name-bar .remove {
@@ -314,9 +322,10 @@ p {
   width: 75px;
   color: #494949;
   margin-left: 10px;
+  padding-right: 10px;
 }
 .content-container#init-container .character .hp-count .hp {
-  font-size: 2em;
+  font-size: 1.25em;
 }
 .content-container#init-container .character .hp-count .hp-toggles {
   display: table;
@@ -377,17 +386,25 @@ p {
 .content-container#init-container .character.nonChar .groupNumber {
   display: none;
 }
+.content-container#init-container .character.PC .char-name,
+.content-container#init-container .character.nonChar .char-name {
+  padding: 9px 0px 9px 5px;
+}
 .content-container#init-container .character.PC .hp-count,
 .content-container#init-container .character.nonChar .hp-count {
   display: none;
 }
+.content-container#init-container .character.Group .group-name-bar .button-container {
+  vertical-align: bottom;
+  padding-right: 10px;
+}
 .content-container#init-container .character.Group .char-bar {
   border-bottom: none;
   display: none;
-  padding-bottom: 5px;
+  padding: 10px 0 5px;
 }
 .content-container#init-container .character.Group .char-bar .remove {
-  top: 1px;
+  top: 5px;
 }
 .content-container#init-container .character.Group .char-bar .groupNumber {
   position: relative;
@@ -396,14 +413,14 @@ p {
   color: #626262;
 }
 .content-container#init-container .character.Group .char-bar .char-name h1 {
-  font-size: 1.75em;
+  font-size: 1.5em;
   color: #626262;
 }
 .content-container#init-container .character.Group .char-bar .hp-count {
   margin-left: 10px;
 }
 .content-container#init-container .character.Group .char-bar .hp-count .hp {
-  font-size: 1.75em;
+  font-size: 1.1em;
 }
 .content-container#init-container .character.Group .char-bar .hp-count .hp h2 {
   color: #494949;
@@ -482,6 +499,9 @@ p {
 .content-container#init-container .character.NPC .char-bar.dead .edit-pen {
   display: none;
 }
+.content-container#init-container .character.NPC .char-bar.dead .char-name {
+  padding: 0 0 0 5px;
+}
 .content-container#init-container .character.NPC .char-bar.dead .char-name h1:before {
   content: "";
 }
@@ -555,6 +575,9 @@ p {
 .content-container#init-container .init-edit.hidden,
 .content-container#init-container .name-edit.hidden {
   display: none;
+}
+.content-container#init-container .moving {
+  animation: list-scroll ease 0.25s;
 }
 #add-char-wizard {
   position: fixed;
@@ -709,9 +732,6 @@ p {
     padding: 0;
     width: 50px;
   }
-  .content-container#init-container .content .character .char-bar .aliveDead .button {
-    padding: 5px;
-  }
   .content-container#footer {
     background-color: rgba(47, 47, 47, 0.25);
     position: fixed;
@@ -747,5 +767,31 @@ p {
   #add-char-wizard .choice-container .button {
     width: 70px;
     padding: 10px 5px;
+  }
+}
+@-webkit-keyframes list-scroll {
+  0% {
+    transform: translateY(92px);
+  }
+}
+@keyframes list-scroll {
+  0% {
+    transform: translateY(92px);
+  }
+}
+@-webkit-keyframes hide-list-top {
+  0% {
+    display: table;
+  }
+  99% {
+    display: table;
+  }
+}
+@keyframes hide-list-top {
+  0% {
+    display: table;
+  }
+  99% {
+    display: table;
   }
 }

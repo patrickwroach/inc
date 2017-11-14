@@ -150,22 +150,22 @@ h5 {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.75em;
 
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1.1em;
 
 }
 
 h3 {
-  font-size: 1.25em;
+  font-size: 1.0em;
 
 }
 
 h4 {
-  font-size: 1.125em;
+  font-size: .95 em;
 
 }
 
@@ -183,7 +183,7 @@ table {
 @light: #fdfdfd;
 @hightlight: #7F3333;
 //standardized widths and heights
-@character-min-height: 105px;
+@character-min-height: 85px;
 @footer-height: 40px;
 @nav-height: 65px;
 //standard layouts
@@ -306,12 +306,13 @@ p {
 .content-container#init-container {
   padding-bottom: @footer-height;
   position: relative;
+  top:-92px;
   display: table;
   padding-top: @nav-height;
-
+ 
   .character {
-    min-height: @character-min-height;
-    padding: 25px 0;
+ 
+    padding: 10px 0;
     margin: 5px 0;
     width: 100%;
     display: table;
@@ -319,7 +320,12 @@ p {
     border-bottom: 1px solid @dark;
     position: relative;
 
-    &.index0 {
+    &.index0{
+      display:none;
+      animation: hide-list-top linear .5s;
+      height:92px;
+    }
+    &.index1 {
       box-shadow: 0 10px 2px -5px fade(@dark, 50%);
       margin-bottom: 13px;
     }
@@ -346,9 +352,11 @@ p {
     .group-name-bar {
       width: 100%;
       display: table;
-      vertical-align: middle;
-      min-height: @character-min-height;
+      vertical-align: middle;    
       position: relative;
+      .char-name {
+        padding: 9px 0px 9px 5px;
+      }
       .remove{
         position: absolute;
         display:block;
@@ -367,9 +375,10 @@ p {
       width: 75px;
       color: lighten(@dark, 10%);
       margin-left: 10px;
+      padding-right:10px;
 
       .hp {
-        font-size: 2em;
+        font-size: 1.25em;
       }
 
       .hp-toggles {
@@ -446,6 +455,9 @@ p {
 
     &.PC,
     &.nonChar {
+      .char-name {
+        padding: 9px 0px 9px 5px;
+      }
       .hp-count {
         display: none;
       }
@@ -453,13 +465,18 @@ p {
     }
 
     &.Group {
-     
+      .group-name-bar{
+        .button-container{
+          vertical-align: bottom;
+          padding-right:10px;
+        }
+      }
       .char-bar {
         border-bottom: none;
         display: none;
-        padding-bottom: 5px;
+        padding:10px 0 5px;
         .remove{
-          top:1px;
+          top:5px;
         }
         .groupNumber {
           position: relative;
@@ -471,7 +488,7 @@ p {
 
         .char-name {
           h1 {
-            font-size: 1.75em;
+            font-size: 1.5em;
             color: lighten(@dark, 20%);
           }
         }
@@ -481,7 +498,7 @@ p {
           margin-left: 10px;
 
           .hp {
-            font-size: 1.75em;
+            font-size: 1.1em;
 
             h2 {
               color: lighten(@dark, 10%);
@@ -621,6 +638,8 @@ p {
           }
 
           .char-name {
+            padding:0 0 0 5px;
+           
             h1:before {
               content: "";
             }
@@ -636,6 +655,7 @@ p {
     }
 
     &.Group {
+
       .char-bar {
         .aliveDead {
           width: 75px;
@@ -646,6 +666,7 @@ p {
       }
     }
   }
+  
   //Editing items
   .edit-pen {
     transform: rotate(120deg);
@@ -712,6 +733,10 @@ p {
     &.hidden {
       display: none;
     }
+  }
+  //animation class
+  .moving{
+      animation:list-scroll ease .25s;
   }
 }
 //Add Character Wizard
@@ -930,10 +955,7 @@ p {
             padding: 0;
             width: 50px;
 
-            .button {
-              padding: 5px;
-
-            }
+            
           }
         }
       }
@@ -987,5 +1009,31 @@ p {
       }
 
     }
+  }
+}
+@-webkit-keyframes list-scroll{
+  0% {
+    transform:translateY(92px);
+  }
+}
+@keyframes list-scroll{
+  0% {
+    transform:translateY(92px);
+  }
+}
+@-webkit-keyframes hide-list-top{
+  0% {
+    display:table;
+  }
+  99% {
+    display:table;
+  }
+}
+@keyframes hide-list-top{
+  0% {
+    display:table;
+  }
+  99% {
+    display:table;
   }
 }
