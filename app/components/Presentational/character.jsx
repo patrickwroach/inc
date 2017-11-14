@@ -84,7 +84,7 @@ export class Character extends React.Component {
                         <div className="hp-toggles">
                             <Button onClick={() => this.handleClickAddHp(1)} text="+1"  />
                             <Button onClick={() => this.handleClickAddHp(+this.state.inputHp)} text="+"  />
-                            <input  onChange={this.handleInputHp} type="number" min="1" placeholder="5" className="inputToggle"/>
+                            <input  onChange={this.handleInputHp} type="number" min="1" placeholder="4" onFocus={(e) => e.target.placeholder = ""}   className="inputToggle"/>
                             <Button onClick={() => this.handleClickAddHp(-this.state.inputHp)} text="-"  />
                             <Button onClick={() => this.handleClickAddHp(-1)} text="-1" />
                         </div>
