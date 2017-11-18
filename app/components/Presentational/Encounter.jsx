@@ -173,21 +173,40 @@ export class Encounter extends React.Component {
 	removeCharacter(charId, initGroupId) {
 		var newInitGroupArray = this.state.initGroups.slice();
 		var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
-		var newCharArray = newInitGroupArray[index].charIds;
-		var charIndex = newCharArray.indexOf(charId);
-		newInitGroupArray[index].charIds.splice(charIndex, 1);
+		var newCharIdsArray = newInitGroupArray[index].charIds;
+		var charIdsIndex = newCharIdsArray.indexOf(charId);
+		newInitGroupArray[index].charIds.splice(charIdsIndex, 1);
 		
 		if (newInitGroupArray[index].charIds.length === 0){
 			newInitGroupArray.splice(index, 1);
-		 }		
-		this.setState({ initGroups: newInitGroupArray});
+		}
+		
+		var newCharArray = this.state.characters.slice();
+		var charIndex = newCharArray.indexOf(charId);
+		newCharArray.splice(charIndex, 1);
+			
+		this.setState({
+			initGroups: newInitGroupArray,
+			characters: newCharArray
+		});
 	}
 
 	removeInitGroup(initGroupId) {
 		var newInitGroupArray = this.state.initGroups.slice();
+		var newCharArray = this.state.characters.slice();
+		for (var i = 0; i < newInitGroupArray.charIds.length; i++) {
+			var charId = newInitGroupArray.charIds[i];
+			var charIndex = newCharArray.indexOf(charId);
+			newCharArray.splice(charIndex, 1);
+		}
+		
 		var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
 		newInitGroupArray.splice(index, 1);
-		this.setState({ initGroups: newInitGroupArray });
+		
+		this.setState({
+			initGroups: newInitGroupArray,
+			characters: newCharArray
+		});
 	}
 
 	
