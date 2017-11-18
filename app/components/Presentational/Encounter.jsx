@@ -182,7 +182,7 @@ export class Encounter extends React.Component {
 		}
 		
 		var newCharArray = this.state.characters.slice();
-		var charIndex = newCharArray.indexOf(charId);
+		var charIndex = newCharArray.findIndex(c => c.id === charId);
 		newCharArray.splice(charIndex, 1);
 			
 		this.setState({
@@ -193,9 +193,11 @@ export class Encounter extends React.Component {
 
 	removeInitGroup(initGroupId) {
 		var newInitGroupArray = this.state.initGroups.slice();
+		var initGroupIndex = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
 		var newCharArray = this.state.characters.slice();
-		for (var i = 0; i < newInitGroupArray.charIds.length; i++) {
-			var charId = newInitGroupArray.charIds[i];
+		var initGroup = newInitGroupArray[initGroupIndex];
+		for (var i = 0; i < initGroup.charIds.length; i++) {
+			var charId = initGroup.charIds[i];
 			var charIndex = newCharArray.indexOf(charId);
 			newCharArray.splice(charIndex, 1);
 		}
