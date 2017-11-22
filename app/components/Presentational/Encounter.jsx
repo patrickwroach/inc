@@ -364,6 +364,7 @@ export class Encounter extends React.Component {
 			round: 1,
 			turns: 0
 		});
+		this.toggleClearEncounterModal();
 	}
 	
 	clearAll() {
@@ -443,6 +444,7 @@ export class Encounter extends React.Component {
 						toggle = {this.toggleClearEncounterModal}
 						labelText = {Constants.clearEncounterLabelString}
 						clearAllButtonText = {Constants.clearAllButtonString}
+						clearNpcsButtonText = {Constants.clearNpcsButtonString}
 						onClearAll = {this.clearAll}
 						onClearNpcs = {this.clearNpcs}
 					/>
