@@ -198,7 +198,7 @@ export class Encounter extends React.Component {
 		var initGroup = newInitGroupArray[initGroupIndex];
 		for (var i = 0; i < initGroup.charIds.length; i++) {
 			var charId = initGroup.charIds[i];
-			var charIndex = newCharArray.indexOf(charId);
+			var charIndex = newCharArray.findIndex(c => c.id === charId);
 			newCharArray.splice(charIndex, 1);
 		}
 		
