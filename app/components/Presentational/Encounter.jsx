@@ -345,7 +345,25 @@ export class Encounter extends React.Component {
 	}
 	
 	clearNpcs() {
+		var currentInitGroupArray = this.state.initGroups.slice();
+		var currentCharArray = this.state.initGroups.slice();
+		var newInitGroupArray = [];
+		var newCharArray = [];
+		for (var i = 0; i < currentInitGroupArray.length; i++) {
+			var initGroup = currentInitGroupArray[i];
+			if (initGroup.type === 'PC' || initGroup.type === 'nonChar') {
+				newInitGroupArray.push(initGroup);
+				for (var j = 0; j < initGroup.charIds.length; j++) {
+					// todo: build get and push characters onto the newCharArray
+				}
+			}
+		}
 		
+		this.setState({ 
+			initGroups: newInitGroupArray,
+			round: 1,
+			turns: 0
+		});
 	}
 	
 	clearAll() {
@@ -426,6 +444,7 @@ export class Encounter extends React.Component {
 						labelText = {Constants.clearEncounterLabelString}
 						clearAllButtonText = {Constants.clearAllButtonString}
 						onClearAll = {this.clearAll}
+						onClearNpcs = {this.clearNpcs}
 					/>
 				</ul>  
 			</div>     

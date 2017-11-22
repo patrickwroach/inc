@@ -13,6 +13,7 @@ export class ClearEncounterModal extends React.Component {
 					<Button id="closer" text="&#10006;" onClick={this.props.toggle} />
 					<h3>{this.props.labelText}</h3>
 					<Button onClick={this.props.onClearAll} text={this.props.clearAllButtonText} />
+					<Button onClick={this.props.onClearNpcs} text={this.props.clearNpcsButtonText} />
 				</div>
 			</div>
 		);

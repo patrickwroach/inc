@@ -22,4 +22,8 @@ export class Constants {
 	static get clearAllButtonString() {
 		return 'Clear All';
 	}
+	
+	static get clearNpcsButtonString() {
+		return 'Clear NPCs';
+	}
 }
