@@ -346,7 +346,7 @@ export class Encounter extends React.Component {
 	
 	clearNpcs() {
 		var currentInitGroupArray = this.state.initGroups.slice();
-		var currentCharArray = this.state.initGroups.slice();
+		var currentCharArray = this.state.characters.slice();
 		var newInitGroupArray = [];
 		var newCharArray = [];
 		for (var i = 0; i < currentInitGroupArray.length; i++) {
@@ -354,13 +354,15 @@ export class Encounter extends React.Component {
 			if (initGroup.type === 'PC' || initGroup.type === 'nonChar') {
 				newInitGroupArray.push(initGroup);
 				for (var j = 0; j < initGroup.charIds.length; j++) {
-					// todo: build get and push characters onto the newCharArray
+					var character = currentCharArray.find(c => c.id === initGroup.charIds[j]);
+					newCharArray.push(character);
 				}
 			}
 		}
 		
 		this.setState({ 
 			initGroups: newInitGroupArray,
+			characters: newCharArray,
 			round: 1,
 			turns: 0
 		});
