@@ -76,7 +76,7 @@ export class AddChar extends React.Component {
 			return null;
 		}
 		return (
-			<div id="add-char-wizard" className="active">
+			<div id="addCharModal">
 				<div className="choice-container">
 				<Button id="closer" text="&#10006;" onClick={this.props.toggleAddCharModal} />
 					<h2> Add a character to the Encounter </h2>
