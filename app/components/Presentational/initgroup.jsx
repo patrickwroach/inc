@@ -79,7 +79,7 @@ export class InitGroup extends React.Component {
 			<li key={c.id} >
 				<Character
                     id = {c.id}
-                    igid = {this.props.id}
+                    initGroupId = {this.props.id}
 					name = {c.name}
 					hp = {c.hp}
 					hpMax = {c.hpMax}
@@ -88,6 +88,8 @@ export class InitGroup extends React.Component {
                     handleRemoveCharacter = {this.props.handleRemoveCharacter}
                     handleRemoveInitGroup = {this.props.handleRemoveInitGroup}
                     onToggleNameEdit = {() => this.toggleNameEdit()}
+					handleStartRound = {this.props.handleStartRound}
+					initPosition = {this.props.initPosition}
 				/>
 			</li>
 		);
@@ -112,7 +114,7 @@ export class InitGroup extends React.Component {
 		}
         
         return (
-            <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type + ' index'+ this.props.initPostion}> 
+            <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type + ' index'+ this.props.initPosition}> 
                 <div className="group-name-bar">
                 <Button text="&#10006;" addClass="remove " onClick={() => this.handleRemoveInitGroup()} />
                         <div className="char-name">

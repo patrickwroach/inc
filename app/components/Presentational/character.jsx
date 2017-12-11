@@ -38,7 +38,7 @@ export class Character extends React.Component {
     }
 	
     handleRemoveCharacter(){
-         this.props.handleRemoveCharacter(this.props.id, this.props.igid);
+         this.props.handleRemoveCharacter(this.props.id, this.props.initGroupId);
     }
    
      toggleAliveDead() {
@@ -60,18 +60,36 @@ export class Character extends React.Component {
 	}
 	
     render() {
-
+		var charNameDisplay = null;
+		if (this.props.id === 'new-round' && this.props.initPosition === 0) {
+			charNameDisplay = (
+				<div className="char-name">
+					<Button text="&#10006;" addClass="remove "  onClick={() => this.handleRemoveCharacter()} />
+					<h1>
+						<Button text={this.props.name} onClick={this.props.handleStartRound} />
+						<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
+					</h1>
+				</div>
+			);
+		}
+		else {
+			charNameDisplay = (
+				<div className="char-name">
+					<Button text="&#10006;" addClass="remove "  onClick={() => this.handleRemoveCharacter()} />
+					<h1>
+						{this.props.name}
+						<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
+					</h1>
+				</div>
+			);
+		}
+	
+	
 		return (
              
                <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ' alive'}`}>
-                
-                    <div className="char-name">
-                    <Button text="&#10006;" addClass="remove "  onClick={() => this.handleRemoveCharacter()} />
-						<h1>
-							{this.props.name}
-							<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
-						</h1>
-                    </div>
+					{charNameDisplay}
+                    
                     <div className="aliveDead button-container ">
                      <Button onClick={() => this.toggleAliveDead()} text={this.props.hp <= 0 ? 'revive' : ' kill'} />
                  

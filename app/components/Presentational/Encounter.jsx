@@ -121,7 +121,7 @@ export class Encounter extends React.Component {
 			newAmount: 1,
 			amountVis: 'hidden',
 			hpVis: 'hidden',
-			round: 1,
+			round: 0,
 			turns: 0,
 
 		};
@@ -327,16 +327,21 @@ export class Encounter extends React.Component {
 	// May not be used anymore after merge with data-organization branch.  Keeping so it can
 	//  be incorporated into endTurn (renamed function in branch)
 	endTurn() {
-		var isEndTurnDisplayed = true;
+		var isEndTurnDisplayed = false;
 		var currentRound = this.state.round;
 		var newInitGroupsArray = this.state.initGroups.slice();
 
 		if (this.state.initGroups.length > 1) {
 			newInitGroupsArray.push(newInitGroupsArray.shift());
-			if (newInitGroupsArray[0].id === "new-round") {
-				currentRound++;
-				isEndTurnDisplayed = false;
+			if (newInitGroupsArray[0].id !== "group-start") {
+				isEndTurnDisplayed = true;
 			}
+			if (newInitGroupsArray[newInitGroupsArray.length - 1].id === "group-start") {
+				currentRound++;
+			}
+		}
+		else {
+			alert('Please add at least one character.');
 		}
 
 		this.setState({
@@ -394,7 +399,7 @@ export class Encounter extends React.Component {
 					name={ig.name}
 					init={ig.init}
 					type={ig.type}
-					initPostion={index}
+					initPosition={index}
 					charArray={this.state.characters.filter(character => ig.charIds.includes(character.id))}
 					handleAddHp={this.addHp}
 					handleEditName={this.editInitGroupName}
@@ -402,6 +407,7 @@ export class Encounter extends React.Component {
 					handleRemoveCharacter={this.removeCharacter}
 					handleEditCharName={this.editCharName}
 					handleEditInit={this.editInit}
+					handleStartRound={this.endTurn}
 				/>
 			</li>
 		);
