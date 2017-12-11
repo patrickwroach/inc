@@ -2,6 +2,7 @@ import React from 'react';
 import Shortid from 'shortid';
 import { InitGroup } from './initgroup.jsx';
 import { Button } from './button.jsx';
+import { EndTurnButton } from './endTurnButton.jsx';
 import { AddChar } from './addchar.jsx';
 import { ClearEncounterModal } from './ClearEncounterModal.jsx';
 import { Constants } from '../../other/Constants.js';
@@ -34,7 +35,7 @@ let initGroupArray = [
 	{
 		id: "group-start",
 		name: "start of new round",
-		init: Number.MIN_SAFE_INTEGER,
+		init: Number.MAX_SAFE_INTEGER,
 		type: "nonChar",
 
 		charIds: ["new-round"]
@@ -110,6 +111,7 @@ export class Encounter extends React.Component {
 		this.state = {
 			initGroups: initGroupArray,
 			characters: charArray,
+			isEndTurnDisplayed:false,
 			isAddCharModalOpen: false,
 			isClearEncounterModalOpen: false,
 			newName: 'Unnamed',
@@ -120,7 +122,8 @@ export class Encounter extends React.Component {
 			amountVis: 'hidden',
 			hpVis: 'hidden',
 			round: 1,
-			turns: 0
+			turns: 0,
+
 		};
 
 		this.addHp = this.addHp.bind(this);
@@ -324,20 +327,23 @@ export class Encounter extends React.Component {
 	// May not be used anymore after merge with data-organization branch.  Keeping so it can
 	//  be incorporated into endTurn (renamed function in branch)
 	endTurn() {
+		var isEndTurnDisplayed = true;
+		var currentRound = this.state.round;
+		var newInitGroupsArray = this.state.initGroups.slice();
+
 		if (this.state.initGroups.length > 1) {
-			var newInitGroupsArray = this.state.initGroups.slice();
 			newInitGroupsArray.push(newInitGroupsArray.shift());
-			this.setState({
-				initGroups: newInitGroupsArray
-			}
-			);
-			if (this.state.initGroups[0].name === "start of new round") {
-				var currentRound = this.state.round + 1;
-				this.setState({
-					round: currentRound
-				});
+			if (newInitGroupsArray[0].id === "new-round") {
+				currentRound++;
+				isEndTurnDisplayed = false;
 			}
 		}
+
+		this.setState({
+			initGroups: newInitGroupsArray,
+			round: currentRound,
+			isEndTurnDisplayed: isEndTurnDisplayed
+		})
 	}
 
 	toggleClearEncounterModal() {
@@ -414,10 +420,9 @@ export class Encounter extends React.Component {
 						id="addCharButton"
 						onClick={this.toggleAddCharModal}
 					/>
-					<Button
-						text={String.fromCharCode(9668) + "End Turn"}
-						id="endTurnButton"
-						onClick={this.endTurn}
+					<EndTurnButton
+						isDisplayed={this.state.isEndTurnDisplayed}
+						endTurn={this.endTurn}
 					/>
 					<AddChar
 						onAddCharSubmit={this.addChar}

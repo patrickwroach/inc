@@ -26,4 +26,8 @@ export class Constants {
 	static get clearNpcsButtonString() {
 		return 'Clear NPCs';
 	}
+
+	static get endTurnButtonString() {
+		return String.fromCharCode(9668) + 'End Turn';
+	}
 }
