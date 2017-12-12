@@ -5,6 +5,7 @@ import { Button } from './button.jsx';
 import { EndTurnButton } from './endTurnButton.jsx';
 import { AddChar } from './addchar.jsx';
 import { ClearEncounterModal } from './ClearEncounterModal.jsx';
+import { MessageModal } from './MessageModal.jsx';
 import { Constants } from '../../other/Constants.js';
 
 /*
@@ -123,7 +124,8 @@ export class Encounter extends React.Component {
 			hpVis: 'hidden',
 			round: 0,
 			turns: 0,
-
+			isMessageModalDisplayed: false,
+			messageModalText: ""
 		};
 
 		this.addHp = this.addHp.bind(this);
@@ -147,6 +149,7 @@ export class Encounter extends React.Component {
 		this.toggleClearEncounterModal = this.toggleClearEncounterModal.bind(this);
 		this.clearNpcs = this.clearNpcs.bind(this);
 		this.clearAll = this.clearAll.bind(this);
+		this.toggleMessageModal = this.toggleMessageModal.bind(this);
 	}
 
 
@@ -341,7 +344,7 @@ export class Encounter extends React.Component {
 			}
 		}
 		else {
-			alert('Please add at least one character.');
+			this.toggleMessageModal(Constants.continueEncounterWithNoCharactersString);
 		}
 
 		this.setState({
@@ -390,6 +393,12 @@ export class Encounter extends React.Component {
 		this.toggleClearEncounterModal();
 	}
 
+	toggleMessageModal(text) {
+		this.setState({ 
+			isMessageModalDisplayed: !this.state.isMessageModalDisplayed,
+			messageModalText: text
+		});
+	}
 
 	render() {
 		const InitGroups = this.state.initGroups.map((ig, index) =>
@@ -460,6 +469,11 @@ export class Encounter extends React.Component {
 						clearNpcsButtonText={Constants.clearNpcsButtonString}
 						onClearAll={this.clearAll}
 						onClearNpcs={this.clearNpcs}
+					/>
+					<MessageModal
+						isDisplayed = {this.state.isMessageModalDisplayed}
+						toggle = {this.toggleMessageModal}
+						text = {this.state.messageModalText}
 					/>
 				</ul>
 			</div>

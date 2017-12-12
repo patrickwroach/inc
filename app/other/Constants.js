@@ -30,4 +30,8 @@ export class Constants {
 	static get endTurnButtonString() {
 		return String.fromCharCode(9668) + 'End Turn';
 	}
+	
+	static get continueEncounterWithNoCharactersString() {
+		return "I thought we'd need at least one Character?  Please add one so we can continue!";
+	}
 }
