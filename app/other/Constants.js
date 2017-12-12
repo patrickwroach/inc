@@ -34,4 +34,8 @@ export class Constants {
 	static get continueEncounterWithNoCharactersString() {
 		return "I thought we'd need at least one Character?  Please add one so we can continue!";
 	}
+	
+	static get startRoundButtonString() {
+		return "start next round";
+	}
 }

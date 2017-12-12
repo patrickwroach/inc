@@ -66,7 +66,7 @@ export class Character extends React.Component {
 				<div className="char-name">
 					<Button text="&#10006;" addClass="remove "  onClick={() => this.handleRemoveCharacter()} />
 					<h1>
-						<Button id = "start-round-button" text={this.props.name} onClick={this.props.handleStartRound} />
+						<Button id = "start-round-button" text={Constants.startRoundButtonString} onClick={this.props.handleStartRound} />
 						<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span>
 					</h1>
 				</div>
