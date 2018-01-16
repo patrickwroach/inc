@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './button.jsx';
-import { SingleTextModal } from './SingleTextModal.jsx';
+import { SingleTextModalContainer } from '../containers/SingleTextModalContainer.jsx';
 import { Constants } from '../../other/Constants.js';
 
 export class Character extends React.Component {
@@ -108,7 +108,7 @@ export class Character extends React.Component {
                         </div>
                     </div>
 					
-					<SingleTextModal
+					<SingleTextModalContainer
 						isOpen = {this.state.isNameEditModalOpen}
 						toggle = {this.toggleNameEdit}
 						onSubmit = {this.submitName}

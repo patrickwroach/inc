@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './button.jsx';
 import { Character } from './character.jsx';
-import { SingleTextModal } from './SingleTextModal.jsx';
+import { SingleTextModalContainer } from '../containers/SingleTextModalContainer.jsx';
 import { Constants } from '../../other/Constants.js';
 
 export class InitGroup extends React.Component {
@@ -129,7 +129,7 @@ export class InitGroup extends React.Component {
                 <h3 className="init-number">Init: {this.props.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>                           
                 {Characters}
 				
-				<SingleTextModal
+				<SingleTextModalContainer
 					isOpen = {this.state.isNameEditModalOpen}
 					toggle = {this.toggleNameEdit}
 					onSubmit = {this.submitName}
