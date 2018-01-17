@@ -1,4 +1,5 @@
 import React from 'react';
+import { Constants } from '../../other/Constants.js';
 import { SingleTextModal } from '../presentational/SingleTextModal.jsx'
 
 export class SingleTextModalContainer extends React.Component {
