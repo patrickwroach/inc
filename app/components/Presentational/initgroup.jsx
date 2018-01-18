@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './button.jsx';
-import { Character } from './character.jsx';
+import { CharacterContainer } from '../containers/CharacterContainer.jsx';
 import { SingleTextModalContainer } from '../containers/SingleTextModalContainer.jsx';
 import { SingleNumberModalContainer } from '../containers/SingleNumberModalContainer.jsx';
 import { Constants } from '../../other/Constants.js';
@@ -61,7 +61,7 @@ export class InitGroup extends React.Component {
   render() {
 		const Characters = this.props.charArray.map((c) =>
 			<li key={c.id} >
-				<Character
+				<CharacterContainer
           id = {c.id}
           initGroupId = {this.props.id}
 					name = {c.name}
