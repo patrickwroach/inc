@@ -7,111 +7,14 @@ import { AddChar } from './addchar.jsx';
 import { ClearEncounterModal } from './ClearEncounterModal.jsx';
 import { MessageModal } from './MessageModal.jsx';
 import { Constants } from '../../other/Constants.js';
-
-/*
-let initGroupTemplate = {
-	id: "group-kitties",
-		name: "",
-		init: 12,
-		type: "Group",
-		charIds: ["kitty-1"]
-};
-let characterTemplate = {
-	id: "kittie-1",
-	name: "Kitty",
-	hp: 10,
-	hpMax: 10
-};
-*/
-let charArray = [
-	{
-		id: "new-round",
-		name: "start of new round",
-		hp: 1,
-		hpMax: 0
-	}
-];
-
-let initGroupArray = [
-	{
-		id: "group-start",
-		name: "start of new round",
-		init: Number.MAX_SAFE_INTEGER,
-		type: "nonChar",
-
-		charIds: ["new-round"]
-	}
-];
-
-function sortInitGroups(left, right) {
-	return right.init - left.init;
-}
-
-function indexOfMaxInit(initGroups) {
-	if (initGroups.length === 0) {
-		return -1;
-	}
-
-	var max = initGroups[0].init;
-	var maxIndex = 0;
-
-	for (var i = 1; i < initGroups.length; i++) {
-		if (initGroups[i].init > max) {
-			maxIndex = i;
-			max = initGroups[i].init;
-		}
-	}
-
-	return maxIndex;
-}
-
-// returns a new array with newInitGroup inserted into initGroupArray
-// initGroupArray should contain elements in init order, though the element with the
-//	largest init may not be at index 0.
-function insertInitGroup(newInitGroup, initGroupArray) {
-	var newInitGroupArray = initGroupArray.slice();
-	var indexMaxInit = indexOfMaxInit(newInitGroupArray);
-
-	// Has the initGroups at top of order (when it contains any elements)
-	var leftArray = newInitGroupArray.slice(0, indexMaxInit);
-	// Starts with the element with the highest init value
-	var rightArray = newInitGroupArray.slice(indexMaxInit, newInitGroupArray.length);
-
-	// Checking new init from top of init order (beginning of rightArray) going down
-	var inserted = false;
-	for (var i = 0; i < rightArray.length; i++) {
-		if (inserted === false && newInitGroup.init > rightArray[i].init) {
-			rightArray.splice(i, 0, newInitGroup);
-			inserted = true;
-		}
-	}
-
-	if (inserted === false) {
-		for (var i = 0; i < leftArray.length; i++) {
-			if (inserted === false && newInitGroup.init > leftArray[i].init) {
-				leftArray.splice(i, 0, newInitGroup);
-				inserted = true;
-			}
-		}
-		if (leftArray.length > 0 && inserted === false) {
-			leftArray.push(newInitGroup);
-			inserted = true;
-		}
-	}
-
-	if (inserted === false) {
-		rightArray.push(newInitGroup);
-	}
-
-	return leftArray.concat(rightArray);
-}
+import { Helpers } from '../../other/Helpers.js';
 
 export class Encounter extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			initGroups: initGroupArray,
-			characters: charArray,
+			initGroups: Helpers.initialInitGroups,
+			characters: Helpers.initialCharacters,
 			isEndTurnDisplayed:false,
 			isAddCharModalOpen: false,
 			isClearEncounterModalOpen: false,
@@ -280,7 +183,7 @@ export class Encounter extends React.Component {
 			charIds: charIds
 		};
 
-		var newInitGroupArray = insertInitGroup(newInitGroup, this.state.initGroups);
+		var newInitGroupArray = Helpers.insertInitGroup(newInitGroup, this.state.initGroups);
 
 		this.setState({
 			initGroups: newInitGroupArray,
