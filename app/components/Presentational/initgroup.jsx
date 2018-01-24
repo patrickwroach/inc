@@ -62,17 +62,18 @@ export class InitGroup extends React.Component {
     return (
       <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type + ' index'+ this.props.initPosition}> 
         <div className="group-name-bar">
-          <Button text="&#10006;" addClass="remove " onClick={() => this.handleRemoveInitGroup()} />
+          <Button text="&#10006;" addClass="remove " onClick={this.handleRemoveInitGroup} />
           <div className="char-name">
             <h1>{this.props.name}<span className="edit-pen" onClick={this.toggleNameEdit}>{String.fromCharCode(9999)}</span></h1>
           </div>
           <div className="button-container">
-            <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} />
+            <Button text={this.state.toggleButtonText} id="expand" onClick={this.toggleGroup} />
           </div>     
         </div>
-        <h3 className="init-number">Init: {this.props.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>  
+        <h3 className="init-number">Init: {this.props.init}<span className="edit-pen" onClick={this.toggleInitEdit}>{String.fromCharCode(9999)}</span></h3>  
         
         <CharacterList
+          initGroupId={this.props.id}
           characters={this.props.charArray}
           handleAddHp={this.props.handleAddHp}
           handleEditName={this.props.handleEditCharName}

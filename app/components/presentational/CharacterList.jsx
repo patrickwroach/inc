@@ -7,7 +7,7 @@ export class CharacterList extends React.Component {
       <li key={c.id} >
         <CharacterContainer
           id={c.id}
-          initGroupId={this.props.id}
+          initGroupId={this.props.initGroupId}
           name={c.name}
           hp={c.hp}
           hpMax={c.hpMax}
