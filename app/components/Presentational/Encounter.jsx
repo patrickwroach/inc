@@ -129,7 +129,7 @@ export class Encounter extends React.Component {
 		var elemArr = newInitGroupArray.splice(initGroupIndex, 1);
 		var initGroup = elemArr[0];
 		initGroup.init = newInit;
-		newInitGroupArray = insertInitGroup(initGroup, newInitGroupArray);
+		newInitGroupArray = Helpers.insertInitGroup(initGroup, newInitGroupArray);
 
 		this.setState({ initGroups: newInitGroupArray });
 	}
