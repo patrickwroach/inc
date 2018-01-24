@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './button.jsx';
-import { CharacterContainer } from '../containers/CharacterContainer.jsx';
+import { CharacterList } from './CharacterList.jsx'
 import { SingleTextModalContainer } from '../containers/SingleTextModalContainer.jsx';
 import { SingleNumberModalContainer } from '../containers/SingleNumberModalContainer.jsx';
 import { Constants } from '../../other/Constants.js';
@@ -59,31 +59,12 @@ export class InitGroup extends React.Component {
   }
 	
   render() {
-		const Characters = this.props.charArray.map((c) =>
-			<li key={c.id} >
-				<CharacterContainer
-          id = {c.id}
-          initGroupId = {this.props.id}
-					name = {c.name}
-					hp = {c.hp}
-					hpMax = {c.hpMax}
-					handleAddHp = {this.props.handleAddHp}
-          handleEditName = {this.props.handleEditCharName}
-          handleRemoveCharacter = {this.props.handleRemoveCharacter}
-          handleRemoveInitGroup = {this.props.handleRemoveInitGroup}
-          onToggleNameEdit = {() => this.toggleNameEdit()}
-					handleStartRound = {this.props.handleStartRound}
-					initPosition = {this.props.initPosition}
-				/>
-			</li>
-		);
-        
     return (
       <ul id={this.props.id} className={'character' + ' ' + this.state.toggleGroup + ' ' + this.props.type + ' index'+ this.props.initPosition}> 
         <div className="group-name-bar">
           <Button text="&#10006;" addClass="remove " onClick={() => this.handleRemoveInitGroup()} />
           <div className="char-name">
-            <h1>{this.props.name}<span className="edit-pen" onClick={() => this.toggleNameEdit()}>{String.fromCharCode(9999)}</span></h1>
+            <h1>{this.props.name}<span className="edit-pen" onClick={this.toggleNameEdit}>{String.fromCharCode(9999)}</span></h1>
           </div>
           <div className="button-container">
             <Button text={this.state.toggleButtonText} id="expand" onClick={() => this.toggleGroup()} />
@@ -91,7 +72,16 @@ export class InitGroup extends React.Component {
         </div>
         <h3 className="init-number">Init: {this.props.init}<span className="edit-pen" onClick={() => this.toggleInitEdit()}>{String.fromCharCode(9999)}</span></h3>  
         
-        {Characters}
+        <CharacterList
+          characters={this.props.charArray}
+          handleAddHp={this.props.handleAddHp}
+          handleEditName={this.props.handleEditCharName}
+          handleRemoveCharacter={this.props.handleRemoveCharacter}
+          handleRemoveInitGroup={this.props.handleRemoveInitGroup}
+          handleToggleNameEdit={this.toggleNameEdit}
+          handleStartRound={this.props.handleStartRound}
+          initPosition={this.props.initPosition}
+        />
 				
 				<SingleTextModalContainer
 					isOpen = {this.state.isNameEditModalOpen}
