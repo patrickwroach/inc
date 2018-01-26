@@ -8,7 +8,7 @@ export class Footer extends React.Component {
           <p>copyright jth pwr 2525 | contact </p>
         </div>
       </div>
-    )
-  };
+    );
+  }
 
 }

@@ -6,6 +6,6 @@ export class Button extends React.Component {
       <div id={this.props.id} className={this.props.addClass + " " + "button"} onClick={this.props.onClick}>
         <p>{this.props.text}</p>
       </div>
-    )
-  };
+    );
+  }
 }

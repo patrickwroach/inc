@@ -1,19 +1,17 @@
 import React from 'react';
-import { InitGroup } from './initgroup.jsx';
+import { InitGroupContainer } from '../containers/InitGroupContainer.jsx';
 
 export class InitGroupList extends React.Component {
-
-  handleGetCharacters
   render() {
     return this.props.initGroups.map((ig, index) =>
       <li key={ig.id}>
-        <InitGroup
+        <InitGroupContainer
           id={ig.id}
           name={ig.name}
           init={ig.init}
           type={ig.type}
           initPosition={index}
-          charArray={this.props.handleGetCharacters(ig.charIds)}
+          characters={this.props.handleGetCharacters(ig.charIds)}
           handleAddHp={this.props.handleAddHp}
           handleEditName={this.props.handleEditName}
           handleRemoveInitGroup={this.props.handleRemoveInitGroup}

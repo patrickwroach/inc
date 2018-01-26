@@ -3,7 +3,7 @@ import Shortid from 'shortid';
 import { InitGroupList } from './InitGroupList.jsx';
 import { Button } from './button.jsx';
 import { EndTurnButton } from './endTurnButton.jsx';
-import { AddChar } from './addchar.jsx';
+import { AddCharModalContainer } from '../containers/AddCharModalContainer.jsx';
 import { ClearEncounterModal } from './ClearEncounterModal.jsx';
 import { MessageModal } from './MessageModal.jsx';
 import { Constants } from '../../other/Constants.js';
@@ -263,7 +263,7 @@ export class Encounter extends React.Component {
             isDisplayed={this.state.isEndTurnDisplayed}
             endTurn={this.endTurn}
           />
-          <AddChar
+          <AddCharModalContainer
             onAddCharSubmit={this.addChar}
             isOpen={this.state.isAddCharModalOpen}
             toggleAddCharModal={this.toggleAddCharModal}
