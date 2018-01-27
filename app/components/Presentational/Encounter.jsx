@@ -8,13 +8,14 @@ import { ClearEncounterModal } from './ClearEncounterModal.jsx';
 import { MessageModal } from './MessageModal.jsx';
 import { Constants } from '../../other/Constants.js';
 import { Helpers } from '../../other/Helpers.js';
+import { InitGroupStore } from '../../data/InitGroupStore.js';
 
 export class Encounter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      initGroups: Helpers.initialInitGroups,
-      characters: Helpers.initialCharacters,
+      initGroups: InitGroupStore.getInitGroups(),
+      characters: InitGroupStore.getCharacters(),
       isEndTurnDisplayed: false,
       isAddCharModalOpen: false,
       isClearEncounterModalOpen: false,
@@ -38,81 +39,31 @@ export class Encounter extends React.Component {
     this.clearAll = this.clearAll.bind(this);
     this.toggleMessageModal = this.toggleMessageModal.bind(this);
     this.getCharacters = this.getCharacters.bind(this);
+    this.updateInitGroupsAndCharacters = this.updateInitGroupsAndCharacters.bind(this);
   }
 
   addHp(charId, amount) {
-    var newCharArray = this.state.characters.slice();
-    var charIndex = newCharArray.findIndex(c => c.id === charId);
-    newCharArray[charIndex].hp += parseInt(amount);
-
-    this.setState({ characters: newCharArray });
+    InitGroupStore.addHp(charId, amount);
   }
 
   editCharName(charId, newName) {
-    var newCharArray = this.state.characters.slice();
-    var charIndex = newCharArray.findIndex(c => c.id === charId);
-    newCharArray[charIndex].name = newName;
-    this.setState({ characters: newCharArray });
+    InitGroupStore.editCharName(charId, newName);
   }
 
   editInitGroupName(initGroupId, newName) {
-    var newInitGroupArray = this.state.initGroups.slice();
-    var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
-    newInitGroupArray[index].name = newName;
-    this.setState({ initGroups: newInitGroupArray });
+    InitGroupStore.editInitGroupName(initGroupId, newName);
   }
 
   removeCharacter(charId, initGroupId) {
-    var newInitGroupArray = this.state.initGroups.slice();
-    var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
-    var newCharIdsArray = newInitGroupArray[index].charIds;
-    var charIdsIndex = newCharIdsArray.indexOf(charId);
-    newInitGroupArray[index].charIds.splice(charIdsIndex, 1);
-
-    if (newInitGroupArray[index].charIds.length === 0) {
-      newInitGroupArray.splice(index, 1);
-    }
-
-    var newCharArray = this.state.characters.slice();
-    var charIndex = newCharArray.findIndex(c => c.id === charId);
-    newCharArray.splice(charIndex, 1);
-
-    this.setState({
-      initGroups: newInitGroupArray,
-      characters: newCharArray
-    });
+    InitGroupStore.removeCharacter(charId, initGroupId);
   }
 
   removeInitGroup(initGroupId) {
-    var newInitGroupArray = this.state.initGroups.slice();
-    var initGroupIndex = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
-    var newCharArray = this.state.characters.slice();
-    var initGroup = newInitGroupArray[initGroupIndex];
-    for (var i = 0; i < initGroup.charIds.length; i++) {
-      var charId = initGroup.charIds[i];
-      var charIndex = newCharArray.findIndex(c => c.id === charId);
-      newCharArray.splice(charIndex, 1);
-    }
-
-    var index = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
-    newInitGroupArray.splice(index, 1);
-
-    this.setState({
-      initGroups: newInitGroupArray,
-      characters: newCharArray
-    });
+    InitGroupStore.removeInitGroup(initGroupId);
   }
 
   editInit(initGroupId, newInit) {
-    var newInitGroupArray = this.state.initGroups.slice();
-    var initGroupIndex = newInitGroupArray.findIndex(ig => ig.id === initGroupId);
-
-    var elemArr = newInitGroupArray.splice(initGroupIndex, 1);
-    var initGroup = elemArr[0];
-    initGroup.init = newInit;
-    newInitGroupArray = Helpers.insertInitGroup(initGroup, newInitGroupArray);
-
-    this.setState({ initGroups: newInitGroupArray });
+    InitGroupStore.editInit(initGroupId, newInit);
   }
 
   toggleAddCharModal() {
@@ -120,37 +71,9 @@ export class Encounter extends React.Component {
   }
 
   addChar(name, init, type, hp, amount) {
-    const charName = name;
-    const initValue = init;
-    const typeValue = type;
-    const hpValue = hp;
-    const amountValue = amount;
-    var newCharArray = this.state.characters.slice();
-    var charIds = [];
-    for (var i = 0; i < amountValue; i++) {
-      var newCharacter = {
-        id: Shortid.generate(),
-        name: charName + (typeValue == "Group" ? " " + (i + 1) : ""),
-        hp: hpValue,
-        hpMax: hpValue
-      };
-      newCharArray.push(newCharacter);
-      charIds.push(newCharacter.id);
-    }
-
-    var newInitGroup = {
-      id: Shortid.generate(),
-      name: charIds.length > 1 ? charName + " Group" : "",
-      init: initValue,
-      type: typeValue,
-      charIds: charIds
-    };
-
-    var newInitGroupArray = Helpers.insertInitGroup(newInitGroup, this.state.initGroups);
+    InitGroupStore.addChar(name, init, type, hp, amount);
 
     this.setState({
-      initGroups: newInitGroupArray,
-      characters: newCharArray,
       isAddCharModalOpen: false
     });
 
@@ -162,10 +85,9 @@ export class Encounter extends React.Component {
   endTurn() {
     var isEndTurnDisplayed = false;
     var currentRound = this.state.round;
-    var newInitGroupsArray = this.state.initGroups.slice();
 
     if (this.state.initGroups.length > 1) {
-      newInitGroupsArray.push(newInitGroupsArray.shift());
+      var newInitGroupsArray = InitGroupStore.endTurn(currentRound);
       if (newInitGroupsArray[0].id !== "group-start") {
         isEndTurnDisplayed = true;
       }
@@ -178,7 +100,6 @@ export class Encounter extends React.Component {
     }
 
     this.setState({
-      initGroups: newInitGroupsArray,
       round: currentRound,
       isEndTurnDisplayed: isEndTurnDisplayed
     })
@@ -189,24 +110,9 @@ export class Encounter extends React.Component {
   }
 
   clearNpcs() {
-    var currentInitGroupArray = this.state.initGroups.slice();
-    var currentCharArray = this.state.characters.slice();
-    var newInitGroupArray = [];
-    var newCharArray = [];
-    for (var i = 0; i < currentInitGroupArray.length; i++) {
-      var initGroup = currentInitGroupArray[i];
-      if (initGroup.type === 'PC' || initGroup.type === 'nonChar') {
-        newInitGroupArray.push(initGroup);
-        for (var j = 0; j < initGroup.charIds.length; j++) {
-          var character = currentCharArray.find(c => c.id === initGroup.charIds[j]);
-          newCharArray.push(character);
-        }
-      }
-    }
+    InitGroupStore.clearNpcs();
 
     this.setState({
-      initGroups: newInitGroupArray,
-      characters: newCharArray,
       round: 1,
       turns: 0
     });
@@ -214,9 +120,8 @@ export class Encounter extends React.Component {
   }
 
   clearAll() {
+    InitGroupStore.clearAll();
     this.setState({
-      initGroups: Helpers.initialInitGroups,
-      characters: Helpers.initialCharacters,
       round: 1,
       turns: 0
     });
@@ -231,7 +136,22 @@ export class Encounter extends React.Component {
   }
 
   getCharacters(charIds) {
-    return this.state.characters.filter(character => charIds.includes(character.id));
+    return InitGroupStore.getCharactersByIds(charIds);
+  }
+
+  updateInitGroupsAndCharacters() {
+    this.setState({
+      initGroups: InitGroupStore.getInitGroups(),
+      characters: InitGroupStore.getCharacters()
+    });
+  }
+
+  componentWillMount() {
+    InitGroupStore.subscribe(this.updateInitGroupsAndCharacters);
+  }
+
+  componentWillUnmount() {
+    InitGroupStore.unsubscribe(this.updateInitGroupsAndCharacters);
   }
 
   render() {

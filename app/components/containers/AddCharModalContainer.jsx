@@ -1,5 +1,6 @@
 import React from 'react';
 import { AddCharModal } from '../presentational/AddCharModal.jsx';
+import { Constants } from '../../other/Constants.js';
 
 export class AddCharModalContainer extends React.Component {
   constructor(props) {
