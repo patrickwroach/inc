@@ -1,5 +1,5 @@
 //Needs to be split into seperate libraries
-//Standard resets
+//Standard reset
 a,
 abbr,
 acronym,
@@ -82,15 +82,18 @@ u,
 ul,
 var,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  line-height: 1.3em;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    line-height: 1.3em;
 }
+
+
 /* HTML5 display-role reset for older browsers */
+
 article,
 aside,
 details,
@@ -102,29 +105,29 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
+    display: block;
 }
 
 body {
-  line-height: 1;
+    line-height: 1;
 }
 
 ol,
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 blockquote,
 q {
-  quotes: none;
+    quotes: none;
 }
 
 blockquote:after,
 blockquote:before,
 q:after,
 q:before {
-  content: '';
-  content: none;
+    content: '';
+    content: none;
 }
 
 h1,
@@ -132,52 +135,48 @@ h2,
 h3,
 h4,
 h5 {
-  font-weight: bold;
-  margin-bottom: .25em;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently
+    font-weight: bold;
+    margin-bottom: .25em;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
 
 h1 {
-  font-size: 1.75em;
-
+    font-size: 1.75em;
 }
 
 h2 {
-  font-size: 1.1em;
-
+    font-size: 1.1em;
 }
 
 h3 {
-  font-size: 1.0em;
-
+    font-size: 1.0em;
 }
 
 h4 {
-  font-size: .95 em;
-
+    font-size: .95 em;
 }
 
 p {
-
-  margin-bottom: .25em;
+    margin-bottom: .25em;
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
 //color codes
 @dark: #2f2f2f;
 @light: #fdfdfd;
@@ -187,19 +186,17 @@ table {
 @footer-height: 40px;
 @nav-height: 65px;
 //standard layouts
-
 body,
 html {
-  min-width: 300px;
-
-  height: 100%;
-  transition: all .5s;
+    min-width: 300px;
+    height: 100%;
+    transition: all .5s;
 }
 
 #app {
-  min-height: 100%;
-  position: relative;
-  overflow: hidden;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 a,
@@ -207,852 +204,676 @@ h1,
 h2,
 html,
 p {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: @dark;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: @dark;
 }
 
 .content-container {
-  width: 100%;
-
-  .content {
-    width: 80%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 25px 0;
-  }
-
+    width: 100%;
+    .content {
+        width: 80%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 25px 0;
+    }
 }
+
 //ui components
 .button {
-  a,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  p {
-    color: @light;
-  }
-  background: @dark;
-  padding: 10px 20px;
-  box-shadow: 2px 2px 1px lighten(@dark, 30%);
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+        color: @light;
+    }
+    background: @dark;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 1px lighten(@dark, 30%);
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
-
 }
 
 .button:hover {
-  background: lighten(@dark, 10%);
+    background: lighten(@dark, 10%);
 }
 
 //id specific button/element styles 
 #roundCounter {
-  position: fixed;
-  top: 20px;
-  right: 10px;
-  z-index: 6;
-
-  h2 {
-    display: block;
-    color: @light;
-  }
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    z-index: 6;
+    h2 {
+        display: block;
+        color: @light;
+    }
 }
 
 #addCharButton,
 #clearEncounter {
-  position: fixed;
-  top: 10px; 
-  border:1px solid @light;
-  z-index:6;
-  box-shadow:none;
+    position: fixed;
+    top: 10px;
+    border: 1px solid @light;
+    z-index: 6;
+    box-shadow: none;
 }
-#clearEncounter{
-  right: 100px;
-}
-#addCharButton{
-  right: 250px;
 
+#clearEncounter {
+    right: 100px;
 }
+
+#addCharButton {
+    right: 250px;
+}
+
 #endTurnButton {
-  position: fixed;
-  top: 115px;
-  right: 2%;
-  padding:10px;
+    position: fixed;
+    top: 115px;
+    right: 2%;
+    padding: 10px;
 }
 
 #roundEndButton {
-  box-shadow: 0 0 0;
-  margin: 25px 0;
-  text-align: center;
-  border: 2px dotted lighten(@dark, 20%);
-  background: @light;
-
-  p {
-    color: lighten(@dark, 20%);
-  }
+    box-shadow: 0 0 0;
+    margin: 25px 0;
+    text-align: center;
+    border: 2px dotted lighten(@dark, 20%);
+    background: @light;
+    p {
+        color: lighten(@dark, 20%);
+    }
 }
 
 #roundEndButton:hover {
-  border: 2px dotted @dark;
-
-  p {
-    color: @dark;
-  }
+    border: 2px dotted @dark;
+    p {
+        color: @dark;
+    }
 }
 
 // initative Container and character styles
 .content-container#init-container {
-  padding-bottom: @footer-height;
-  position: relative;
-  
-  display: table;
-  padding-top: @nav-height;
- 
-  .character {
- 
-    padding: 10px 0;
-    margin: 5px 0;
-    width: 100%;
+    padding-bottom: @footer-height;
+    position: relative;
     display: table;
-    border-top: 1px solid @dark;
-    border-bottom: 1px solid @dark;
-    position: relative;
-
-    // &.index0{
-    //   display:none;
-    //   animation: hide-list-top linear .5s;
-    //   height:92px;
-    // }
-    &.index0 {
-      box-shadow: 0 10px 2px -5px fade(@dark, 50%);
-      margin-bottom: 13px;
-    }
-
-    .init-number {
-      position: absolute;
-      top: 2px;
-      left: 5px;
-      color: darken(@light, 10%);
-    }
-
-    .char-name {
-      padding-left: 5px;
-    }
-
-    .button,
-    .char-name,
-    .hp-count {
-      display: table-cell;
-      vertical-align: middle;
-    }
-
-    .char-bar,
-    .group-name-bar {
-      width: 100%;
-      display: table;
-      vertical-align: middle;    
-      position: relative;
-      .char-name {
-        padding: 9px 0px 9px 5px;
-      }
-      .remove{
-        position: absolute;
-        display:block;
-        text-align:center;
-        top:-5px;
-        right:1px;
-        padding:1px 3px;
-        font-size:10px;
-        box-shadow: none;
-        
-      }
-    }
-
-    .hp-count {
-      text-align: center;
-      width: 75px;
-      color: lighten(@dark, 10%);
-      margin-left: 10px;
-      padding-right:10px;
-
-      .hp {
-        font-size: 1.25em;
-      }
-
-      .hp-toggles {
-        display: table;
-        height: 30px;
-        box-sizing: border-box;
-        margin: 0 0 0 auto;
-        border-spacing: 2px;
-
-        .button {
-          background-color: @dark;
-          color: @light;
-          cursor: pointer;
-          padding: 0 5px;
-          box-shadow: none;
-          display: table-cell;
-          vertical-align: middle;
-          font-size: 12px;
-
-        }
-
-        .inputToggle {
-          background-color: @light;
-          margin: 0 -2px;
-          width: 40px;
-          display: table;
-          height: 30px;
-          box-sizing: border-box;
-          border: 3px solid @dark;
-          text-align: center;
-          -moz-appearance: textfield;
-
-        }
-
-        .inputToggle:focus {
-          outline: 0;
-        }
-
-        .inputToggle::-webkit-inner-spin-button,
-        .inputToggle::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-
-      }
-    }
-
-    .button-container {
-      height: 25px;
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center;
-      width: 111px;
-
-      .button {
-        display: block;
-        padding: 5px;
-        box-shadow: 0 0 0;
-        box-sizing: border-box;
-        margin: 0 auto;
-        text-align: center;
-      }
-
-    }
-
-    &.NPC,
-    &.PC,
-    &.nonChar {
-      .group-name-bar,
-      .groupNumber {
-        display: none;
-      }
-    }
-
-    &.PC,
-    &.nonChar {
-      .char-name {
-        padding: 9px 0px 9px 5px;
-      }
-      .hp-count {
-        display: none;
-      }
-
-    }
-
-    &.Group {
-      .group-name-bar{
-        .button-container{
-          vertical-align: bottom;
-          padding-right:10px;
-        }
-      }
-      .char-bar {
-        border-bottom: none;
-        display: none;
-        padding:10px 0 5px;
-        .remove{
-          top:5px;
-        }
-        .groupNumber {
-          position: relative;
-          bottom: 5px;
-          font-size: .5em;
-          color: lighten(@dark, 20%);
-
-        }
-
-        .char-name {
-          h1 {
-            font-size: 1.5em;
-            color: lighten(@dark, 20%);
-          }
-        }
-
-        .hp-count {
-
-          margin-left: 10px;
-
-          .hp {
-            font-size: 1.1em;
-
-            h2 {
-              color: lighten(@dark, 10%);
-            }
-          }
-
-        }
-
-        .hp-toggles {
-          a {
-            background-color: lighten(@dark, 10%);
-          }
-
-          .inputToggle {
-            input {
-
-              border-top: 3px solid lighten(@dark, 10%);
-              border-bottom: 3px solid lighten(@dark, 10%);
-
-            }
-
-          }
-        }
-      }
-
-      .char-bar:last-child {
-        border-bottom: 1px solid @dark;
-      }
-
-      &.inactive {
-        .char-bar {
-          display: none;
-        }
-      }
-
-      &.active {
-        border-bottom: none;
-
-        .char-bar {
-          display: table;
-        }
-      }
-
-    }
-
-    &.nonChar {
-      min-height: 0;
-     padding:10px 0;
-      margin: 5px 0;
-      width: 100%;
-      display: table;
-      .char-name{
-        padding: 15px 0;
-      }
-      &.index0{
-        margin-bottom:12px;
-      }
-      .remove,
-      .aliveDead,
-      .edit-pen,
-      .init-number {
-        display: none;
-      }
-
-      .char-bar,
-      .char-name,
-      .group-name-bar {
-        width: 100%;
-        min-height: 0;
-        text-align: center;
-
-        h1 {
-                margin: 0;
-        }
-      }
-    }
-    //Death styles
-
-    .char-bar {
-      .button-container {
-        &.aliveDead {
-          width: 75px;
-          padding-right: 10px;
-          vertical-align: bottom;
-
-        }
-
-      }
-
-      &.dead {
-        .char-name {
-          .groupNumber,
-          h1 {
-
-            color: fade(@dark, 30%);
-          }
-
-          h1:before {
-            content: "A dead ";
-
-          }
-
-        }
-
-        .hp-count {
-          display: none;
-        }
-      }
-    }
-
-    &.PC {
-      .char-bar {
-        &.dead {
-          .edit-pen {
-            display: none;
-          }
-
-          .char-name {
-            h1:before {
-              content: "Poor ";
-
-            }
-
-            h1:after {
-              content: " has fallen!";
-
-            }
-          }
-
-        }
-      }
-    }
-
-    &.NPC {
-      .char-bar {
-        &.dead {
-          .edit-pen {
-            display: none;
-          }
-
-          .char-name {
-            padding:0 0 0 5px;
-           
-            h1:before {
-              content: "";
-            }
-
-            h1:after {
-              content: " has been slain!";
-
-            }
-          }
-
-        }
-      }
-    }
-
-    &.Group {
-
-      .char-bar {
-        .aliveDead {
-          width: 75px;
-          padding-right: 10px;
-          vertical-align: bottom;
-          padding-bottom: 3px;
-        }
-      }
-    }
-  }
-  
-  //Editing items
-  .edit-pen {
-    transform: rotate(120deg);
-    display: inline-block;
-    font-size: 50%;
-    position: absolute;
-    margin-left: 5px;
-    cursor: pointer;
-  }
-
-  .init-edit,
-  .name-edit {
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: fade(@dark, 20%);
-    z-index: 10;
-
-    .choice-container {
-      padding: 50px;
-      position: relative;
-      top: 25%;
-      margin: 0 auto;
-      width: 50%;
-      background: #fdfdfd;
-
-      #closer {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        text-align: center;
-        display: inline-block;
-        padding: 5px;
-        width: 20.67px;
-
-      }
-
-      input {
-        border: 3px solid @dark;
-
-      }
-
-      input[type="number"] {
-        text-align: center;
-        width: 50px;
-        display: inline-block;
-      }
-
-      .button {
-        display: block;
-        margin: 10px auto;
-        width: 120px;
-      }
-
-    }
-
-    &.displayed {
-      display: block;
-    }
-
-    &.hidden {
-      display: none;
-    }
-  }
-  //animation class
-  .moving{
-      animation:list-scroll ease .25s;
-  }
-}
-//Add Character Wizard
-#addCharModal {
-  position: fixed;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  // adorable mode 
-  //background: url(../assets/modal-background.png)  fade(@dark, 20%);
-  background: fade(@dark, 20%);
-
-  z-index: 10;
-
-  .choice-container {
-    padding: 50px;
-    position: relative;
-    top: 25%;
-    margin: 0 auto;
-    width: 50%;
-    background: #fdfdfd;
-
-    .displayed {
-      display: block;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .button {
-      display: inline-block;
-      margin: 5px;
-      width: 100px;
-
-      &.PCbox {
-        &.PC {
-          background: lighten(@dark, 25%);
-        }
-      }
-
-      &.NPCbox {
-        &.NPC {
-          background: lighten(@dark, 25%);
-        }
-      }
-
-      &.Groupbox {
-        &.Group {
-          background: lighten(@dark, 25%);
-        }
-      }
-
-      &.submit {
-        width: 100%;
+    padding-top: @nav-height;
+    .character {
         padding: 10px 0;
-      }
+        margin: 5px 0;
+        width: 100%;
+        display: table;
+        border-top: 1px solid @dark;
+        border-bottom: 1px solid @dark;
+        position: relative; // &.index0{
+        //   display:none;
+        //   animation: hide-list-top linear .5s;
+        //   height:92px;
+        // }
+        &.index0 {
+            box-shadow: 0 10px 2px -5px fade(@dark, 50%);
+            margin-bottom: 13px;
+        }
+        .init-number {
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            color: darken(@light, 10%);
+        }
+        .char-name {
+            padding-left: 5px;
+        }
+        .button,
+        .char-name,
+        .hp-count {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .char-bar,
+        .group-name-bar {
+            width: 100%;
+            display: table;
+            vertical-align: middle;
+            position: relative;
+            .char-name {
+                padding: 9px 0px 9px 5px;
+            }
+            .remove {
+                position: absolute;
+                display: block;
+                text-align: center;
+                top: -5px;
+                right: 1px;
+                padding: 1px 3px;
+                font-size: 10px;
+                box-shadow: none;
+            }
+        }
+        .hp-count {
+            text-align: center;
+            width: 75px;
+            color: lighten(@dark, 10%);
+            margin-left: 10px;
+            padding-right: 10px;
+            .hp {
+                font-size: 1.25em;
+            }
+            .hp-toggles {
+                display: table;
+                height: 30px;
+                box-sizing: border-box;
+                margin: 0 0 0 auto;
+                border-spacing: 2px;
+                .button {
+                    background-color: @dark;
+                    color: @light;
+                    cursor: pointer;
+                    padding: 0 5px;
+                    box-shadow: none;
+                    display: table-cell;
+                    vertical-align: middle;
+                    font-size: 12px;
+                }
+                .inputToggle {
+                    background-color: @light;
+                    margin: 0 -2px;
+                    width: 40px;
+                    display: table;
+                    height: 30px;
+                    box-sizing: border-box;
+                    border: 3px solid @dark;
+                    text-align: center;
+                    -moz-appearance: textfield;
+                }
+                .inputToggle:focus {
+                    outline: 0;
+                }
+                .inputToggle::-webkit-inner-spin-button,
+                .inputToggle::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+            }
+        }
+        .button-container {
+            height: 25px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            width: 111px;
+            .button {
+                display: block;
+                padding: 5px;
+                box-shadow: 0 0 0;
+                box-sizing: border-box;
+                margin: 0 auto;
+                text-align: center;
+            }
+        }
+        &.NPC,
+        &.PC,
+        &.nonChar {
+            .group-name-bar,
+            .groupNumber {
+                display: none;
+            }
+        }
+        &.PC,
+        &.nonChar {
+            .char-name {
+                padding: 9px 0px 9px 5px;
+            }
+            .hp-count {
+                display: none;
+            }
+        }
+        &.Group {
+            .group-name-bar {
+                .button-container {
+                    vertical-align: bottom;
+                    padding-right: 10px;
+                }
+            }
+            .char-bar {
+                border-bottom: none;
+                display: none;
+                padding: 10px 0 5px;
+                .remove {
+                    top: 5px;
+                }
+                .groupNumber {
+                    position: relative;
+                    bottom: 5px;
+                    font-size: .5em;
+                    color: lighten(@dark, 20%);
+                }
+                .char-name {
+                    h1 {
+                        font-size: 1.5em;
+                        color: lighten(@dark, 20%);
+                    }
+                }
+                .hp-count {
+                    margin-left: 10px;
+                    .hp {
+                        font-size: 1.1em;
+                        h2 {
+                            color: lighten(@dark, 10%);
+                        }
+                    }
+                }
+                .hp-toggles {
+                    a {
+                        background-color: lighten(@dark, 10%);
+                    }
+                    .inputToggle {
+                        input {
+                            border-top: 3px solid lighten(@dark, 10%);
+                            border-bottom: 3px solid lighten(@dark, 10%);
+                        }
+                    }
+                }
+            }
+            .char-bar:last-child {
+                border-bottom: 1px solid @dark;
+            }
+            &.inactive {
+                .char-bar {
+                    display: none;
+                }
+            }
+            &.active {
+                border-bottom: none;
+                .char-bar {
+                    display: table;
+                }
+            }
+        }
+        &.nonChar {
+            min-height: 0;
+            padding: 10px 0;
+            margin: 5px 0;
+            width: 100%;
+            display: table;
+            .char-name {
+                padding: 15px 0;
+            }
+            &.index0 {
+                margin-bottom: 12px;
+            }
+            .remove,
+            .aliveDead,
+            .edit-pen,
+            .init-number {
+                display: none;
+            }
+            .char-bar,
+            .char-name,
+            .group-name-bar {
+                width: 100%;
+                min-height: 0;
+                text-align: center;
+                h1 {
+                    margin: 0;
+                }
+            }
+        } //Death styles
+        .char-bar {
+            .button-container {
+                &.aliveDead {
+                    width: 75px;
+                    padding-right: 10px;
+                    vertical-align: bottom;
+                }
+            }
+            &.dead {
+                .char-name {
+                    .groupNumber,
+                    h1 {
+                        color: fade(@dark, 30%);
+                    }
+                    h1:before {
+                        content: "A dead ";
+                    }
+                }
+                .hp-count {
+                    display: none;
+                }
+            }
+        }
+        &.PC {
+            .char-bar {
+                &.dead {
+                    .edit-pen {
+                        display: none;
+                    }
+                    .char-name {
+                        h1:before {
+                            content: "Poor ";
+                        }
+                        h1:after {
+                            content: " has fallen!";
+                        }
+                    }
+                }
+            }
+        }
+        &.NPC {
+            .char-bar {
+                &.dead {
+                    .edit-pen {
+                        display: none;
+                    }
+                    .char-name {
+                        padding: 0 0 0 5px;
+                        h1:before {
+                            content: "";
+                        }
+                        h1:after {
+                            content: " has been slain!";
+                        }
+                    }
+                }
+            }
+        }
+        &.Group {
+            .char-bar {
+                .aliveDead {
+                    width: 75px;
+                    padding-right: 10px;
+                    vertical-align: bottom;
+                    padding-bottom: 3px;
+                }
+            }
+        }
+    } //Editing items
+    .edit-pen {
+        transform: rotate(120deg);
+        display: inline-block;
+        font-size: 50%;
+        position: absolute;
+        margin-left: 5px;
+        cursor: pointer;
     }
-
-    input {
-      border: 1px solid @dark;
-      margin-left: 5px;
-
+    .modal {
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: fade(@dark, 20%);
+        z-index: 10;
+        .choice-container {
+            padding: 50px;
+            position: relative;
+            top: 25%;
+            margin: 0 auto;
+            width: 50%;
+            background: #fdfdfd;
+            #closer {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                text-align: center;
+                display: inline-block;
+                padding: 5px;
+                width: 20.67px;
+            }
+            input {
+                border: 3px solid @dark;
+            }
+            input[type="number"] {
+                text-align: center;
+                width: 50px;
+                display: inline-block;
+            }
+            .button {
+                display: block;
+                margin: 10px auto;
+                width: 120px;
+            }
+        }
+    } //animation class
+    .moving {
+        animation: list-scroll ease .25s;
     }
-
-    input:focus {
-      outline-color: fade(@dark, 25%);
-
-    }
-
-    input[type="number"] {
-      text-align: center;
-      width: 50px;
-      display: inline-block;
-    }
-
-    #closer {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      text-align: center;
-      display: inline-block;
-      padding: 5px;
-      width: 20.67px;
-
-      p {
-        margin: 0;
-        width: 20.67px;
-      }
-    }
-
-  }
-
-  
 }
+
+#addCharModal {
+    .choice-container {
+      //TODO: Fix important tag -pr
+        .button {
+            display: inline-block !important;
+            margin: 0 !important;
+            width: 100px;
+            &.PCbox {
+                &.PC {
+                    background: lighten(@dark, 25%);
+                }
+            }
+            &.NPCbox {
+                &.NPC {
+                    background: lighten(@dark, 25%);
+                }
+            }
+            &.Groupbox {
+                &.Group {
+                    background: lighten(@dark, 25%);
+                }
+            }
+            &.submit {
+                width: 100%;
+                padding: 10px 0;
+            }
+        }
+        input {
+            border: 1px solid @dark;
+            margin-left: 5px;
+            margin-top:10px;
+        }
+        input:focus {
+            outline-color: fade(@dark, 25%);
+        }
+        input[type="number"] {
+            text-align: center;
+            width: 50px;
+            display: inline-block;
+        }
+    }
+}
+
 //Nav and Footer
 .content-container#navbar {
-  background: @dark;
-  position: fixed;
-  top: 0;
-  z-index: 5;
-
-  p {
-    color: @light;
-  }
-
-  .content {
-    display: table;
-    padding: 5px;
-
-    .logo,
+    background: @dark;
+    position: fixed;
+    top: 0;
+    z-index: 5;
     p {
-      display: table-cell;
-      vertical-align: middle;
-
+        color: @light;
     }
-
-    .logo {
-      img {
-        height: 50px;
-      }
+    .content {
+        display: table;
+        padding: 5px;
+        .logo,
+        p {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .logo {
+            img {
+                height: 50px;
+            }
+        }
+        p {
+            text-align: right;
+        }
     }
-
-    p {
-      text-align: right;
-    }
-  }
 }
 
 .content-container#footer {
-  height: @footer-height;
-  background: @dark;
-  color: @light;
-  position: absolute;
-  bottom: 0;
-  display: table;
-
-  .content {
-
-    display: table-cell;
-    padding: 0;
-    vertical-align: middle;
-
-    p {
-
-      text-align: center;
-      color: @light;
+    height: @footer-height;
+    background: @dark;
+    color: @light;
+    position: absolute;
+    bottom: 0;
+    display: table;
+    .content {
+        display: table-cell;
+        padding: 0;
+        vertical-align: middle;
+        p {
+            text-align: center;
+            color: @light;
+        }
     }
-  }
-
 }
 
 #start-round-button {
-	float: right;
+    float: right;
 }
 
 @media screen and (min-width:501px) and (max-width:900px) {
-  .content-container .content {
-    margin: 0 auto 0 5%;
-  }
-
-  #endTurnButton {
-    right: 5px;
-    padding: 10px 5px;
-  }
-
+    .content-container .content {
+        margin: 0 auto 0 5%;
+    }
+    #endTurnButton {
+        right: 5px;
+        padding: 10px 5px;
+    }
 }
+
 @media screen and (max-width: 600px) {
-   @nav-height: 30px;
-
-  #add-char-wizard {
-    .choice-container {
-      padding: 30px;
-      top: 10%;
-      margin: 0 auto;
-      width: 75%;
-      background: #fdfdfd;
-
-      .button {
-        width: 70px;
-        padding: 10px 5px;
-
-      }
-
-    }
-  }
-
-  #roundCounter {
-    position: fixed;
-    top: 2px;
-
-    h2 {
-      font-size: 1.3em;
-    }
-  }
-
-  .content-container#navbar {
-    .content {
-      .logo {
-        img {
-          height: 20px;
+    @nav-height: 30px;
+    #add-char-wizard {
+        .choice-container {
+            padding: 30px;
+            top: 10%;
+            margin: 0 auto;
+            width: 75%;
+            background: #fdfdfd;
+            .button {
+                width: 70px;
+                padding: 10px 5px;
+            }
         }
-      }
     }
-  }
-
-  .content-container#init-container {
-    padding-top: @nav-height;
-
-    .content {
-      width: 95%;
-
-      .character {
-        .char-bar {
-          .aliveDead {
-            padding: 0;
-            width: 50px;
-
-            
-          }
+    #roundCounter {
+        position: fixed;
+        top: 2px;
+        h2 {
+            font-size: 1.3em;
         }
-      }
     }
-
-  }
-
-  .content-container#footer {
-
-    background-color: fade(@dark,25%);
-    position: fixed;
-    bottom: 0;
-
-    p {
-      display: none;
+    .content-container#navbar {
+        .content {
+            .logo {
+                img {
+                    height: 20px;
+                }
+            }
+        }
     }
-  }
-
-  #addCharButton,
-  #endTurnButton, 
-  #clearEncounter {
-    top: inherit;
-    right: inherit;
-    bottom: 2px;
-    z-index: 5;
-    box-shadow: none;
-    padding: 5px 10px;
-    border:none;
-  }
-
-  #addCharButton {
-   
-    left: 10px;
-  }
-  #clearEncounter{
-   
-    left:100px;
-  }
-  #endTurnButton {
-    right: 10px;
-  }
+    .content-container#init-container {
+        padding-top: @nav-height;
+        .content {
+            width: 95%;
+            .character {
+                .char-bar {
+                    .aliveDead {
+                        padding: 0;
+                        width: 50px;
+                    }
+                }
+            }
+        }
+    }
+    .content-container#footer {
+        background-color: fade(@dark, 25%);
+        position: fixed;
+        bottom: 0;
+        p {
+            display: none;
+        }
+    }
+    #addCharButton,
+    #endTurnButton,
+    #clearEncounter {
+        top: inherit;
+        right: inherit;
+        bottom: 2px;
+        z-index: 5;
+        box-shadow: none;
+        padding: 5px 10px;
+        border: none;
+    }
+    #addCharButton {
+        left: 10px;
+    }
+    #clearEncounter {
+        left: 100px;
+    }
+    #endTurnButton {
+        right: 10px;
+    }
 }
+
 @media screen and (orientation:landscape) {
-  #add-char-wizard {
-    .choice-container {
-      padding: 25px;
-      top: 15%;
-      margin: 0 auto;
-      width: 75%;
-      background: #fdfdfd;
-
-      .button {
-        width: 70px;
-        padding: 10px 5px;
-
-      }
-
+    #add-char-wizard {
+        .choice-container {
+            padding: 25px;
+            top: 15%;
+            margin: 0 auto;
+            width: 75%;
+            background: #fdfdfd;
+            .button {
+                width: 70px;
+                padding: 10px 5px;
+            }
+        }
     }
-  }
 }
-@-webkit-keyframes list-scroll{
-  0% {
-    transform:translateY(92px);
-  }
+
+@-webkit-keyframes list-scroll {
+    0% {
+        transform: translateY(92px);
+    }
 }
-@keyframes list-scroll{
-  0% {
-    transform:translateY(92px);
-  }
+
+@keyframes list-scroll {
+    0% {
+        transform: translateY(92px);
+    }
 }
-@-webkit-keyframes hide-list-top{
-  0% {
-    display:table;
-  }
-  99% {
-    display:table;
-  }
+
+@-webkit-keyframes hide-list-top {
+    0% {
+        display: table;
+    }
+    99% {
+        display: table;
+    }
 }
-@keyframes hide-list-top{
-  0% {
-    display:table;
-  }
-  99% {
-    display:table;
-  }
+
+@keyframes hide-list-top {
+    0% {
+        display: table;
+    }
+    99% {
+        display: table;
+    }
 }

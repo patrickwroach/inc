@@ -8,7 +8,7 @@ export class MessageModal extends React.Component {
 			return null;
 		}
 		return (
-			<div className="name-edit displayed">
+			<div className="modal">
 				<div className="choice-container">
 					<Button id="closer" text="&#10006;" onClick={this.props.toggle} />
 					<h3>{this.props.text}</h3>
