@@ -1,32 +1,32 @@
 export class Helpers {
-  static get initialInitGroups() {
+  static get initialInitGroups () {
     return [
     	{
     		id: "group-start",
     		name: "start of new round",
     		init: Number.MAX_SAFE_INTEGER,
     		type: "nonChar",
-    		charIds: ["new-round"]
-    	}
+    		charIds: ["new-round"],
+    	},
     ];
   }
   
-  static get initialCharacters() {
+  static get initialCharacters () {
     return [
     	{
     		id: "new-round",
     		name: "start of new round",
     		hp: 1,
-    		hpMax: 0
-    	}
+    		hpMax: 0,
+    	},
     ];
   }
   
-  static sortInitGroups(left, right) {
+  static sortInitGroups (left, right) {
   	return right.init - left.init;
   }
   
-  static indexOfMaxInit(initGroups) {
+  static indexOfMaxInit (initGroups) {
   	if (initGroups.length === 0) {
   		return -1;
   	}
@@ -47,7 +47,7 @@ export class Helpers {
   // returns a new array with newInitGroup inserted into initGroupArray
   // initGroupArray should contain elements in init order, though the element with the
   //	largest init may not be at index 0.
-  static insertInitGroup(newInitGroup, initGroupArray) {
+  static insertInitGroup (newInitGroup, initGroupArray) {
   	var newInitGroupArray = initGroupArray.slice();
   	var indexMaxInit = this.indexOfMaxInit(newInitGroupArray);
 

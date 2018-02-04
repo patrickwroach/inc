@@ -1,49 +1,49 @@
 export class Constants {
-	static get enterKey() {
+	static get enterKey () {
 		return 'Enter';
 	}
 	
-	static get editNameLabelString() {
+	static get editNameLabelString () {
 		return 'Enter New Name';
 	}
 	
-	static get editNameButtonString() {
+	static get editNameButtonString () {
 		return 'Change Name';
 	}
 	
-	static get clearEncounterModalButtonString() {
+	static get clearEncounterModalButtonString () {
 		return 'Clear Encounter';
 	}
 	
-	static get clearEncounterLabelString() {
+	static get clearEncounterLabelString () {
 		return 'Clear which characters?';
 	}
 	
-	static get clearAllButtonString() {
+	static get clearAllButtonString () {
 		return 'Clear All';
 	}
 	
-	static get clearNpcsButtonString() {
+	static get clearNpcsButtonString () {
 		return 'Clear NPCs';
 	}
 
-	static get endTurnButtonString() {
+	static get endTurnButtonString () {
 		return String.fromCharCode(9668) + 'End Turn';
 	}
 	
-	static get continueEncounterWithNoCharactersString() {
-		return "I thought we'd need at least one Character?  Please add one so we can continue!";
+	static get continueEncounterWithNoCharactersString () {
+		return 'I thought we\'d need at least one Character?  Please add one so we can continue!';
 	}
 	
-	static get startRoundButtonString() {
-		return "start next round";
+	static get startRoundButtonString () {
+		return 'start next round';
 	}
   
-  static get editInitLabelString() {
-    return "Enter new initiative";
-  }
+	static get editInitLabelString () {
+		return 'Enter new initiative';
+	}
   
-  static get editInitButtonString() {
-    return "Change Initiative";
-  }
+	static get editInitButtonString () {
+		return 'Change Initiative';
+	}
 }
