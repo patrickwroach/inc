@@ -22,7 +22,8 @@ export class Encounter extends React.Component {
       round: 0,
       turns: 0,
       isMessageModalDisplayed: false,
-      messageModalText: ""
+      messageModalText: "",
+      encounterStartTime: null
     };
 
     this.addHp = this.addHp.bind(this);
@@ -88,6 +89,11 @@ export class Encounter extends React.Component {
 
     if (this.state.initGroups.length > 1) {
       var newInitGroupsArray = InitGroupStore.endTurn(currentRound);
+      if (this.state.round === 0) {
+        var startTime = new Date();
+        console.log(startTime.toUTCString());
+        this.setState({ encounterStartTime: startTime });
+      }
       if (newInitGroupsArray[0].id !== "group-start") {
         isEndTurnDisplayed = true;
       }
