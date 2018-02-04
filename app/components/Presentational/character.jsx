@@ -2,15 +2,17 @@ import React from 'react';
 import { Button } from './button.jsx';
 import { SingleTextModalContainer } from '../containers/SingleTextModalContainer.jsx';
 import { Constants } from '../../other/Constants.js';
+import {InitGroupStore} from '../../data/InitGroupStore.js';
 
 export class Character extends React.Component {
   render() {
     var charNameDisplay = null;
     if (this.props.id === 'new-round' && this.props.initPosition === 0) {
+      const numberOfInitGroups = InitGroupStore.getInitGroups().length;
       charNameDisplay = (
         <div className="char-name">
           <h1>
-            <Button id = "start-round-button" text={Constants.startRoundButtonString} onClick={this.props.handleStartRound} />
+            <Button id = "start-round-button" text={numberOfInitGroups > 1 ? Constants.startRoundButtonString:Constants.startEncounterButtonString} onClick={this.props.handleStartRound} />
           </h1>
         </div>
       );

@@ -38,6 +38,10 @@ export class Constants {
 	static get startRoundButtonString() {
 		return "start next round";
 	}
+
+	static get startEncounterButtonString() {
+		return "start encounter";
+	}
   
   static get editInitLabelString() {
     return "Enter new initiative";
