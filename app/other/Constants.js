@@ -49,5 +49,33 @@ export class Constants {
   
   static get editInitButtonString() {
     return "Change Initiative";
+	}
+	
+	static get encounterReportTitleString() {
+    return "Encounter Report";
+	}
+	
+	static get encounterReportTimeSectionIntroString() {
+    return "Your encounter lasted:";
+	}
+	static get inGameString() {
+    return "in game";
+	}
+	static get inRealLifeString() {
+    return "in real life";
+	}
+	static get inGameGroupTurnString() {
+    return "round(s)";
+	}
+
+	static get inGamePlayerTurnString() {
+		return "turn(s)";
+	}
+
+	static get secondsString() {
+    return "second(s)";
+	}
+	static get minutesString() {
+    return "minute(s)";
   }
 }

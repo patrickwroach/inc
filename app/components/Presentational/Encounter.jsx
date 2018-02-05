@@ -6,7 +6,7 @@ import { EndTurnButton } from './endTurnButton.jsx';
 import { AddCharModalContainer } from '../containers/AddCharModalContainer.jsx';
 import { ClearEncounterModal } from './ClearEncounterModal.jsx';
 import { MessageModal } from './MessageModal.jsx';
-import { EncounterReportModal } from './EncounterReportModal.jsx';
+import { EncounterReportModalContainer } from '../containers/EncounterReportModalContainer.jsx';
 import { Constants } from '../../other/Constants.js';
 import { Helpers } from '../../other/Helpers.js';
 import { InitGroupStore } from '../../data/InitGroupStore.js';
@@ -89,6 +89,7 @@ export class Encounter extends React.Component {
   endTurn() {
     var isEndTurnDisplayed = false;
     var currentRound = this.state.round;
+    var currentTurn = this.state.turns;
 
     if (this.state.initGroups.length > 1) {
       var newInitGroupsArray = InitGroupStore.endTurn(currentRound);
@@ -99,10 +100,17 @@ export class Encounter extends React.Component {
       }
       if (newInitGroupsArray[0].id !== "group-start") {
         isEndTurnDisplayed = true;
+              
+        
       }
       if (newInitGroupsArray[newInitGroupsArray.length - 1].id === "group-start") {
         currentRound++;
       }
+      if (newInitGroupsArray[newInitGroupsArray.length - 1].id !== "group-start") {
+        currentTurn++;    
+
+      }
+
     }
     else {
       this.toggleMessageModal(Constants.continueEncounterWithNoCharactersString);
@@ -110,6 +118,7 @@ export class Encounter extends React.Component {
 
     this.setState({
       round: currentRound,
+      turns:currentTurn,
       isEndTurnDisplayed: isEndTurnDisplayed
     })
   }
@@ -145,10 +154,10 @@ export class Encounter extends React.Component {
       messageModalText: text
     });
   }
-  
+
   toggleEncounterReportModal(text) {
     this.setState({
-      isEncounterReportModalDisplayed: !this.state. isEncounterReportModalDisplayed,
+      isEncounterReportModalDisplayed: !this.state.isEncounterReportModalDisplayed,
       messageModalText: text
     });
   }
@@ -191,7 +200,7 @@ export class Encounter extends React.Component {
             handleEditCharName={this.editCharName}
             handleEditInit={this.editInit}
             handleStartRound={this.endTurn}
-          
+
           />
 
           <Button
@@ -227,11 +236,15 @@ export class Encounter extends React.Component {
             toggle={this.toggleMessageModal}
             text={this.state.messageModalText}
           />
-          <EncounterReportModal
-            isDisplayed= {this.state.isEncounterReportModalDisplayed}
+          <EncounterReportModalContainer
+            isDisplayed={this.state.isEncounterReportModalDisplayed}
             toggle={this.toggleEncounterReportModal}
-            text={this.state.messageModalText}
-            />
+            encounterRoundCount={this.state.round}
+            encounterTurnCount={this.state.turns}
+            encounterStartTime={this.state.encounterStartTime}
+            initGroups={this.state.initGroups}
+
+          />
         </ul>
       </div>
     );
