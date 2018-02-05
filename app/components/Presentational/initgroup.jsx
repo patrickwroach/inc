@@ -23,6 +23,7 @@ export class InitGroup extends React.Component {
         <CharacterList
           initGroupId={this.props.id}
           characters={this.props.characters}
+          currentRound={this.props.currentRound}
           handleAddHp={this.props.handleAddHp}
           handleEditName={this.props.handleEditCharName}
           handleRemoveCharacter={this.props.handleRemoveCharacter}

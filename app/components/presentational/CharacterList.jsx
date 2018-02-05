@@ -10,6 +10,7 @@ export class CharacterList extends React.Component {
           initGroupId={this.props.initGroupId}
           name={c.name}
           hp={c.hp}
+          currentRound={this.props.currentRound}
           hpMax={c.hpMax}
           handleAddHp={this.props.handleAddHp}
           handleEditName={this.props.handleEditName}

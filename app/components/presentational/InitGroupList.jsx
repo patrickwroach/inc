@@ -12,6 +12,7 @@ export class InitGroupList extends React.Component {
           type={ig.type}
           initPosition={index}
           characters={this.props.handleGetCharacters(ig.charIds)}
+          currentRound={this.props.currentRound}
           handleAddHp={this.props.handleAddHp}
           handleEditName={this.props.handleEditName}
           handleRemoveInitGroup={this.props.handleRemoveInitGroup}

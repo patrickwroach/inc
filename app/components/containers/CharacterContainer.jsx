@@ -59,6 +59,7 @@ export class CharacterContainer extends React.Component {
         initPosition = {this.props.initPosition}
         name = {this.props.name}
         hp = {this.props.hp}
+        currentRound={this.props.currentRound}
         hpMax = {this.props.hpMax}
         inputHp = {this.state.inputHp}
         handleStartRound = {this.props.handleStartRound}

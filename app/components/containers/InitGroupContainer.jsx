@@ -63,6 +63,7 @@ export class InitGroupContainer extends React.Component {
         init={this.props.init}
         initPosition={this.props.initPosition}
         characters={this.props.characters}
+        currentRound={this.props.currentRound}
         handleRemoveInitGroup={this.handleRemoveInitGroup}
         handleAddHp={this.props.handleAddHp}
         handleEditCharName={this.props.handleEditCharName}

@@ -170,6 +170,7 @@ export class Encounter extends React.Component {
 
           <InitGroupList
             initGroups={this.state.initGroups}
+            currentRound={this.state.round}
             handleGetCharacters={this.getCharacters}
             handleAddHp={this.addHp}
             handleEditName={this.editInitGroupName}
@@ -178,6 +179,7 @@ export class Encounter extends React.Component {
             handleEditCharName={this.editCharName}
             handleEditInit={this.editInit}
             handleStartRound={this.endTurn}
+          
           />
 
           <Button

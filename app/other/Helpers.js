@@ -3,7 +3,7 @@ export class Helpers {
     return [
     	{
     		id: "group-start",
-    		name: "start of new round",
+    		name: "start of round",
     		init: Number.MAX_SAFE_INTEGER,
     		type: "nonChar",
     		charIds: ["new-round"]
@@ -15,7 +15,7 @@ export class Helpers {
     return [
     	{
     		id: "new-round",
-    		name: "start of new round",
+    		name: "start of round",
     		hp: 1,
     		hpMax: 0
     	}

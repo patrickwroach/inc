@@ -36,7 +36,7 @@ export class Constants {
 	}
 	
 	static get startRoundButtonString() {
-		return "start next round";
+		return "start round";
 	}
 
 	static get startEncounterButtonString() {
