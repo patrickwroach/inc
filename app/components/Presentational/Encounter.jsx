@@ -6,6 +6,7 @@ import { EndTurnButton } from './endTurnButton.jsx';
 import { AddCharModalContainer } from '../containers/AddCharModalContainer.jsx';
 import { ClearEncounterModal } from './ClearEncounterModal.jsx';
 import { MessageModal } from './MessageModal.jsx';
+import { EncounterReportModal } from './EncounterReportModal.jsx';
 import { Constants } from '../../other/Constants.js';
 import { Helpers } from '../../other/Helpers.js';
 import { InitGroupStore } from '../../data/InitGroupStore.js';
@@ -22,6 +23,7 @@ export class Encounter extends React.Component {
       round: 0,
       turns: 0,
       isMessageModalDisplayed: false,
+      isEncounterReportModalDisplayed: false,
       messageModalText: "",
       encounterStartTime: null
     };
@@ -39,6 +41,7 @@ export class Encounter extends React.Component {
     this.clearNpcs = this.clearNpcs.bind(this);
     this.clearAll = this.clearAll.bind(this);
     this.toggleMessageModal = this.toggleMessageModal.bind(this);
+    this.toggleEncounterReportModal = this.toggleEncounterReportModal.bind(this);
     this.getCharacters = this.getCharacters.bind(this);
     this.updateInitGroupsAndCharacters = this.updateInitGroupsAndCharacters.bind(this);
   }
@@ -119,24 +122,33 @@ export class Encounter extends React.Component {
     InitGroupStore.clearNpcs();
 
     this.setState({
-      round: 1,
+      round: 0,
       turns: 0
     });
     this.toggleClearEncounterModal();
+    this.toggleEncounterReportModal();
   }
 
   clearAll() {
     InitGroupStore.clearAll();
     this.setState({
-      round: 1,
+      round: 0,
       turns: 0
     });
     this.toggleClearEncounterModal();
+    this.toggleEncounterReportModal();
   }
 
   toggleMessageModal(text) {
     this.setState({
       isMessageModalDisplayed: !this.state.isMessageModalDisplayed,
+      messageModalText: text
+    });
+  }
+  
+  toggleEncounterReportModal(text) {
+    this.setState({
+      isEncounterReportModalDisplayed: !this.state. isEncounterReportModalDisplayed,
       messageModalText: text
     });
   }
@@ -215,6 +227,11 @@ export class Encounter extends React.Component {
             toggle={this.toggleMessageModal}
             text={this.state.messageModalText}
           />
+          <EncounterReportModal
+            isDisplayed= {this.state.isEncounterReportModalDisplayed}
+            toggle={this.toggleEncounterReportModal}
+            text={this.state.messageModalText}
+            />
         </ul>
       </div>
     );
