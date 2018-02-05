@@ -101,9 +101,6 @@ export class AddCharModalContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.isOpen) {
-      return null;
-    }
     return (
       <AddCharModal
         selectedType={this.state.selectedType}
@@ -119,6 +116,7 @@ export class AddCharModalContainer extends React.Component {
         handleNewGroup={this.handleNewGroup}
         handleSubmit={this.handleSubmit}
         toggleAddCharModal={this.props.toggleAddCharModal}
+        isDisplayed={this.props.isOpen}
       />
     );
   }

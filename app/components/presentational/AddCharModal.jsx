@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from './button.jsx';
 import { Constants } from '../../other/Constants.js';
+import { Modal } from './Modal.jsx';
 
 export class AddCharModal extends React.Component {
   render() {
@@ -37,37 +38,38 @@ export class AddCharModal extends React.Component {
       );
     }
     return (
-      <div id="addCharModal" className="modal">
-        <div className="choice-container">
-          <Button id="closer" text="&#10006;" onClick={this.props.toggleAddCharModal} />
-          <h2> Add a character to the Encounter </h2>
-          <Button addClass={this.props.selectedType + ' ' + "PCbox"} text="PC" onClick={this.props.handleNewPC} />
-          <Button addClass={this.props.selectedType + ' ' + "NPCbox"} text="NPC" onClick={this.props.handleNewNPC} />
-          <Button addClass={this.props.selectedType + ' ' + "Groupbox"} text="Group" onClick={this.props.handleNewGroup} />
-          <form id="char-wiz-form" className="input-container">
-            <p>
-              Name:
+      <Modal
+        id="addCharModal"
+        isDisplayed={this.props.isDisplayed}
+        toggle={this.props.toggleAddCharModal}
+      >
+        <h2> Add a character to the Encounter </h2>
+        <Button addClass={this.props.selectedType + ' ' + "PCbox"} text="PC" onClick={this.props.handleNewPC} />
+        <Button addClass={this.props.selectedType + ' ' + "NPCbox"} text="NPC" onClick={this.props.handleNewNPC} />
+        <Button addClass={this.props.selectedType + ' ' + "Groupbox"} text="Group" onClick={this.props.handleNewGroup} />
+        <form id="char-wiz-form" className="input-container">
+          <p>
+            Name:
               <input type="text"
-                onChange={this.props.handleNewName}
-                onKeyPress={this.props.handleKeyPress}
-                autoFocus
-              />
-            </p>
-            <p>
-              Initiative
+              onChange={this.props.handleNewName}
+              onKeyPress={this.props.handleKeyPress}
+              autoFocus
+            />
+          </p>
+          <p>
+            Initiative
               <input type="number"
-                placeholder="0"
-                onChange={this.props.handleNewInit}
-                onKeyPress={this.props.handleKeyPress}
-              />
-            </p>
-          </form>
-          {hpInput}
-          {amountInput}
-          <br />
-          <Button addClass="submit" text="Add Character(s)" onClick={this.props.handleSubmit} />
-        </div>
-      </div>
+              placeholder="0"
+              onChange={this.props.handleNewInit}
+              onKeyPress={this.props.handleKeyPress}
+            />
+          </p>
+        </form>
+        {hpInput}
+        {amountInput}
+        <br />
+        <Button addClass="submit" text="Add Character(s)" onClick={this.props.handleSubmit} />
+      </Modal>
     );
   }
 }
