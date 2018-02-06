@@ -21,11 +21,14 @@ export class Encounter extends React.Component {
       isAddCharModalOpen: false,
       isClearEncounterModalOpen: false,
       round: 0,
+      loggedRounds: 0,
       turns: 0,
+      loggedTurns:0,
       isMessageModalDisplayed: false,
       isEncounterReportModalDisplayed: false,
       messageModalText: "",
-      encounterStartTime: null
+      encounterStartTime:0,
+      loggedEncounterStartTime: null
     };
 
     this.addHp = this.addHp.bind(this);
@@ -94,8 +97,7 @@ export class Encounter extends React.Component {
     if (this.state.initGroups.length > 1) {
       var newInitGroupsArray = InitGroupStore.endTurn(currentRound);
       if (this.state.round === 0) {
-        var startTime = new Date();
-        console.log(startTime.toUTCString());
+        var startTime = Date.now();
         this.setState({ encounterStartTime: startTime });
       }
       if (newInitGroupsArray[0].id !== "group-start") {
@@ -122,9 +124,18 @@ export class Encounter extends React.Component {
       isEndTurnDisplayed: isEndTurnDisplayed
     })
   }
+  
 
   toggleClearEncounterModal() {
-    this.setState({ isClearEncounterModalOpen: !this.state.isClearEncounterModalOpen });
+    var loggedRoundCount = this.state.round; 
+    var loggedTurnCount = this.state.turns; 
+    var loggedStartTime = this.state.encounterStartTime; 
+    this.setState({ 
+      isClearEncounterModalOpen: !this.state.isClearEncounterModalOpen,
+      loggedRounds:loggedRoundCount,
+      loggedTurns:loggedTurnCount,
+      loggedEncounterStartTime:loggedStartTime
+    });
   }
 
   clearNpcs() {
@@ -239,9 +250,9 @@ export class Encounter extends React.Component {
           <EncounterReportModalContainer
             isDisplayed={this.state.isEncounterReportModalDisplayed}
             toggle={this.toggleEncounterReportModal}
-            encounterRoundCount={this.state.round}
-            encounterTurnCount={this.state.turns}
-            encounterStartTime={this.state.encounterStartTime}
+            encounterRoundCount={this.state.loggedRounds}
+            encounterTurnCount={this.state.loggedTurns}
+            encounterStartTime={this.state.loggedEncounterStartTime}
             initGroups={this.state.initGroups}
 
           />

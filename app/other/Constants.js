@@ -59,10 +59,10 @@ export class Constants {
     return "Your encounter lasted:";
 	}
 	static get inGameString() {
-    return "in game";
+    return "In game time elapsed: ";
 	}
 	static get inRealLifeString() {
-    return "in real life";
+    return "Real life time elasped: ";
 	}
 	static get inGameGroupTurnString() {
     return "round(s)";
