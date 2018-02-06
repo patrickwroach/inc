@@ -272,7 +272,7 @@ p {
   padding-top: 65px;
 }
 .content-container#init-container .character {
-  padding: 10px 0;
+  padding: 15px 0 10px;
   margin: 5px 0;
   width: 100%;
   display: table;
@@ -288,7 +288,8 @@ p {
   position: absolute;
   top: 2px;
   left: 5px;
-  color: #e4e4e4;
+  font-size: 1.1em;
+  color: #b1b1b1;
 }
 .content-container#init-container .character .char-name {
   padding-left: 5px;
@@ -524,13 +525,12 @@ p {
 .content-container#init-container .edit-pen {
   transform: rotate(120deg);
   display: inline-block;
-  font-size: 50%;
+  font-size: 60%;
   position: absolute;
   margin-left: 5px;
   cursor: pointer;
 }
-.content-container#init-container .init-edit,
-.content-container#init-container .name-edit {
+.content-container#init-container .modal {
   position: fixed;
   text-align: center;
   width: 100%;
@@ -540,8 +540,7 @@ p {
   background-color: rgba(47, 47, 47, 0.2);
   z-index: 10;
 }
-.content-container#init-container .init-edit .choice-container,
-.content-container#init-container .name-edit .choice-container {
+.content-container#init-container .modal .choice-container {
   padding: 50px;
   position: relative;
   top: 25%;
@@ -549,8 +548,7 @@ p {
   width: 50%;
   background: #fdfdfd;
 }
-.content-container#init-container .init-edit .choice-container #closer,
-.content-container#init-container .name-edit .choice-container #closer {
+.content-container#init-container .modal .choice-container #closer {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -559,102 +557,52 @@ p {
   padding: 5px;
   width: 20.67px;
 }
-.content-container#init-container .init-edit .choice-container input,
-.content-container#init-container .name-edit .choice-container input {
+.content-container#init-container .modal .choice-container input {
   border: 3px solid #2f2f2f;
 }
-.content-container#init-container .init-edit .choice-container input[type="number"],
-.content-container#init-container .name-edit .choice-container input[type="number"] {
+.content-container#init-container .modal .choice-container input[type="number"] {
   text-align: center;
   width: 50px;
   display: inline-block;
 }
-.content-container#init-container .init-edit .choice-container .button,
-.content-container#init-container .name-edit .choice-container .button {
+.content-container#init-container .modal .choice-container .button {
   display: block;
   margin: 10px auto;
   width: 120px;
 }
-.content-container#init-container .init-edit.displayed,
-.content-container#init-container .name-edit.displayed {
-  display: block;
-}
-.content-container#init-container .init-edit.hidden,
-.content-container#init-container .name-edit.hidden {
-  display: none;
-}
 .content-container#init-container .moving {
   animation: list-scroll ease 0.25s;
 }
-#add-char-wizard {
-  position: fixed;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(47, 47, 47, 0.2);
-  z-index: 10;
-}
-#add-char-wizard .choice-container {
-  padding: 50px;
-  position: relative;
-  top: 25%;
-  margin: 0 auto;
-  width: 50%;
-  background: #fdfdfd;
-}
-#add-char-wizard .choice-container .displayed {
-  display: block;
-}
-#add-char-wizard .choice-container .hidden {
-  display: none;
-}
-#add-char-wizard .choice-container .button {
-  display: inline-block;
-  margin: 5px;
+#addCharModal .choice-container .button {
+  display: inline-block !important;
+  margin: 0 !important;
   width: 100px;
 }
-#add-char-wizard .choice-container .button.PCbox.PC {
+#addCharModal .choice-container .button.PCbox.PC {
   background: #6f6f6f;
 }
-#add-char-wizard .choice-container .button.NPCbox.NPC {
+#addCharModal .choice-container .button.NPCbox.NPC {
   background: #6f6f6f;
 }
-#add-char-wizard .choice-container .button.Groupbox.Group {
+#addCharModal .choice-container .button.Groupbox.Group {
   background: #6f6f6f;
 }
-#add-char-wizard .choice-container .button.submit {
+#addCharModal .choice-container .button.submit {
   width: 100%;
   padding: 10px 0;
 }
-#add-char-wizard .choice-container input {
+#addCharModal .choice-container input {
   border: 1px solid #2f2f2f;
   margin-left: 5px;
+  margin-top: 10px;
 }
-#add-char-wizard .choice-container input:focus {
+#addCharModal .choice-container input:focus {
   outline-color: rgba(47, 47, 47, 0.25);
 }
-#add-char-wizard .choice-container input[type="number"] {
+#addCharModal .choice-container input[type="number"] {
   text-align: center;
   width: 50px;
   display: inline-block;
-}
-#add-char-wizard .choice-container #closer {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  text-align: center;
-  display: inline-block;
-  padding: 5px;
-  width: 20.67px;
-}
-#add-char-wizard .choice-container #closer p {
-  margin: 0;
-  width: 20.67px;
-}
-#add-char-wizard.inactive {
-  display: none;
 }
 .content-container#navbar {
   background: #2f2f2f;
@@ -696,6 +644,9 @@ p {
 .content-container#footer .content p {
   text-align: center;
   color: #fdfdfd;
+}
+#start-round-button {
+  float: right;
 }
 @media screen and (min-width: 501px) and (max-width: 900px) {
   .content-container .content {
