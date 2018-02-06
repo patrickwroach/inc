@@ -83,10 +83,6 @@ export class Encounter extends React.Component {
     this.setState({
       isAddCharModalOpen: false
     });
-
-    document.getElementById("char-wiz-form").reset();
-    document.getElementById("NPC-entries").reset();
-    document.getElementById("Group-entries").reset();
   }
 
   endTurn() {

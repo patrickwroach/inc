@@ -53,10 +53,6 @@ export class AddCharModalContainer extends React.Component {
       hpVis: false,
       amountVis: false
     });
-
-    //Todo -reset here is clumsy
-    document.getElementById("NPC-entries").reset();
-    document.getElementById("Group-entries").reset();
   }
   handleNewNPC() {
     this.setState({
@@ -65,9 +61,6 @@ export class AddCharModalContainer extends React.Component {
       hpVis: true,
       amountVis: false
     });
-
-    //Todo -reset here is clumsy
-    document.getElementById("Group-entries").reset();
   }
   handleNewGroup() {
     this.setState({
