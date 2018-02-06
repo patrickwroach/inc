@@ -16,7 +16,7 @@ export class EncounterReportModalContainer extends React.Component {
     var secondsGross = roundCount*6;  
     var minutes =  Math.floor(secondsGross/ 60);
     var seconds = secondsGross % 60;
-    return minutes.toString() + " " + Constants.minutesString + ", and" + " " + seconds.toString() + Constants.secondsString + ".";   
+    return minutes.toString() + " " + Constants.minutesString + ", and "  + seconds.toString() + " " + Constants.secondsString + ".";   
   }
 
 
@@ -28,7 +28,7 @@ export class EncounterReportModalContainer extends React.Component {
     var secondsGross =  Math.floor(milliseconds/1000); 
     var minutes =  Math.floor(secondsGross/ 60);
     var seconds = secondsGross % 60;
-    return minutes.toString() + " " + Constants.minutesString + ", and " + " " + seconds.toString() + " " + Constants.secondsString + ".";   
+    return minutes.toString() + " " + Constants.minutesString + ", and "  + seconds.toString() + " " + Constants.secondsString + ".";   
   }
  
 
