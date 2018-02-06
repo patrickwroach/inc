@@ -2,41 +2,10 @@ import React from 'react';
 import { Button } from './button.jsx';
 import { Constants } from '../../other/Constants.js';
 import { Modal } from './Modal.jsx';
+import { Input } from './forms/Input.jsx';
 
 export class AddCharModal extends React.Component {
   render() {
-    var amountInput = null;
-    if (this.props.amountVis) {
-      amountInput = (
-        <form id="Group-entries">
-          <p id="amount-entry">
-            How many?
-              <input onChange={this.props.handleNewAmount}
-              onKeyPress={this.props.handleKeyPress}
-              type="number"
-              min="2"
-              placeholder="2"
-            />
-          </p>
-        </form>
-      );
-    }
-
-    var hpInput = null;
-    if (this.props.hpVis) {
-      hpInput = (
-        <form id="NPC-entries">
-          <p id="hp-entry">
-            Hit Points
-              <input onChange={this.props.handleNewHp}
-              onKeyPress={this.props.handleKeyPress}
-              type="number"
-              placeholder="1"
-            />
-          </p>
-        </form>
-      );
-    }
     return (
       <Modal
         id="addCharModal"
@@ -64,9 +33,25 @@ export class AddCharModal extends React.Component {
               onKeyPress={this.props.handleKeyPress}
             />
           </p>
+          <Input
+            labelText="Hit Points"
+            type="number"
+            isVisible={this.props.hpVis}
+            handleChange={this.props.handleNewHp}
+            handleKeyPress={this.props.handleKeyPress}
+            placeholder="33"
+            min="1"
+          />
+          <Input
+            labelText="How many?"
+            type="number"
+            isVisible={this.props.amountVis}
+            handleChange={this.props.handleNewAmount}
+            handleKeyPress={this.props.handleKeyPress}
+            placeholder="4"
+            min="2"
+          />
         </form>
-        {hpInput}
-        {amountInput}
         <br />
         <Button addClass="submit" text="Add Character(s)" onClick={this.props.handleSubmit} />
       </Modal>
