@@ -136,10 +136,10 @@ export class Encounter extends React.Component {
 
   clearNpcs() {
     InitGroupStore.clearNpcs();
-
     this.setState({
       round: 0,
-      turns: 0
+      turns: 0,
+      encounterStartTime:0
     });
     this.toggleClearEncounterModal();
     this.toggleEncounterReportModal();
@@ -149,10 +149,13 @@ export class Encounter extends React.Component {
     InitGroupStore.clearAll();
     this.setState({
       round: 0,
-      turns: 0
+      turns: 0,
+
     });
     this.toggleClearEncounterModal();
+    if (this.state.round > 0){
     this.toggleEncounterReportModal();
+    }
   }
 
   toggleMessageModal(text) {
