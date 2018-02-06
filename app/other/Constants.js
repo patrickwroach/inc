@@ -62,7 +62,7 @@ export class Constants {
     return "In game time elapsed: ";
 	}
 	static get inRealLifeString() {
-    return "Real life time elasped: ";
+    return "Real life time elapsed: ";
 	}
 	static get inGameGroupTurnString() {
     return "round(s)";
