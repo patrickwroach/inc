@@ -19,6 +19,7 @@ export class Input extends React.Component {
         {this.props.labelText}
         <input
           ref={input => this.theInput = input}
+          value={this.props.value}
           onChange={this.props.handleChange}
           onKeyPress={this.props.handleKeyPress}
           type={this.props.type}

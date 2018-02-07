@@ -1,23 +1,29 @@
 import React from 'react';
 import { Button } from './button.jsx';
 import { SingleNumberModalContainer } from '../containers/SingleNumberModalContainer.jsx';
+import { Modal } from './Modal.jsx';
+import { Input } from './forms/Input.jsx';
 
 export class SingleNumberModal extends React.Component {
   render() {
     return (
-      <div className="modal">
-        <div className="choice-container">
-          <Button id="closer" text="&#10006;" onClick={this.props.toggle} />
-          <h3>{this.props.labelText}</h3>
-          <input type="number"
+      <Modal
+        isDisplayed={this.props.isDisplayed}
+        toggle={this.props.toggle}
+      >
+        <form className="input-container">
+          <Input
+            labelText={this.props.labelText}
+            type="number"
             value={this.props.inputValue}
-            onChange={this.props.handleChange}
-            onKeyPress={this.props.handleKeyPress}
-            autoFocus
+            isVisible={true}
+            handleChange={this.props.handleChange}
+            handleKeyPress={this.props.handleKeyPress}
+            autoFocus={true}
           />
-          <Button onClick={this.props.handleSubmit} text={this.props.buttonText} />
-        </div>
-      </div>
+          <Button addClass="submit" onClick={this.props.handleSubmit} text={this.props.buttonText} />
+        </form>
+      </Modal>
     );
   }
 }

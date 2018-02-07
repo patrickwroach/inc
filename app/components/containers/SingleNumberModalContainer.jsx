@@ -29,12 +29,9 @@ export class SingleNumberModalContainer extends React.Component {
   }
   
   render() {
-    if (!this.props.isOpen) {
-      return null;
-    }
-    
     return (
       <SingleNumberModal
+        isDisplayed={this.props.isOpen}
         toggle = {this.props.toggle}
         inputValue = {this.state.inputValue}
         handleChange = {this.handleChange}
