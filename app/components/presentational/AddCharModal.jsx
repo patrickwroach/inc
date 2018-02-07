@@ -5,6 +5,10 @@ import { Modal } from './Modal.jsx';
 import { Input } from './forms/Input.jsx';
 
 export class AddCharModal extends React.Component {
+  focusNameInput() {
+    this.nameInput.focus();
+  }
+
   render() {
     return (
       <Modal
@@ -17,22 +21,23 @@ export class AddCharModal extends React.Component {
         <Button addClass={this.props.selectedType + ' ' + "NPCbox"} text="NPC" onClick={this.props.handleNewNPC} />
         <Button addClass={this.props.selectedType + ' ' + "Groupbox"} text="Group" onClick={this.props.handleNewGroup} />
         <form id="char-wiz-form" className="input-container">
-          <p>
-            Name:
-              <input type="text"
-              onChange={this.props.handleNewName}
-              onKeyPress={this.props.handleKeyPress}
-              autoFocus
-            />
-          </p>
-          <p>
-            Initiative
-              <input type="number"
-              placeholder="0"
-              onChange={this.props.handleNewInit}
-              onKeyPress={this.props.handleKeyPress}
-            />
-          </p>
+          <Input
+            ref={node => this.nameInput = node}
+            labelText="Name"
+            type="text"
+            isVisible={true}
+            handleChange={this.props.handleNewName}
+            handleKeyPress={this.props.handleKeyPress}
+            autoFocus={true}
+          />
+          <Input
+            labelText="Initiative"
+            type="number"
+            isVisible={true}
+            handleChange={this.props.handleNewInit}
+            handleKeyPress={this.props.handleKeyPress}
+            placeholder="0"
+          />
           <Input
             labelText="Hit Points"
             type="number"

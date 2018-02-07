@@ -53,6 +53,7 @@ export class AddCharModalContainer extends React.Component {
       hpVis: false,
       amountVis: false
     });
+    this.addCharModal.focusNameInput();
   }
   handleNewNPC() {
     this.setState({
@@ -61,6 +62,7 @@ export class AddCharModalContainer extends React.Component {
       hpVis: true,
       amountVis: false
     });
+    this.addCharModal.focusNameInput();
   }
   handleNewGroup() {
     this.setState({
@@ -69,6 +71,7 @@ export class AddCharModalContainer extends React.Component {
       hpVis: true,
       amountVis: true
     });
+    this.addCharModal.focusNameInput();
   }
 
   handleKeyPress(e) {
@@ -96,6 +99,7 @@ export class AddCharModalContainer extends React.Component {
   render() {
     return (
       <AddCharModal
+        ref={node => this.addCharModal = node}
         selectedType={this.state.selectedType}
         amountVis={this.state.amountVis}
         hpVis={this.state.hpVis}
