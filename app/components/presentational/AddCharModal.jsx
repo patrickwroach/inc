@@ -31,7 +31,7 @@ export class AddCharModal extends React.Component {
             autoFocus={true}
           />
           <Input
-            labelText="Initiative"
+            labelText={Constants.initLabelString}
             type="number"
             isVisible={true}
             handleChange={this.props.handleNewInit}

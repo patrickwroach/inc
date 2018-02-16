@@ -1,24 +1,27 @@
 import React from 'react';
-import { Button } from './button.jsx';
 import { CharacterList } from './CharacterList.jsx'
 import { SingleTextModalContainer } from '../containers/SingleTextModalContainer.jsx';
 import { SingleNumberModalContainer } from '../containers/SingleNumberModalContainer.jsx';
+import { NameBar } from './NameBar.jsx';
+import { InitBar } from './InitBar.jsx';
 import { Constants } from '../../other/Constants.js';
 
 export class InitGroup extends React.Component {
   render() {
     return (
-      <ul id={this.props.id} className={'character' + ' ' + this.props.displayGroup + ' ' + this.props.type + ' index'+ this.props.initPosition}> 
-        <div className="group-name-bar">
-          <Button text="&#10006;" addClass="remove " onClick={this.props.handleRemoveInitGroup} />
-          <div className="char-name">
-            <h1>{this.props.name}<span className="edit-pen" onClick={this.props.toggleNameEdit}>{String.fromCharCode(9999)}</span></h1>
-          </div>
-          <div className="button-container">
-            <Button text={this.props.toggleButtonText} id="expand" onClick={this.props.toggleGroup} />
-          </div>     
-        </div>
-        <h3 className="init-number">Init: {this.props.init}<span className="edit-pen" onClick={this.props.toggleInitEdit}>{String.fromCharCode(9999)}</span></h3>  
+      <ul id={this.props.id} className={'character' + ' ' + this.props.displayGroup + ' ' + this.props.type + ' index'+ this.props.initPosition}>
+        <NameBar
+          handleRemoveInitGroup={this.props.handleRemoveInitGroup}
+          name={this.props.name}
+          toggleNameEdit={this.props.toggleNameEdit}
+          toggleButtonText={this.props.toggleButtonText}
+          toggleGroup={this.props.toggleGroup}
+        />
+        
+        <InitBar
+          init={this.props.init}
+          toggleInitEdit={this.props.toggleInitEdit}
+        />
         
         <CharacterList
           initGroupId={this.props.id}
@@ -46,7 +49,7 @@ export class InitGroup extends React.Component {
           isOpen = {this.props.isInitEditModalOpen}
           toggle = {this.props.toggleInitEdit}
           onSubmit = {this.props.handleSubmitInit}
-          labelText = {Constants.editInitLabelString}
+          labelText = {Constants.initLabelString}
           inputValue = {this.props.init}
           buttonText = {Constants.editInitButtonString}
         />
