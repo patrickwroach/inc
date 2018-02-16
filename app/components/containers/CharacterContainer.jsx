@@ -5,23 +5,14 @@ export class CharacterContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNameEditModalOpen: false,
-      inputHp: 5
+      isNameEditModalOpen: false
     };
      
     this.handleAddHp =  this.handleAddHp.bind(this);
-    this.handleInputHp =  this.handleInputHp.bind(this);
     this.toggleNameEdit = this.toggleNameEdit.bind(this);
     this.submitName =  this.submitName.bind(this);
     this.handleRemoveCharacter = this.handleRemoveCharacter.bind(this);
     this.toggleAliveDead = this.toggleAliveDead.bind(this);
-  }
-  
-  handleInputHp(e){
-    const newInputHp = e.target.value;
-    this.setState({
-      inputHp:newInputHp
-    });
   }
 	
   toggleNameEdit() {
@@ -58,8 +49,8 @@ export class CharacterContainer extends React.Component {
         id = {this.props.id}
         initPosition = {this.props.initPosition}
         name = {this.props.name}
-        hp = {this.props.hp}
         currentRound={this.props.currentRound}
+        hp = {this.props.hp}
         hpMax = {this.props.hpMax}
         inputHp = {this.state.inputHp}
         handleStartRound = {this.props.handleStartRound}

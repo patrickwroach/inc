@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from './button.jsx';
 import { AliveToggleButton } from './AliveToggleButton.jsx';
 import { SingleTextModalContainer } from '../containers/SingleTextModalContainer.jsx';
+import { HitPointsContainer } from '../containers/HitPointsContainer.jsx';
 import { Constants } from '../../other/Constants.js';
 import { InitGroupStore } from '../../data/InitGroupStore.js';
 
@@ -51,25 +52,11 @@ export class Character extends React.Component {
           toggleAliveDead={this.props.toggleAliveDead}
         />
 
-        <div className="hp-count">
-          <div className="hp">
-            <h2>{this.props.hp}/{this.props.hpMax}</h2>
-          </div>
-          <div className="hp-toggles">
-            <Button onClick={() => this.props.handleAddHp(1)} text="+1" />
-            <Button onClick={() => this.props.handleAddHp(+this.props.inputHp)} text="+" />
-            <input
-              onChange={this.props.handleInputHp}
-              type="number"
-              min="1"
-              placeholder="5"
-              onFocus={(e) => e.target.placeholder = ""}
-              className="inputToggle"
-            />
-            <Button onClick={() => this.props.handleAddHp(-this.props.inputHp)} text="-" />
-            <Button onClick={() => this.props.handleAddHp(-1)} text="-1" />
-          </div>
-        </div>
+        <HitPointsContainer
+          hp={this.props.hp}
+          hpMax={this.props.hpMax}
+          handleAddHp={this.props.handleAddHp}
+        />
 
         <SingleTextModalContainer
           isOpen={this.props.isNameEditModalOpen}
