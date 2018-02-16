@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from './button.jsx';
+import { AliveToggleButton } from './AliveToggleButton.jsx';
 import { SingleTextModalContainer } from '../containers/SingleTextModalContainer.jsx';
 import { Constants } from '../../other/Constants.js';
 import { InitGroupStore } from '../../data/InitGroupStore.js';
@@ -44,9 +45,11 @@ export class Character extends React.Component {
     return (
       <div className={`char-bar${this.props.hp <= 0 ? ' dead' : ' alive'}`}>
         {charNameDisplay}
-        <div className="aliveDead button-container ">
-          <Button onClick={this.props.toggleAliveDead} text={this.props.hp <= 0 ? 'revive' : ' kill'} />
-        </div>
+        
+        <AliveToggleButton
+          isAlive={this.props.hp <= 0}
+          toggleAliveDead={this.props.toggleAliveDead}
+        />
 
         <div className="hp-count">
           <div className="hp">
