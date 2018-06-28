@@ -8,27 +8,37 @@ import { ClearEncounterModal } from './ClearEncounterModal.jsx';
 import { MessageModal } from './MessageModal.jsx';
 import { EncounterReportModalContainer } from '../containers/EncounterReportModalContainer.jsx';
 import { Constants } from '../../other/Constants.js';
-import { Helpers } from '../../other/Helpers.js';
 import { InitGroupStore } from '../../data/InitGroupStore.js';
 
 export class Encounter extends React.Component {
   constructor(props) {
     super(props);
+
+    // Probably not the most appropriate place for this
+    let savedInitGroups = JSON.parse(localStorage.getItem(Constants.EncounterStateInitGroupsString));
+    let savedCharacters = JSON.parse(localStorage.getItem(Constants.EncounterStateCharactersString));
+    if (savedInitGroups) {
+      InitGroupStore.loadInitGroups(savedInitGroups);
+    }
+    if (savedCharacters) {
+      InitGroupStore.loadCharacters(savedCharacters);
+    }
+    
     this.state = {
       initGroups: InitGroupStore.getInitGroups(),
       characters: InitGroupStore.getCharacters(),
-      isEndTurnDisplayed: false,
-      isAddCharModalOpen: false,
-      isClearEncounterModalOpen: false,
-      round: 0,
-      loggedRounds: 0,
-      turns: 0,
-      loggedTurns:0,
-      isMessageModalDisplayed: false,
-      isEncounterReportModalDisplayed: false,
-      messageModalText: "",
-      encounterStartTime:0,
-      loggedEncounterStartTime: null
+      isEndTurnDisplayed: JSON.parse(localStorage.getItem(Constants.EncounterStateIsEndTurnDisplayedString)) || false,
+      isAddCharModalOpen: JSON.parse(localStorage.getItem(Constants.EncounterStateIsAddCharModalOpenString)) || false,
+      isClearEncounterModalOpen: JSON.parse(localStorage.getItem(Constants.EncounterStateIsClearEncounterModalOpenString)) || false,
+      round: JSON.parse(localStorage.getItem(Constants.EncounterStateRoundString)) || 0,
+      loggedRounds: JSON.parse(localStorage.getItem(Constants.EncounterStateLoggedRoundsString)) || 0,
+      turns: JSON.parse(localStorage.getItem(Constants.EncounterStateTurnsString)) || 0,
+      loggedTurns: JSON.parse(localStorage.getItem(Constants.EncounterStateLoggedTurnsString)) || 0,
+      isMessageModalDisplayed: JSON.parse(localStorage.getItem(Constants.EncounterStateIsMessageModalDisplayedString)) || false,
+      isEncounterReportModalDisplayed: JSON.parse(localStorage.getItem(Constants.EncounterStateIsEncounterReportModalDisplayedString)) || false,
+      messageModalText: JSON.parse(localStorage.getItem(Constants.EncounterStateMessageModalTextString)) || "",
+      encounterStartTime: JSON.parse(localStorage.getItem(Constants.EncounterStateEncounterStartTimeString)) || 0,
+      loggedEncounterStartTime: JSON.parse(localStorage.getItem(Constants.EncounterStateLoggedEncounterStartTimeString)) || null
     };
 
     this.addHp = this.addHp.bind(this);
@@ -47,6 +57,7 @@ export class Encounter extends React.Component {
     this.toggleEncounterReportModal = this.toggleEncounterReportModal.bind(this);
     this.getCharacters = this.getCharacters.bind(this);
     this.updateInitGroupsAndCharacters = this.updateInitGroupsAndCharacters.bind(this);
+    this.persistEncounterState = this.persistEncounterState.bind(this);
   }
 
   addHp(charId, amount) {
@@ -147,14 +158,16 @@ export class Encounter extends React.Component {
 
   clearAll() {
     InitGroupStore.clearAll();
+
     this.setState({
       round: 0,
       turns: 0,
-
     });
+
     this.toggleClearEncounterModal();
-    if (this.state.round > 0){
-    this.toggleEncounterReportModal();
+    // TODO: Doesn't seem to be the place for this check, since it's after the previous setState (may or may not be complete by it gets here)
+    if (this.state.round > 0) {
+      this.toggleEncounterReportModal();
     }
   }
 
@@ -176,6 +189,23 @@ export class Encounter extends React.Component {
     return InitGroupStore.getCharactersByIds(charIds);
   }
 
+  persistEncounterState() {
+    localStorage.setItem(Constants.EncounterStateCharactersString, JSON.stringify(this.state.characters));
+    localStorage.setItem(Constants.EncounterStateInitGroupsString, JSON.stringify(this.state.initGroups));
+    localStorage.setItem(Constants.EncounterStateIsEndTurnDisplayedString, JSON.stringify(this.state.isEndTurnDisplayed));
+    localStorage.setItem(Constants.EncounterStateIsAddCharModalOpenString, JSON.stringify(this.state.isAddCharModalOpen));
+    localStorage.setItem(Constants.EncounterStateIsClearEncounterModalOpenString, JSON.stringify(this.state.isClearEncounterModalOpen));
+    localStorage.setItem(Constants.EncounterStateRoundString, JSON.stringify(this.state.round));
+    localStorage.setItem(Constants.EncounterStateLoggedRoundsString, JSON.stringify(this.state.loggedRounds));
+    localStorage.setItem(Constants.EncounterStateTurnsString, JSON.stringify(this.state.turns));
+    localStorage.setItem(Constants.EncounterStateLoggedTurnsString, JSON.stringify(this.state.loggedTurns));
+    localStorage.setItem(Constants.EncounterStateIsMessageModalDisplayedString, JSON.stringify(this.state.isMessageModalDisplayed));
+    localStorage.setItem(Constants.EncounterStateIsEncounterReportModalDisplayedString, JSON.stringify(this.state.isEncounterReportModalDisplayed));
+    localStorage.setItem(Constants.EncounterStateMessageModalTextString, JSON.stringify(this.state.messageModalText));
+    localStorage.setItem(Constants.EncounterStateEncounterStartTimeString, JSON.stringify(this.state.encounterStartTime));
+    localStorage.setItem(Constants.EncounterStateLoggedEncounterStartTimeString, JSON.stringify(this.state.loggedEncounterStartTime));
+  }
+
   updateInitGroupsAndCharacters() {
     this.setState({
       initGroups: InitGroupStore.getInitGroups(),
@@ -183,12 +213,16 @@ export class Encounter extends React.Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     InitGroupStore.subscribe(this.updateInitGroupsAndCharacters);
   }
 
   componentWillUnmount() {
     InitGroupStore.unsubscribe(this.updateInitGroupsAndCharacters);
+  }
+
+  componentDidUpdate() {
+    this.persistEncounterState();
   }
 
   render() {

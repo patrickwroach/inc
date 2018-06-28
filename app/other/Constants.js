@@ -78,4 +78,60 @@ export class Constants {
 	static get minutesString() {
     return "minute(s)";
   }
+
+  static get EncounterStateInitGroupsString() {
+      return 'initGroups';
+  }
+
+  static get EncounterStateCharactersString() {
+    return 'characters';
+  }
+
+  static get EncounterStateIsEndTurnDisplayedString() {
+    return 'isEndTurnDisplayed';
+  }
+
+  static get EncounterStateIsAddCharModalOpenString() {
+    return 'isAddCharModalOpen';
+  }
+
+  static get EncounterStateIsClearEncounterModalOpenString() {
+    return 'isClearEncounterModalOpen';
+  }
+
+  static get EncounterStateRoundString() {
+    return 'round';
+  }
+
+  static get EncounterStateLoggedRoundsString() {
+    return 'loggedRounds';
+  }
+
+  static get EncounterStateTurnsString() {
+    return 'turns';
+  }
+
+  static get EncounterStateLoggedTurnsString() {
+    return 'loggedTurns';
+  }
+
+  static get EncounterStateIsMessageModalDisplayedString() {
+    return 'isMessageModalDisplayed';
+  }
+
+  static get EncounterStateIsEncounterReportModalDisplayedString() {
+    return 'isEncounterReportModalDisplayed';
+  }
+
+  static get EncounterStateMessageModalTextString() {
+    return 'messageModalText';
+  }
+
+  static get EncounterStateEncounterStartTimeString() {
+    return 'encounterStartTime';
+  }
+
+  static get EncounterStateLoggedEncounterStartTimeString() {
+    return 'loggedEncounterStartTime';
+  }
 }

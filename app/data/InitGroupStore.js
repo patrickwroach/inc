@@ -21,6 +21,10 @@ export class InitGroupStore {
     return initGroups.slice();
   }
 
+  static loadInitGroups(incomingInitGroups) {
+    initGroups = incomingInitGroups;
+  }
+
   static getInitialInitGroups() {
     return Helpers.initialInitGroups;
   }
@@ -31,6 +35,10 @@ export class InitGroupStore {
 
   static getCharacters() {
     return characters.slice();
+  }
+
+  static loadCharacters(incomingCharacters) {
+    characters = incomingCharacters;
   }
 
   static getCharactersByIds(charIds) {
