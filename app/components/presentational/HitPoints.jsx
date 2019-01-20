@@ -9,8 +9,8 @@ export class HitPoints extends React.Component {
           <h2>{this.props.hp}/{this.props.hpMax}</h2>
         </div>
         <div className="hp-toggles">
-          <Button onClick={() => this.props.handleAddHp(1)} text="+1" />
-          <Button onClick={() => this.props.handleAddHp(+this.props.inputHp)} text="+" />
+          <Button onClick={() => this.props.handleAddHp(-1)} text="-1" />
+          <Button onClick={() => this.props.handleAddHp(-this.props.inputHp)} text="-" />
           <input
             onChange={this.props.handleInputHp}
             type="number"
@@ -19,8 +19,8 @@ export class HitPoints extends React.Component {
             onFocus={(e) => e.target.placeholder = ""}
             className="inputToggle"
           />
-          <Button onClick={() => this.props.handleAddHp(-this.props.inputHp)} text="-" />
-          <Button onClick={() => this.props.handleAddHp(-1)} text="-1" />
+          <Button onClick={() => this.props.handleAddHp(+this.props.inputHp)} text="+" />
+          <Button onClick={() => this.props.handleAddHp(1)} text="+1" />
         </div>
       </div>
     );
