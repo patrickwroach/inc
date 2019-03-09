@@ -1,30 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { NavBar } from './components/presentational/navbar.jsx';
 import { InitContainer } from './components/presentational/initcontainer.jsx';
 import { Footer } from './components/presentational/footer.jsx';
 import './styles/template.less';
 import Logo from './assets/incounter-logo.svg';
+import { Analytics } from './data/Analytics.js';
 
 export default class App extends React.Component {
-   render() {
-      return (     
-        <div>  
-           <NavBar logo={Logo} />
-             
-           <InitContainer />
-        
-           <Footer />     
-        </div>    
-      );
-   }
+  componentDidMount() {
+    Analytics.initialize();
+    Analytics.pageView('incounter-app-home');
+  }
+  render() {
+    return (     
+      <div>  
+          <NavBar logo={Logo} />
+            
+          <InitContainer />
+      
+          <Footer />     
+      </div>    
+    );
+  }
 }
-
-//export default App;
-ReactDOM.render(
-<App />,
-document.getElementById('app')
-);
 
 
 
